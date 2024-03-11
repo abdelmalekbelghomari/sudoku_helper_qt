@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "SudokuSolver.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -18,6 +19,7 @@ int main(int argc, char *argv[])
         }
     }
     MainWindow w;
+    SudokuSolver solver(0,0);
     w.show();
     return a.exec();
 }

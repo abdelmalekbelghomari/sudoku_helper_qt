@@ -12,3 +12,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::showError(const QString &message) {
+    QMessageBox::critical(this, tr("Erreur"), message);
+}
