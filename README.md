@@ -10,9 +10,9 @@
 ### Architecture of the project :
 * An obvious Design Pattern that would be implemented would be an MVP ( Model View Presentation) to separate the roles and make the developping part easier
 * An observer should be implemented to keep track of the player's moves and help him out by sending notifications
-* A strategy pattern will be implemented to generate hints and solve the game
-* the pattern Command will be useful for the undo redo option
-* the Memento pattern will allow the game to be saved 
+* A strategy pattern will be implemented to generate hints and solve the game (later)
+* the pattern Command will be useful for the undo redo option (later)
+* the Memento pattern will allow the game to be saved (later)
 * The Factory pattern will be useful to generate different boards ( boards of the same difficulty will have the same amount of empty boxes)
 
 ### Options to help out the player :
