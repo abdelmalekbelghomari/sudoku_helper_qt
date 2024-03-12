@@ -19,7 +19,7 @@ private:
                 * 3 for insane */
 
     std::vector<std::string> fileNames = {
-        "/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper/grids/Easy.txt",
+        "/home/haykel/interfaces_graphiques/projet/Sudoku_Helper/grids/Easy.txt",
         "path/to/medium_level_puzzles.txt",
         "path/to/hard_level_puzzles.txt",
         "path/to/insane_level_puzzles.txt"
