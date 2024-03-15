@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include "Presenter.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,5 +21,6 @@ public:
     void showError(const QString &message);
 private:
     Ui::MainWindow *ui;
+    Presenter* _presenter;
 };
 #endif // MAINWINDOW_H

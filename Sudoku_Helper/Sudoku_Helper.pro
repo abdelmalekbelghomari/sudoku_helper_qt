@@ -13,12 +13,16 @@ SOURCES += \
     SudokuDrawer.cpp \
     SudokuSolver.cpp \
     main.cpp \
+    Presenter.cpp \
+    BoardFactory.cpp \
     mainwindow.cpp
 
 HEADERS += \
     FiguresDisplayer.h \
     SudokuDrawer.h \
     SudokuSolver.h \
+    Presenter.h \
+    BoardFactory.h \
     mainwindow.h
 
 FORMS += \

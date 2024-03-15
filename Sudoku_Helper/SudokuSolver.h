@@ -13,7 +13,8 @@ public:
     SudokuSolver(int level, int grid);
 
 private:
-    int _level; /* 0 for easy
+    int _level; /* 
+                * 0 for easy
                 * 1 for medium
                 * 2 for hard
                 * 3 for insane */

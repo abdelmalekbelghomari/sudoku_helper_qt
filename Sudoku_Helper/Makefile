@@ -56,16 +56,22 @@ SOURCES       = FiguresDisplayer.cpp \
 		SudokuDrawer.cpp \
 		SudokuSolver.cpp \
 		main.cpp \
+		Presenter.cpp \
+		BoardFactory.cpp \
 		mainwindow.cpp moc_FiguresDisplayer.cpp \
 		moc_SudokuDrawer.cpp \
+		moc_Presenter.cpp \
 		moc_mainwindow.cpp
 OBJECTS       = FiguresDisplayer.o \
 		SudokuDrawer.o \
 		SudokuSolver.o \
 		main.o \
+		Presenter.o \
+		BoardFactory.o \
 		mainwindow.o \
 		moc_FiguresDisplayer.o \
 		moc_SudokuDrawer.o \
+		moc_Presenter.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -124,6 +130,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -146,10 +153,14 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		Sudoku_Helper.pro FiguresDisplayer.h \
 		SudokuDrawer.h \
 		SudokuSolver.h \
+		Presenter.h \
+		BoardFactory.h \
 		mainwindow.h FiguresDisplayer.cpp \
 		SudokuDrawer.cpp \
 		SudokuSolver.cpp \
 		main.cpp \
+		Presenter.cpp \
+		BoardFactory.cpp \
 		mainwindow.cpp
 QMAKE_TARGET  = Sudoku_Helper
 DESTDIR       = 
@@ -219,6 +230,7 @@ Makefile: Sudoku_Helper.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmak
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -297,6 +309,7 @@ Makefile: Sudoku_Helper.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmak
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -332,8 +345,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents FiguresDisplayer.h SudokuDrawer.h SudokuSolver.h mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents FiguresDisplayer.cpp SudokuDrawer.cpp SudokuSolver.cpp main.cpp mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents FiguresDisplayer.h SudokuDrawer.h SudokuSolver.h Presenter.h BoardFactory.h mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents FiguresDisplayer.cpp SudokuDrawer.cpp SudokuSolver.cpp main.cpp Presenter.cpp BoardFactory.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 	$(COPY_FILE) --parents Sudoku_Helper_en_GB.ts $(DISTDIR)/
 
@@ -367,9 +380,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -std=gnu++1z -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_FiguresDisplayer.cpp moc_SudokuDrawer.cpp moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_FiguresDisplayer.cpp moc_SudokuDrawer.cpp moc_Presenter.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_FiguresDisplayer.cpp moc_SudokuDrawer.cpp moc_mainwindow.cpp
+	-$(DEL_FILE) moc_FiguresDisplayer.cpp moc_SudokuDrawer.cpp moc_Presenter.cpp moc_mainwindow.cpp
 moc_FiguresDisplayer.cpp: FiguresDisplayer.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -380,7 +393,17 @@ moc_SudokuDrawer.cpp: SudokuDrawer.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/haykel/interfaces_graphiques/projet/Sudoku_Helper/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/haykel/interfaces_graphiques/projet/Sudoku_Helper -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include SudokuDrawer.h -o moc_SudokuDrawer.cpp
 
+moc_Presenter.cpp: Presenter.h \
+		BoardFactory.h \
+		FiguresDisplayer.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/haykel/interfaces_graphiques/projet/Sudoku_Helper/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/haykel/interfaces_graphiques/projet/Sudoku_Helper -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include Presenter.h -o moc_Presenter.cpp
+
 moc_mainwindow.cpp: mainwindow.h \
+		Presenter.h \
+		BoardFactory.h \
+		FiguresDisplayer.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/haykel/interfaces_graphiques/projet/Sudoku_Helper/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/haykel/interfaces_graphiques/projet/Sudoku_Helper -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
@@ -418,11 +441,26 @@ SudokuSolver.o: SudokuSolver.cpp SudokuSolver.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SudokuSolver.o SudokuSolver.cpp
 
 main.o: main.cpp mainwindow.h \
+		Presenter.h \
+		BoardFactory.h \
+		FiguresDisplayer.h \
 		SudokuSolver.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
+Presenter.o: Presenter.cpp Presenter.h \
+		BoardFactory.h \
+		FiguresDisplayer.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Presenter.o Presenter.cpp
+
+BoardFactory.o: BoardFactory.cpp BoardFactory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BoardFactory.o BoardFactory.cpp
+
 mainwindow.o: mainwindow.cpp mainwindow.h \
-		ui_mainwindow.h
+		Presenter.h \
+		BoardFactory.h \
+		FiguresDisplayer.h \
+		ui_mainwindow.h \
+		SudokuDrawer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 moc_FiguresDisplayer.o: moc_FiguresDisplayer.cpp 
@@ -430,6 +468,9 @@ moc_FiguresDisplayer.o: moc_FiguresDisplayer.cpp
 
 moc_SudokuDrawer.o: moc_SudokuDrawer.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SudokuDrawer.o moc_SudokuDrawer.cpp
+
+moc_Presenter.o: moc_Presenter.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_Presenter.o moc_Presenter.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

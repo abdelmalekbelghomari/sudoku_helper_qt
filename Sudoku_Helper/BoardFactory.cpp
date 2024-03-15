@@ -3,9 +3,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <string>
 
-// Helper function to load boards from a file
-std::vector<std::string> BoardFactory::loadBoards(const std::string& filePath) {
+// Unified method to load boards from a file and then create a random board
+std::string BoardFactory::createBoard(const std::string& filePath) {
     std::vector<std::string> boards;
     std::ifstream file(filePath);
     std::string line;
@@ -19,14 +20,7 @@ std::vector<std::string> BoardFactory::loadBoards(const std::string& filePath) {
         }
         file.close();
     }
-    return boards;
-}
 
-// Implementation of the BoardFactory to create a board
-std::string BoardFactory::createBoard(const std::string& filePath) {
-    // Load the boards from the specified file
-    std::vector<std::string> boards = loadBoards(filePath);
-    
     // Seed the random number generator to ensure different outcomes
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
@@ -37,6 +31,5 @@ std::string BoardFactory::createBoard(const std::string& filePath) {
         return boards[index];
     }
 
-    // Return an empty string if no boards were loaded
-    return "";
+    // Return an empty string
 }

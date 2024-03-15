@@ -1,10 +1,11 @@
-#include <string>
-#include <vector>
+#ifndef BOARDFACTORY_H
+#define BOARDFACTORY_H
 
+#include <string>
 
 class BoardFactory {
 public:
-    static std::string createBoard(const std::string& filePath);
-private:
-    static std::vector<std::string> loadBoards(const std::string& filePath);
+    std::string createBoard(const std::string& filePath);
 };
+
+#endif // BOARDFACTORY_H

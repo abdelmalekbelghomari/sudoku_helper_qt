@@ -23,3 +23,8 @@
 * the score will start as the number of empty cases * 2
 * Whenever the player requests a hint , it will take out 1 point from his score
 * Whenever the player requests help after requesting a hint, it will take out one more point
+
+
+## First Sprint
+* During this first sprint , ths objective is to be able to generate a 
+sudoku that is initialized correctly using the factory pattern, and boxes that only have options based on the observer state.

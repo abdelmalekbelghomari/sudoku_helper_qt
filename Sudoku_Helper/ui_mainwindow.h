@@ -13,8 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
@@ -38,28 +36,7 @@ public:
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
-    QGridLayout *gridLayout;
-    QFrame *line_6;
-    FiguresDisplayer *square3;
-    QFrame *line_4;
-    FiguresDisplayer *square6;
-    QFrame *line;
-    QFrame *line_5;
-    FiguresDisplayer *square7;
-    QFrame *line_2;
-    FiguresDisplayer *square9;
-    FiguresDisplayer *square1;
-    QFrame *line_3;
-    QWidget *square5;
-    FiguresDisplayer *square8;
-    FiguresDisplayer *square2;
-    QWidget *square4;
-    QFrame *line_7;
-    QFrame *line_8;
-    QFrame *line_9;
-    QFrame *line_10;
-    QFrame *line_11;
-    QFrame *line_12;
+    FiguresDisplayer *figureSelector;
     SudokuDrawer *sudokuWidget;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
@@ -88,140 +65,10 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        gridLayout = new QGridLayout();
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        gridLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
-        line_6 = new QFrame(centralwidget);
-        line_6->setObjectName(QString::fromUtf8("line_6"));
-        line_6->setFrameShape(QFrame::VLine);
-        line_6->setFrameShadow(QFrame::Sunken);
+        figureSelector = new FiguresDisplayer(centralwidget);
+        figureSelector->setObjectName(QString::fromUtf8("figureSelector"));
 
-        gridLayout->addWidget(line_6, 2, 3, 1, 1);
-
-        square3 = new FiguresDisplayer(centralwidget);
-        square3->setObjectName(QString::fromUtf8("square3"));
-
-        gridLayout->addWidget(square3, 0, 4, 1, 1);
-
-        line_4 = new QFrame(centralwidget);
-        line_4->setObjectName(QString::fromUtf8("line_4"));
-        line_4->setFrameShape(QFrame::VLine);
-        line_4->setFrameShadow(QFrame::Sunken);
-
-        gridLayout->addWidget(line_4, 4, 3, 1, 1);
-
-        square6 = new FiguresDisplayer(centralwidget);
-        square6->setObjectName(QString::fromUtf8("square6"));
-
-        gridLayout->addWidget(square6, 2, 4, 1, 1);
-
-        line = new QFrame(centralwidget);
-        line->setObjectName(QString::fromUtf8("line"));
-        line->setFrameShape(QFrame::HLine);
-        line->setFrameShadow(QFrame::Sunken);
-
-        gridLayout->addWidget(line, 3, 0, 1, 1);
-
-        line_5 = new QFrame(centralwidget);
-        line_5->setObjectName(QString::fromUtf8("line_5"));
-        line_5->setFrameShape(QFrame::HLine);
-        line_5->setFrameShadow(QFrame::Sunken);
-
-        gridLayout->addWidget(line_5, 3, 1, 1, 2);
-
-        square7 = new FiguresDisplayer(centralwidget);
-        square7->setObjectName(QString::fromUtf8("square7"));
-
-        gridLayout->addWidget(square7, 4, 0, 1, 1);
-
-        line_2 = new QFrame(centralwidget);
-        line_2->setObjectName(QString::fromUtf8("line_2"));
-        line_2->setFrameShape(QFrame::HLine);
-        line_2->setFrameShadow(QFrame::Sunken);
-
-        gridLayout->addWidget(line_2, 1, 0, 1, 1);
-
-        square9 = new FiguresDisplayer(centralwidget);
-        square9->setObjectName(QString::fromUtf8("square9"));
-
-        gridLayout->addWidget(square9, 4, 4, 1, 1);
-
-        square1 = new FiguresDisplayer(centralwidget);
-        square1->setObjectName(QString::fromUtf8("square1"));
-
-        gridLayout->addWidget(square1, 0, 0, 1, 1);
-
-        line_3 = new QFrame(centralwidget);
-        line_3->setObjectName(QString::fromUtf8("line_3"));
-        line_3->setFrameShape(QFrame::VLine);
-        line_3->setFrameShadow(QFrame::Sunken);
-
-        gridLayout->addWidget(line_3, 4, 1, 1, 1);
-
-        square5 = new QWidget(centralwidget);
-        square5->setObjectName(QString::fromUtf8("square5"));
-
-        gridLayout->addWidget(square5, 2, 2, 1, 1);
-
-        square8 = new FiguresDisplayer(centralwidget);
-        square8->setObjectName(QString::fromUtf8("square8"));
-
-        gridLayout->addWidget(square8, 4, 2, 1, 1);
-
-        square2 = new FiguresDisplayer(centralwidget);
-        square2->setObjectName(QString::fromUtf8("square2"));
-
-        gridLayout->addWidget(square2, 0, 2, 1, 1);
-
-        square4 = new QWidget(centralwidget);
-        square4->setObjectName(QString::fromUtf8("square4"));
-
-        gridLayout->addWidget(square4, 2, 0, 1, 1);
-
-        line_7 = new QFrame(centralwidget);
-        line_7->setObjectName(QString::fromUtf8("line_7"));
-        line_7->setFrameShape(QFrame::VLine);
-        line_7->setFrameShadow(QFrame::Sunken);
-
-        gridLayout->addWidget(line_7, 2, 1, 1, 1);
-
-        line_8 = new QFrame(centralwidget);
-        line_8->setObjectName(QString::fromUtf8("line_8"));
-        line_8->setFrameShape(QFrame::VLine);
-        line_8->setFrameShadow(QFrame::Sunken);
-
-        gridLayout->addWidget(line_8, 0, 1, 1, 1);
-
-        line_9 = new QFrame(centralwidget);
-        line_9->setObjectName(QString::fromUtf8("line_9"));
-        line_9->setFrameShape(QFrame::HLine);
-        line_9->setFrameShadow(QFrame::Sunken);
-
-        gridLayout->addWidget(line_9, 1, 2, 1, 1);
-
-        line_10 = new QFrame(centralwidget);
-        line_10->setObjectName(QString::fromUtf8("line_10"));
-        line_10->setFrameShape(QFrame::HLine);
-        line_10->setFrameShadow(QFrame::Sunken);
-
-        gridLayout->addWidget(line_10, 1, 4, 1, 1);
-
-        line_11 = new QFrame(centralwidget);
-        line_11->setObjectName(QString::fromUtf8("line_11"));
-        line_11->setFrameShape(QFrame::HLine);
-        line_11->setFrameShadow(QFrame::Sunken);
-
-        gridLayout->addWidget(line_11, 3, 4, 1, 1);
-
-        line_12 = new QFrame(centralwidget);
-        line_12->setObjectName(QString::fromUtf8("line_12"));
-        line_12->setFrameShape(QFrame::VLine);
-        line_12->setFrameShadow(QFrame::Sunken);
-
-        gridLayout->addWidget(line_12, 0, 3, 1, 1);
-
-
-        horizontalLayout_2->addLayout(gridLayout);
+        horizontalLayout_2->addWidget(figureSelector);
 
         sudokuWidget = new SudokuDrawer(centralwidget);
         sudokuWidget->setObjectName(QString::fromUtf8("sudokuWidget"));
