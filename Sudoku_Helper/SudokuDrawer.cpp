@@ -2,6 +2,8 @@
 
 SudokuDrawer::SudokuDrawer(QWidget *parent) : QWidget(parent) {
     setFixedSize(500, 500); // Example size, adjust as needed
+    _sudokuSolved = new SudokuSolver(0, 0);
+    _sudoku = _sudokuSolved->getPuzzle();
 }
 
 void SudokuDrawer::paintEvent(QPaintEvent *event) {
@@ -12,13 +14,29 @@ void SudokuDrawer::paintEvent(QPaintEvent *event) {
     const int thickLine = 3;
     const int fineLine = 1;
 
-    for (int i = 0; i <= 9; ++i) {
+    QFont font;
+    font.setPixelSize(cellSize / 2);
+    painter.setFont(font);
 
+    for (int i = 0; i <= 9; ++i) {
         int lineThickness = (i % 3 == 0) ? thickLine : fineLine;
         painter.setPen(QPen(Qt::black, lineThickness));
 
-        painter.drawLine(i * cellSize, 0, i * cellSize, height()-5);
-        painter.drawLine(0, i * cellSize, width()-5, i * cellSize);
-    }
+        painter.drawLine(i * cellSize, 0, i * cellSize, height() - 5);
+        painter.drawLine(0, i * cellSize, width() - 5, i * cellSize);
 
+        for (int j = 0; j < 9; ++j) {
+            if (/*_sudoku[i][j] != 0*/true) {
+                int number = 8;/* = _sudoku[i][j]*/;
+                painter.drawText(i * cellSize + cellSize / 3, j * cellSize + cellSize / 3 + cellSize/2, QString::number(number));
+            } else {
+                // QString vacantCell = " ";
+                // painter.drawText(i * cellSize + cellSize / 3, j * cellSize + cellSize / 3, vacantCell);
+            }
+        }
+    }
 }
+
+// SudokuDrawer::~SudokuDrawer() {
+//     delete _sudokuSolved;
+// }
