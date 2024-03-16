@@ -161,6 +161,7 @@ public:
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
         QWidget::setTabOrder(newGameButton, LevelComboBox);
+        QWidget::setTabOrder(LevelComboBox, gridSelectorComboBox);
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuOptions->menuAction());

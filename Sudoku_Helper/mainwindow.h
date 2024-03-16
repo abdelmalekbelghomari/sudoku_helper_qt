@@ -19,8 +19,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void showError(const QString &message);
+ 
 private:
     Ui::MainWindow *ui;
     Presenter* _presenter;
+
+private slots:
+    void onLevelChanged(const QString &level);
+    
 };
 #endif // MAINWINDOW_H

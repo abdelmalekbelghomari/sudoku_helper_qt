@@ -9,7 +9,7 @@ class Presenter : public QObject {
     Q_OBJECT
 public:
     Presenter(FiguresDisplayer* view, QObject *parent = nullptr);
-    void onStartNewGame(const std::string& level);
+    void onStartNewGame(const std::string& level, int index = -1);
     
 
 private:

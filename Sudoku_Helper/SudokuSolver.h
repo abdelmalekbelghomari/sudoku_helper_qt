@@ -23,10 +23,10 @@ private:
     int _gridChosen;
 
     std::vector<std::string> fileNames = {
-        "/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper/grids/Easy.txt",
-        "/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper/grids/Medium.txt",
-        "/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper/grids/Hard.txt",
-        "/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper/grids/Insane.txt"
+        "grids/Easy.txt",
+        "grids/Medium.txt",
+        "grids/Hard.txt",
+        "Insane.txt"
     };
 
 

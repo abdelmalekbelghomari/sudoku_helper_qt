@@ -5,7 +5,7 @@
 
 class BoardFactory {
 public:
-    std::string createBoard(const std::string& filePath);
+    std::string createBoard(const std::string& filePath, int index = -1);
 };
 
 #endif // BOARDFACTORY_H

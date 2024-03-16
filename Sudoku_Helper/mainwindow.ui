@@ -196,6 +196,7 @@
  <tabstops>
   <tabstop>newGameButton</tabstop>
   <tabstop>LevelComboBox</tabstop>
+  <tabstop>gridSelectorComboBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>
