@@ -42,6 +42,7 @@ public:
     QSpacerItem *horizontalSpacer;
     QLabel *levelLabel;
     QComboBox *LevelComboBox;
+    QComboBox *gridSelectorComboBox;
     QPushButton *newGameButton;
     QSpacerItem *horizontalSpacer_2;
     QMenuBar *menubar;
@@ -92,18 +93,48 @@ public:
         horizontalLayout->addWidget(levelLabel);
 
         LevelComboBox = new QComboBox(centralwidget);
-        QIcon icon(QIcon::fromTheme(QString::fromUtf8("face-smile")));
+        QIcon icon;
+        QString iconThemeName = QString::fromUtf8("face-smile");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         LevelComboBox->addItem(icon, QString());
-        QIcon icon1(QIcon::fromTheme(QString::fromUtf8("face-cool")));
+        QIcon icon1;
+        iconThemeName = QString::fromUtf8("face-cool");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon1 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon1.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         LevelComboBox->addItem(icon1, QString());
-        QIcon icon2(QIcon::fromTheme(QString::fromUtf8("face-devilish")));
+        QIcon icon2;
+        iconThemeName = QString::fromUtf8("face-devilish");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon2 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon2.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         LevelComboBox->addItem(icon2, QString());
-        QIcon icon3(QIcon::fromTheme(QString::fromUtf8("face-sick")));
+        QIcon icon3;
+        iconThemeName = QString::fromUtf8("face-sick");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon3 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon3.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         LevelComboBox->addItem(icon3, QString());
         LevelComboBox->setObjectName(QString::fromUtf8("LevelComboBox"));
         LevelComboBox->setMinimumSize(QSize(130, 0));
 
         horizontalLayout->addWidget(LevelComboBox);
+
+        gridSelectorComboBox = new QComboBox(centralwidget);
+        gridSelectorComboBox->addItem(QString());
+        gridSelectorComboBox->setObjectName(QString::fromUtf8("gridSelectorComboBox"));
+
+        horizontalLayout->addWidget(gridSelectorComboBox);
 
         newGameButton = new QPushButton(centralwidget);
         newGameButton->setObjectName(QString::fromUtf8("newGameButton"));
@@ -120,7 +151,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1000, 22));
+        menubar->setGeometry(QRect(0, 0, 1000, 20));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuOptions = new QMenu(menubar);
@@ -152,6 +183,8 @@ public:
         LevelComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Medium", "Medium Level"));
         LevelComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Hard", nullptr));
         LevelComboBox->setItemText(3, QCoreApplication::translate("MainWindow", "Insane", nullptr));
+
+        gridSelectorComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Random", nullptr));
 
         newGameButton->setText(QCoreApplication::translate("MainWindow", "New Game", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));

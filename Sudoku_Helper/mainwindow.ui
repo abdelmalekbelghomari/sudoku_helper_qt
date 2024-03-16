@@ -76,7 +76,8 @@
           <string>Easy</string>
          </property>
          <property name="icon">
-          <iconset theme="face-smile"/>
+          <iconset theme="face-smile">
+           <normaloff>.</normaloff>.</iconset>
          </property>
         </item>
         <item>
@@ -84,7 +85,8 @@
           <string comment="Medium Level">Medium</string>
          </property>
          <property name="icon">
-          <iconset theme="face-cool"/>
+          <iconset theme="face-cool">
+           <normaloff>.</normaloff>.</iconset>
          </property>
         </item>
         <item>
@@ -92,7 +94,8 @@
           <string>Hard</string>
          </property>
          <property name="icon">
-          <iconset theme="face-devilish"/>
+          <iconset theme="face-devilish">
+           <normaloff>.</normaloff>.</iconset>
          </property>
         </item>
         <item>
@@ -100,7 +103,17 @@
           <string>Insane</string>
          </property>
          <property name="icon">
-          <iconset theme="face-sick"/>
+          <iconset theme="face-sick">
+           <normaloff>.</normaloff>.</iconset>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="gridSelectorComboBox">
+        <item>
+         <property name="text">
+          <string>Random</string>
          </property>
         </item>
        </widget>
@@ -135,7 +148,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
