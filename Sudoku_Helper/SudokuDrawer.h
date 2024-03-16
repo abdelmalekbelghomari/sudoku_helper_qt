@@ -27,7 +27,7 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 private:
     SudokuSolver * _sudokuSolved;
-    FiguresDisplayer* _figuresDisplayer = nullptr;
+    FiguresDisplayer* _figuresDisplayer;
     void updateCell(int row, int col, int newValue);
     MainWindow* m_mainWindow = nullptr;
 };

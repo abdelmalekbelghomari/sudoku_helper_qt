@@ -10,15 +10,16 @@ class SudokuDrawer;
 class Presenter : public QObject {
     Q_OBJECT
 public:
-    Presenter(FiguresDisplayer* view, QObject *parent = nullptr);
+    Presenter(FiguresDisplayer* figuresDisplayer, QObject *parent = nullptr);
     void onStartNewGame(const std::string& level, int index = -1);
     
 
 private:
-    FiguresDisplayer* _view;
+    FiguresDisplayer* _figuresDisplayer;
     BoardFactory _factory;
     SudokuDrawer* _sudokuDrawer;
-    
+signals:
+    void gridSelected(int index);
 };
 
 #endif // PRESENTER_H

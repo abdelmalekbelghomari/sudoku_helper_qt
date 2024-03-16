@@ -12,7 +12,9 @@ class FiguresDisplayer : public QWidget {
 
 public:
     explicit FiguresDisplayer(QWidget *parent = nullptr);
-    void clear();
+    void clearAll();
+    // void setupInitialUI();
+    // void clearLayout(QLayout* layout);
     // Adjust or add these functions based on your implementation needs
     void setNumbers(const QString& numbers);  // Adjusted to setNumber which is not previously declared
     // If you plan to have separate functionalities
@@ -26,6 +28,10 @@ public:
     QWidget* widgetAt(int row, int col);
     void setSudokuDrawer(SudokuDrawer* drawer);
     QString buildGridRepresentation();
+    void checkGameCompletion();
+    void displayWinMessage();
+    void displayWinMessageInNewWindow();
+    void lockAllComboBoxes();
 
 public slots:
     void onComboBoxChanged(int index);
@@ -40,7 +46,9 @@ private:
 
     void createFixedNumber(int number, int position);  // Assuming this is correctly declared and implemented
     void createComboBox(int position);  // Assuming this is correctly declared and implemented
-    
+
+signals:
+    void gameIsCompleted();
 };
 
 #endif // FIGURESDISPLAYER_H

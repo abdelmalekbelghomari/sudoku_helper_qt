@@ -26,8 +26,13 @@ std::string BoardFactory::createBoard(const std::string& filePath, int index) {
         // Otherwise, return a random board
         std::srand(static_cast<unsigned int>(std::time(nullptr)));
         int randomIndex = std::rand() % boards.size();
+        _randomIndex = randomIndex;
         return boards[randomIndex];
     }
 
     return ""; // Return an empty string if no boards are available or if an invalid index is specified
+}
+
+int BoardFactory::getRandomIndex(){
+    return _randomIndex;
 }

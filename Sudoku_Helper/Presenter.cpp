@@ -3,11 +3,11 @@
 #include "SudokuDrawer.h"
 #include <QString>
 #include <QSet>
-Presenter::Presenter(FiguresDisplayer* view, QObject *parent)
-    : QObject(parent), _view(view) {}
+Presenter::Presenter(FiguresDisplayer* figuresDisplayer, QObject *parent)
+    : QObject(parent), _figuresDisplayer(figuresDisplayer) {}
 
 void Presenter::onStartNewGame(const std::string& level, int index) {
-    _view->clear();
+    _figuresDisplayer->clearAll();
 
     std::string gridPath;
     if (level == "easy") {
@@ -23,9 +23,12 @@ void Presenter::onStartNewGame(const std::string& level, int index) {
     std::string initialGrid = _factory.createBoard(gridPath, index);
     QString qInitialGrid = QString::fromStdString(initialGrid);
 
-    _view->setNumbers(qInitialGrid);
-    _view->filterNumbers();
-    _sudokuDrawer->setFiguresDisplayer(_view);
+    _figuresDisplayer->setNumbers(qInitialGrid);
+    _figuresDisplayer->filterNumbers();
+    _sudokuDrawer->setFiguresDisplayer(_figuresDisplayer);
+    if(_factory.getRandomIndex() != -1){
+        emit gridSelected( _factory.getRandomIndex());
+    }
 }
 
 

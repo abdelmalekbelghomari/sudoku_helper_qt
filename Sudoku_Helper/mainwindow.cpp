@@ -30,6 +30,10 @@ if (square && drawer) {
 });
 
     connect(ui->LevelComboBox, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(onLevelChanged(const QString &)));
+
+    connect(square, &FiguresDisplayer::gameIsCompleted, this, &MainWindow::updateCompletedLevels);
+
+    connect(_presenter, &Presenter::gridSelected, this, &MainWindow::handleGridSelection);
 }
 
 MainWindow::~MainWindow()
@@ -38,6 +42,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::handleGridSelection(int index) {
+    ui->gridSelectorComboBox->setCurrentIndex(index + 1);
+}
 
 void MainWindow::onLevelChanged(const QString &level) {
     QString gridPath;
@@ -55,6 +63,18 @@ void MainWindow::onLevelChanged(const QString &level) {
     ui->gridSelectorComboBox->clear(); // Nettoyez la ComboBox avant d'ajouter de nouveaux items
     ui->gridSelectorComboBox->addItem("Random"); // Ajoutez une option "Random"
 
+    QSet<QString> completedLevels;
+    QFile prefFile("completedLevels.txt");
+    if (prefFile.open(QIODevice::ReadOnly)) {
+        QTextStream in(&prefFile);
+        QString line;
+        while (!in.atEnd()) {
+            line = in.readLine();
+            completedLevels.insert(line);
+        }
+        prefFile.close();
+    }
+
     // Ouvrir le fichier pour lire le nombre de grilles disponibles
     QFile file(gridPath);
     if (file.open(QIODevice::ReadOnly)) {
@@ -65,9 +85,30 @@ void MainWindow::onLevelChanged(const QString &level) {
         if (ok) { // Si la conversion en entier réussit
             // Ajoutez une option pour chaque grille disponible, en commençant à 1
             for (int i = 1; i <= numberOfBoards; i++) {
-                ui->gridSelectorComboBox->addItem("Grid " + QString::number(i));
+                QString itemText = "Grid" + QString::number(i);
+            if (completedLevels.contains(level.toLower() + QString::number(i))) {
+                itemText += " - Completed";
+            }
+            ui->gridSelectorComboBox->addItem(itemText);
             }
         }
         file.close(); // N'oubliez pas de fermer le fichier
+    }
+    
+}
+
+void MainWindow::updateCompletedLevels() {
+    QString level = ui->LevelComboBox->currentText().toLower();
+    int gridIndex = ui->gridSelectorComboBox->currentIndex(); // -1 parce que "Random" est la première option
+
+    // Générez le chemin du fichier de préférences ou une clé unique pour stocker cette information
+    QString preferencesFilePath = "completedLevels.txt"; // Modifiez selon votre logique de chemin de fichier
+
+    QFile file(preferencesFilePath);
+    if (file.open(QIODevice::Append | QIODevice::Text)) {
+        QTextStream out(&file);
+        // Formattez la ligne comme vous le souhaitez, par exemple "level:index"
+        out << level << gridIndex << "\n";
+        file.close();
     }
 }

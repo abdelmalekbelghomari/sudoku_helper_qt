@@ -3,13 +3,14 @@
 #include <QComboBox>
 #include <QSet>
 #include "SudokuDrawer.h"
+#include <QMessageBox>
 
 FiguresDisplayer::FiguresDisplayer(QWidget *parent) : QWidget(parent), layout(new QGridLayout(this)) {
     layout->setContentsMargins(0, 0, 0, 0);
     setLayout(layout);
 }
 
-void FiguresDisplayer::clear() {
+void FiguresDisplayer::clearAll() {  
     // Supprimer tous les widgets du layout
     QLayoutItem* item;
     while ((item = layout->takeAt(0)) != nullptr) {
@@ -94,6 +95,7 @@ void FiguresDisplayer::onComboBoxChanged(int index) {
     if (_drawer) {
         _drawer->drawGrid(gridData);
     }
+    checkGameCompletion();
 }
 
 QString FiguresDisplayer::buildGridRepresentation() {
@@ -201,4 +203,36 @@ void FiguresDisplayer::restoreValuesForSelection(const QString& value) {
     }
     // Assurez-vous de nettoyer après la restauration
     sourceOfRemovedValues[value].clear();
+}
+
+void FiguresDisplayer::checkGameCompletion() {
+    bool gameCompleted = true;
+    for (int i = 0; i < layout->count(); ++i) {
+        QLayoutItem* item = layout->itemAt(i);
+        if (QComboBox* comboBox = qobject_cast<QComboBox*>(item->widget())) {
+            if (comboBox->currentIndex() == 0) { // Si un comboBox est sur l'item vide
+                gameCompleted = false;
+                break;
+            }
+        }
+    }
+
+    if (gameCompleted) {
+        lockAllComboBoxes();
+        displayWinMessageInNewWindow();
+        emit gameIsCompleted();
+    }
+}
+
+void FiguresDisplayer::lockAllComboBoxes() {
+    for (int i = 0; i < layout->count(); ++i) {
+        QLayoutItem* item = layout->itemAt(i);
+        if (QComboBox* comboBox = qobject_cast<QComboBox*>(item->widget())) {
+            comboBox->setEnabled(false); // Désactiver le comboBox pour empêcher toute modification
+        }
+    }
+}
+
+void FiguresDisplayer::displayWinMessageInNewWindow() {
+    QMessageBox::information(this, "Game Completed", "MONSTREE!");
 }

@@ -28,7 +28,8 @@ private:
 
 private slots:
     void onLevelChanged(const QString &level);
-
+    void updateCompletedLevels();
+    void handleGridSelection(int index);
     
 };
 #endif // MAINWINDOW_H
