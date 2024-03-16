@@ -144,6 +144,7 @@
     </property>
     <addaction name="actionNew_Game"/>
     <addaction name="separator"/>
+    <addaction name="actionHome"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
@@ -156,13 +157,36 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNew_Game">
+   <property name="icon">
+    <iconset theme="list-add"/>
+   </property>
    <property name="text">
     <string>New Game</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset theme="application-exit"/>
+   </property>
    <property name="text">
     <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionHome">
+   <property name="icon">
+    <iconset theme="go-home"/>
+   </property>
+   <property name="text">
+    <string>Return to homepage</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
    </property>
   </action>
  </widget>

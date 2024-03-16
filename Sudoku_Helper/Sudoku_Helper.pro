@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     FiguresDisplayer.cpp \
+    HomeWindow.cpp \
     SudokuDrawer.cpp \
     SudokuSolver.cpp \
     main.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     FiguresDisplayer.h \
+    HomeWindow.h \
     SudokuDrawer.h \
     SudokuSolver.h \
     mainwindow.h

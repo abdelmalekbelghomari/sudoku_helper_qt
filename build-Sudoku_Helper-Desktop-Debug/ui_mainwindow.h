@@ -33,6 +33,7 @@ class Ui_MainWindow
 public:
     QAction *actionNew_Game;
     QAction *actionQuit;
+    QAction *actionHome;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
@@ -57,8 +58,16 @@ public:
         MainWindow->setMinimumSize(QSize(1000, 600));
         actionNew_Game = new QAction(MainWindow);
         actionNew_Game->setObjectName(QString::fromUtf8("actionNew_Game"));
+        QIcon icon(QIcon::fromTheme(QString::fromUtf8("list-add")));
+        actionNew_Game->setIcon(icon);
         actionQuit = new QAction(MainWindow);
         actionQuit->setObjectName(QString::fromUtf8("actionQuit"));
+        QIcon icon1(QIcon::fromTheme(QString::fromUtf8("application-exit")));
+        actionQuit->setIcon(icon1);
+        actionHome = new QAction(MainWindow);
+        actionHome->setObjectName(QString::fromUtf8("actionHome"));
+        QIcon icon2(QIcon::fromTheme(QString::fromUtf8("go-home")));
+        actionHome->setIcon(icon2);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -92,14 +101,14 @@ public:
         horizontalLayout->addWidget(levelLabel);
 
         LevelComboBox = new QComboBox(centralwidget);
-        QIcon icon(QIcon::fromTheme(QString::fromUtf8("face-smile")));
-        LevelComboBox->addItem(icon, QString());
-        QIcon icon1(QIcon::fromTheme(QString::fromUtf8("face-cool")));
-        LevelComboBox->addItem(icon1, QString());
-        QIcon icon2(QIcon::fromTheme(QString::fromUtf8("face-devilish")));
-        LevelComboBox->addItem(icon2, QString());
-        QIcon icon3(QIcon::fromTheme(QString::fromUtf8("face-sick")));
+        QIcon icon3(QIcon::fromTheme(QString::fromUtf8("face-smile")));
         LevelComboBox->addItem(icon3, QString());
+        QIcon icon4(QIcon::fromTheme(QString::fromUtf8("face-cool")));
+        LevelComboBox->addItem(icon4, QString());
+        QIcon icon5(QIcon::fromTheme(QString::fromUtf8("face-devilish")));
+        LevelComboBox->addItem(icon5, QString());
+        QIcon icon6(QIcon::fromTheme(QString::fromUtf8("face-sick")));
+        LevelComboBox->addItem(icon6, QString());
         LevelComboBox->setObjectName(QString::fromUtf8("LevelComboBox"));
         LevelComboBox->setMinimumSize(QSize(130, 0));
 
@@ -135,6 +144,7 @@ public:
         menubar->addAction(menuOptions->menuAction());
         menuFile->addAction(actionNew_Game);
         menuFile->addSeparator();
+        menuFile->addAction(actionHome);
         menuFile->addAction(actionQuit);
 
         retranslateUi(MainWindow);
@@ -146,7 +156,17 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Sudoku Helper", nullptr));
         actionNew_Game->setText(QCoreApplication::translate("MainWindow", "New Game", nullptr));
+#if QT_CONFIG(shortcut)
+        actionNew_Game->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+N", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionQuit->setText(QCoreApplication::translate("MainWindow", "Quit", nullptr));
+#if QT_CONFIG(shortcut)
+        actionQuit->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Q", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionHome->setText(QCoreApplication::translate("MainWindow", "Return to homepage", nullptr));
+#if QT_CONFIG(shortcut)
+        actionHome->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+H", nullptr));
+#endif // QT_CONFIG(shortcut)
         levelLabel->setText(QCoreApplication::translate("MainWindow", "Level (Please Select) :", nullptr));
         LevelComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Easy", nullptr));
         LevelComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Medium", "Medium Level"));

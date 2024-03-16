@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "SudokuSolver.h"
+#include "HomeWindow.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -18,8 +19,21 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    SudokuSolver solver(3,2);
+
+    //SudokuSolver solver(3,2);
     MainWindow w;
-    w.show();
+    HomeWindow h;
+    QObject::connect(&h, &HomeWindow::startNewGame, [&]() {
+        h.hide();
+        w.show();
+    });
+
+    QObject::connect(&w, &MainWindow::showHomePage, [&]() {
+        w.hide();
+        h.show();
+    });
+
+
+    h.show();
     return a.exec();
 }

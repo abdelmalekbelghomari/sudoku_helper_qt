@@ -21,9 +21,11 @@ public:
     void showError(const QString &message);
 signals:
     void newGameRequested();
+    void showHomePage();
 
 private slots:
     void handleNewGame();
+    void on_actionReturnToHomePage();
 
 private:
     Ui::MainWindow *ui;
