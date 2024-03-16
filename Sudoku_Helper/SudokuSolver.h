@@ -12,7 +12,7 @@ class SudokuSolver
 public:
     SudokuSolver();
     SudokuSolver(int level, int grid);
-    std::vector<std::vector<int>> getPuzzle();
+    std::vector<std::vector<int>> getPuzzle() const;
     // ~SudokuSolver();
 
 private:
@@ -20,7 +20,7 @@ private:
                 * 1 for medium
                 * 2 for hard
                 * 3 for insane */
-    int _gridChose;
+    int _gridChosen;
 
     std::vector<std::string> fileNames = {
         "/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper/grids/Easy.txt",
@@ -31,6 +31,7 @@ private:
 
 
     std::vector<std::vector<std::vector<int>>> _puzzles;
+    std::vector<std::vector<int>> _sudoku;
     bool loadFromFile(const std::string& fileName);
     bool solveSudoku(std::vector<std::vector<int>>& puzzle);
     void solveAllSudokus();

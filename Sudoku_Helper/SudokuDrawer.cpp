@@ -1,4 +1,5 @@
 #include "SudokuDrawer.h"
+using namespace std;
 
 SudokuDrawer::SudokuDrawer(QWidget *parent) : QWidget(parent) {
     setFixedSize(500, 500); // Example size, adjust as needed
@@ -26,12 +27,9 @@ void SudokuDrawer::paintEvent(QPaintEvent *event) {
         painter.drawLine(0, i * cellSize, width() - 5, i * cellSize);
 
         for (int j = 0; j < 9; ++j) {
-            if (/*_sudoku[i][j] != 0*/true) {
-                int number = 8;/* = _sudoku[i][j]*/;
+            if (_sudoku.size() > i && _sudoku.at(i).size() > j && _sudoku.at(i)[j] != 0) {
+                int number = _sudoku[i][j];
                 painter.drawText(i * cellSize + cellSize / 3, j * cellSize + cellSize / 3 + cellSize/2, QString::number(number));
-            } else {
-                // QString vacantCell = " ";
-                // painter.drawText(i * cellSize + cellSize / 3, j * cellSize + cellSize / 3, vacantCell);
             }
         }
     }

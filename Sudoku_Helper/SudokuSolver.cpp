@@ -9,10 +9,11 @@ using namespace std;
 
 SudokuSolver::SudokuSolver(int level, int gridChoice) : _level(level) {
     loadFromFile(fileNames.at(_level));
-    _gridChose = gridChoice;
+    _gridChosen = gridChoice;
+    _sudoku = _puzzles.at(_gridChosen);
     // printSudoku(_puzzles.at(_gridChose));
     // cout << "\t===== Solving the sudoku ======\n";
-    solveSudoku(_puzzles.at(_gridChose));
+    // solveSudoku(_puzzles.at(_gridChose));
     // cout << "\t===== Sudoku Solved ======\n";
     // printSudoku(_puzzles.at(_gridChose));
 }
@@ -118,14 +119,14 @@ vector<int> SudokuSolver::getPossibleValues(int row, int col) const {
     int value;
 
     for (int i = 0; i < 9; ++i) {
-        value = _puzzles.at(i).at(col);
+        value = _puzzles[_level][i][row];
         if (value != 0) {
             present[value] = true;
         }
     }
 
     for (int i = 0; i < 9; ++i) {
-        value = _puzzles.at(i).at(col);
+        value = _puzzles[_level][i][col];
         if (value != 0) {
             present[value] = true;
         }
@@ -135,8 +136,8 @@ vector<int> SudokuSolver::getPossibleValues(int row, int col) const {
     int startCol = col / 3 * 3;
     for (int i = startRow; i < startRow + 3; ++i) {
         for (int j = startCol; j < startCol + 3; ++j) {
-            if (_puzzles.at(i).at(j) != 0) {
-                present[_puzzles.at(i).at(j)] = true;
+            if (_puzzles[_level][i][j] != 0) {
+                present[_puzzles[_level][i][j]] = true;
             }
         }
     }
@@ -150,8 +151,8 @@ vector<int> SudokuSolver::getPossibleValues(int row, int col) const {
     return possibleValues;
 }
 
-vector<vector<int>> SudokuSolver::getPuzzle(){
-    return _puzzles.at(_gridChose);
+vector<vector<int>> SudokuSolver::getPuzzle() const{
+    return _sudoku;
 }
 
 
