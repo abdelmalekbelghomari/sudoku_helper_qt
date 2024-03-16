@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
@@ -38,8 +37,6 @@ public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
     FiguresDisplayer *figureSelector;
-    QFrame *line;
-    QFrame *line_2;
     SudokuDrawer *sudokuWidget;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
@@ -70,16 +67,6 @@ public:
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         figureSelector = new FiguresDisplayer(centralwidget);
         figureSelector->setObjectName(QString::fromUtf8("figureSelector"));
-        line = new QFrame(figureSelector);
-        line->setObjectName(QString::fromUtf8("line"));
-        line->setGeometry(QRect(40, 250, 118, 3));
-        line->setFrameShape(QFrame::HLine);
-        line->setFrameShadow(QFrame::Sunken);
-        line_2 = new QFrame(figureSelector);
-        line_2->setObjectName(QString::fromUtf8("line_2"));
-        line_2->setGeometry(QRect(210, 90, 3, 61));
-        line_2->setFrameShape(QFrame::VLine);
-        line_2->setFrameShadow(QFrame::Sunken);
 
         horizontalLayout_2->addWidget(figureSelector);
 
