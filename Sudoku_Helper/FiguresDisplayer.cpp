@@ -2,6 +2,7 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QSet>
+#include "SudokuDrawer.h"
 
 FiguresDisplayer::FiguresDisplayer(QWidget *parent) : QWidget(parent), layout(new QGridLayout(this)) {
     layout->setContentsMargins(0, 0, 0, 0);
@@ -17,10 +18,16 @@ void FiguresDisplayer::clear() {
     }
 }
 
+void FiguresDisplayer::setSudokuDrawer(SudokuDrawer* drawer) {
+    _drawer = drawer;
+}
+
 void FiguresDisplayer::setNumbers(const QString& numbers) {
     // Vérification préalable
     if (numbers.length() != 81) return; // Assurez-vous qu'il y a exactement 9 chiffres
-
+    if (_drawer) {
+        _drawer->drawGrid(numbers); // Dessinez la grille actuelle
+    }
     for (int i = 0; i < numbers.length(); ++i) {
         int number = numbers.at(i).digitValue();
 
@@ -53,6 +60,15 @@ void FiguresDisplayer::createComboBox(int position) {
     connect(comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxChanged(int)));
 }
 
+QWidget* FiguresDisplayer::widgetAt(int row, int col) {
+    // QGridLayout::itemAtPosition retourne un QLayoutItem à la position donnée
+    QLayoutItem* item = layout->itemAtPosition(row, col);
+    if (item) {
+        return item->widget(); // Retourne le widget associé à cet item, si disponible
+    }
+    return nullptr; // Si aucun item n'est trouvé à cette position, retourne nullptr
+}
+
 void FiguresDisplayer::onComboBoxChanged(int index) {
     QComboBox* senderComboBox = qobject_cast<QComboBox*>(sender());
     if (!senderComboBox) return;
@@ -72,8 +88,32 @@ void FiguresDisplayer::onComboBoxChanged(int index) {
         // Appliquez de nouvelles restrictions basées sur la nouvelle sélection
         applyRestrictions(senderComboBox, currentValue);
     }
+    QString gridData = buildGridRepresentation();
+
+    // Mettez à jour et redessinez la grille dans SudokuDrawer
+    if (_drawer) {
+        _drawer->drawGrid(gridData);
+    }
 }
 
+QString FiguresDisplayer::buildGridRepresentation() {
+    QString gridData;
+    for (int row = 0; row < 9; ++row) {
+        for (int col = 0; col < 9; ++col) {
+            QWidget* widget = widgetAt(row, col);
+            QComboBox* comboBox = qobject_cast<QComboBox*>(widget);
+            QLabel* label = qobject_cast<QLabel*>(widget);
+            if (comboBox && comboBox->currentIndex() != -1) {
+                gridData += comboBox->currentText();
+            } else if (label) {
+                gridData += label->text();
+            } else {
+                gridData += "0"; // Supposons que "0" représente une cellule vide
+            }
+        }
+    }
+    return gridData;
+}
 
 void FiguresDisplayer::applyRestrictions(QComboBox* sender, const QString& value) {
     int senderIndex = layout->indexOf(sender);

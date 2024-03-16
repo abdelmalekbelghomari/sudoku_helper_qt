@@ -1,5 +1,6 @@
 #include "Presenter.h"
 #include "BoardFactory.h" // Assurez-vous d'inclure BoardFactory
+#include "SudokuDrawer.h"
 #include <QString>
 #include <QSet>
 Presenter::Presenter(FiguresDisplayer* view, QObject *parent)
@@ -24,6 +25,7 @@ void Presenter::onStartNewGame(const std::string& level, int index) {
 
     _view->setNumbers(qInitialGrid);
     _view->filterNumbers();
+    _sudokuDrawer->setFiguresDisplayer(_view);
 }
 
 

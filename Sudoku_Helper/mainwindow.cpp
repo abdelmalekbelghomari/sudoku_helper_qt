@@ -13,9 +13,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     FiguresDisplayer* square = findChild<FiguresDisplayer*>("figureSelector");
-    if (square) {
-        _presenter = new Presenter(square, this); // Passez `square1` au présentateur
-    }
+    SudokuDrawer* drawer = findChild<SudokuDrawer*>("sudokuWidget"); // Assurez-vous que l'objectName de SudokuDrawer est correctement défini dans Designer ou dans le code
+
+if (square && drawer) {
+    _presenter = new Presenter(square, this);
+    square->setSudokuDrawer(drawer); // Lier FiguresDisplayer à SudokuDrawer
+    drawer->setFiguresDisplayer(square);
+}
+
+    
 
     connect(ui->newGameButton, &QPushButton::clicked, [this]() {
     QString level = ui->LevelComboBox->currentText().toLower();
@@ -31,6 +37,7 @@ MainWindow::~MainWindow()
     delete _presenter; // Assurez-vous de supprimer le présentateur
     delete ui;
 }
+
 
 void MainWindow::onLevelChanged(const QString &level) {
     QString gridPath;

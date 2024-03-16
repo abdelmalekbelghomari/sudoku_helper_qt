@@ -5,6 +5,8 @@
 #include "BoardFactory.h" // Assurez-vous que le chemin est correct
 #include "FiguresDisplayer.h"
 
+
+class SudokuDrawer;
 class Presenter : public QObject {
     Q_OBJECT
 public:
@@ -15,6 +17,8 @@ public:
 private:
     FiguresDisplayer* _view;
     BoardFactory _factory;
+    SudokuDrawer* _sudokuDrawer;
+    
 };
 
 #endif // PRESENTER_H

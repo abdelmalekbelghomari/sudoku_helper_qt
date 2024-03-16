@@ -2,9 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMessageBox>
-#include "Presenter.h"
+#include "SudokuDrawer.h"
 
+
+class Presenter;
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -24,8 +25,10 @@ private:
     Ui::MainWindow *ui;
     Presenter* _presenter;
 
+
 private slots:
     void onLevelChanged(const QString &level);
+
     
 };
 #endif // MAINWINDOW_H

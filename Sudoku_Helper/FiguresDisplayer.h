@@ -5,6 +5,8 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QGridLayout>
+
+class SudokuDrawer;
 class FiguresDisplayer : public QWidget {
     Q_OBJECT
 
@@ -21,6 +23,9 @@ public:
     void applyRestrictions(QComboBox* sender, const QString& value);
     void restoreValues();
     void restoreValuesForSelection(const QString& value);
+    QWidget* widgetAt(int row, int col);
+    void setSudokuDrawer(SudokuDrawer* drawer);
+    QString buildGridRepresentation();
 
 public slots:
     void onComboBoxChanged(int index);
@@ -30,9 +35,12 @@ private:
     QGridLayout *layout;
     QMap<QComboBox*, QStringList> removedValuesFromCombos;
     QMap<QString, QList<QComboBox*>> sourceOfRemovedValues;
+    SudokuDrawer* _drawer = nullptr;
+    
 
     void createFixedNumber(int number, int position);  // Assuming this is correctly declared and implemented
     void createComboBox(int position);  // Assuming this is correctly declared and implemented
+    
 };
 
 #endif // FIGURESDISPLAYER_H
