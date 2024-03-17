@@ -236,3 +236,7 @@ void FiguresDisplayer::lockAllComboBoxes() {
 void FiguresDisplayer::displayWinMessageInNewWindow() {
     QMessageBox::information(this, "Game Completed", "MONSTREE!");
 }
+
+void FiguresDisplayer::paintEvent(QPaintEvent *event) {
+    
+}

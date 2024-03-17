@@ -1,2 +1,3 @@
 easy2
 easy160
+easy50

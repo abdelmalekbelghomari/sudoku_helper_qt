@@ -6,6 +6,7 @@
 #include <QComboBox>
 #include <QGridLayout>
 
+class MainWindow;
 class SudokuDrawer;
 class FiguresDisplayer : public QWidget {
     Q_OBJECT
@@ -49,6 +50,9 @@ private:
 
 signals:
     void gameIsCompleted();
+protected:
+    void paintEvent(QPaintEvent *event) override;
+
 };
 
 #endif // FIGURESDISPLAYER_H
