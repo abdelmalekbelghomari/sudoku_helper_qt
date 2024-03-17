@@ -30,6 +30,8 @@ private slots:
     void onLevelChanged(const QString &level);
     void updateCompletedLevels();
     void handleGridSelection(int index);
+public slots:
+    void solvePuzzleRequest();
     
 };
 #endif // MAINWINDOW_H

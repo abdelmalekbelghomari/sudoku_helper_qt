@@ -33,6 +33,7 @@ public:
     void displayWinMessage();
     void displayWinMessageInNewWindow();
     void lockAllComboBoxes();
+    void setSolution(const QString &solution);
 
 public slots:
     void onComboBoxChanged(int index);

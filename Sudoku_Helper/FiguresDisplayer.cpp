@@ -240,3 +240,26 @@ void FiguresDisplayer::displayWinMessageInNewWindow() {
 void FiguresDisplayer::paintEvent(QPaintEvent *event) {
     
 }
+
+void FiguresDisplayer::setSolution(const QString &solution) {
+    // Assurez-vous que la solution a exactement 81 caractères (9x9 Sudoku)
+    if (solution.length() != 81) return;
+
+    for (int row = 0; row < 9; ++row) {
+        for (int col = 0; col < 9; ++col) {
+            // Calculer l'index linéaire basé sur la position de la grille
+            int index = row * 9 + col;
+            // Obtenir la valeur de la solution pour la cellule actuelle
+            int value = solution.at(index).digitValue();
+
+            // Trouver le widget dans la grille à la position actuelle
+            QWidget* widget = widgetAt(row, col);
+            QComboBox* comboBox = qobject_cast<QComboBox*>(widget);
+            if (comboBox) {
+                // Si la cellule est un QComboBox, mettez à jour sa valeur
+                // Notez que les indices des QComboBox commencent par 0 pour l'item vide, donc +1 pour la valeur réelle
+                comboBox->setCurrentIndex(value); // value est déjà dans la plage 1-9, conforme aux indices de QComboBox
+            }
+        }
+    }
+}

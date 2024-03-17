@@ -33,6 +33,7 @@ class Ui_MainWindow
 public:
     QAction *actionNew_Game;
     QAction *actionQuit;
+    QAction *actionSolve;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
@@ -60,6 +61,8 @@ public:
         actionNew_Game->setObjectName(QString::fromUtf8("actionNew_Game"));
         actionQuit = new QAction(MainWindow);
         actionQuit->setObjectName(QString::fromUtf8("actionQuit"));
+        actionSolve = new QAction(MainWindow);
+        actionSolve->setObjectName(QString::fromUtf8("actionSolve"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -168,6 +171,7 @@ public:
         menuFile->addAction(actionNew_Game);
         menuFile->addSeparator();
         menuFile->addAction(actionQuit);
+        menuOptions->addAction(actionSolve);
 
         retranslateUi(MainWindow);
 
@@ -179,6 +183,10 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Sudoku Helper", nullptr));
         actionNew_Game->setText(QCoreApplication::translate("MainWindow", "New Game", nullptr));
         actionQuit->setText(QCoreApplication::translate("MainWindow", "Quit", nullptr));
+        actionSolve->setText(QCoreApplication::translate("MainWindow", "Solve ", nullptr));
+#if QT_CONFIG(shortcut)
+        actionSolve->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+R", nullptr));
+#endif // QT_CONFIG(shortcut)
         levelLabel->setText(QCoreApplication::translate("MainWindow", "Level (Please Select) :", nullptr));
         LevelComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Easy", nullptr));
         LevelComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Medium", "Medium Level"));

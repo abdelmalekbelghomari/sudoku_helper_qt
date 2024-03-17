@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 if (square && drawer) {
     _presenter = new Presenter(square, this);
-    square->setSudokuDrawer(drawer); // Lier FiguresDisplayer à SudokuDrawer
+    square->setSudokuDrawer(drawer);
     drawer->setFiguresDisplayer(square);
 }
 
@@ -34,6 +34,10 @@ if (square && drawer) {
     connect(square, &FiguresDisplayer::gameIsCompleted, this, &MainWindow::updateCompletedLevels);
 
     connect(_presenter, &Presenter::gridSelected, this, &MainWindow::handleGridSelection);
+
+    connect(ui->actionSolve, &QAction::triggered, this, &MainWindow::solvePuzzleRequest);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -110,5 +114,12 @@ void MainWindow::updateCompletedLevels() {
         // Formattez la ligne comme vous le souhaitez, par exemple "level:index"
         out << level << gridIndex << "\n";
         file.close();
+    }
+}
+
+void MainWindow::solvePuzzleRequest() {
+    // Appeler la méthode de résolution dans le présentateur
+    if (_presenter) {
+        _presenter->onSolvePuzzle();
     }
 }

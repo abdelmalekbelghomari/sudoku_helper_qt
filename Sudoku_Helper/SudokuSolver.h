@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <QString>
 
 
 class SudokuSolver
@@ -13,6 +14,9 @@ public:
     SudokuSolver();
     SudokuSolver(int level, int grid);
     std::vector<std::vector<int>> getPuzzle() const;
+    QString solveSudoku(const QString& sudoku);
+    bool solve(int grid[9][9], int row, int col);
+    bool isSafe(int grid[9][9], int row, int col, int num);
     // ~SudokuSolver();
 
 private:

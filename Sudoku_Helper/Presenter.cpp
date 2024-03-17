@@ -1,6 +1,7 @@
 #include "Presenter.h"
 #include "BoardFactory.h" // Assurez-vous d'inclure BoardFactory
 #include "SudokuDrawer.h"
+#include "SudokuSolver.h"
 #include <QString>
 #include <QSet>
 Presenter::Presenter(FiguresDisplayer* figuresDisplayer, QObject *parent)
@@ -21,14 +22,22 @@ void Presenter::onStartNewGame(const std::string& level, int index) {
     }
 
     std::string initialGrid = _factory.createBoard(gridPath, index);
-    QString qInitialGrid = QString::fromStdString(initialGrid);
+    _qInitialGrid = QString::fromStdString(initialGrid);
 
-    _figuresDisplayer->setNumbers(qInitialGrid);
+    _figuresDisplayer->setNumbers(_qInitialGrid);
     _figuresDisplayer->filterNumbers();
-    _sudokuDrawer->setFiguresDisplayer(_figuresDisplayer);
     if(_factory.getRandomIndex() != -1){
         emit gridSelected( _factory.getRandomIndex());
     }
+}
+
+void Presenter::onSolvePuzzle() {
+    QString solution =_solver->solveSudoku(_qInitialGrid);
+    _figuresDisplayer->setSolution(solution);
+}
+
+void Presenter::handleDrawRequest(const QString& gridData) {
+    _sudokuDrawer->drawGrid(gridData);
 }
 
 
