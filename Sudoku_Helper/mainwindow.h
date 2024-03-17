@@ -3,9 +3,10 @@
 
 #include <QMainWindow>
 #include "SudokuDrawer.h"
-
+#include <QDateTime>
 
 class Presenter;
+class QTimer;
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -20,10 +21,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void showError(const QString &message);
+    void updateTimer();
+    QString getCurrentTimerTime();
  
 private:
     Ui::MainWindow *ui;
     Presenter* _presenter;
+    QTimer * _timer;
+    QDateTime _startTime;
 
 
 private slots:

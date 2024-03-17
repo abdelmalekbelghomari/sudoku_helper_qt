@@ -15,7 +15,9 @@ SOURCES += \
     main.cpp \
     Presenter.cpp \
     BoardFactory.cpp \
+    LeaderboardDialog.cpp \
     mainwindow.cpp
+    
 
 HEADERS += \
     FiguresDisplayer.h \
@@ -23,6 +25,7 @@ HEADERS += \
     SudokuSolver.h \
     Presenter.h \
     BoardFactory.h \
+    LeaderboardDialog.h \
     mainwindow.h
 
 FORMS += \

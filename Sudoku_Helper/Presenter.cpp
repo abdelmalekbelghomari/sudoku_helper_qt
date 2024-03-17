@@ -3,7 +3,6 @@
 #include "SudokuDrawer.h"
 #include "SudokuSolver.h"
 #include <QString>
-#include <QSet>
 Presenter::Presenter(FiguresDisplayer* figuresDisplayer, QObject *parent)
     : QObject(parent), _figuresDisplayer(figuresDisplayer) {}
 

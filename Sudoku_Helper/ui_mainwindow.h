@@ -34,6 +34,7 @@ public:
     QAction *actionNew_Game;
     QAction *actionQuit;
     QAction *actionSolve;
+    QAction *actionLeaderBoard;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
@@ -45,6 +46,7 @@ public:
     QComboBox *LevelComboBox;
     QComboBox *gridSelectorComboBox;
     QPushButton *newGameButton;
+    QLabel *timerLabel;
     QSpacerItem *horizontalSpacer_2;
     QMenuBar *menubar;
     QMenu *menuFile;
@@ -63,6 +65,8 @@ public:
         actionQuit->setObjectName(QString::fromUtf8("actionQuit"));
         actionSolve = new QAction(MainWindow);
         actionSolve->setObjectName(QString::fromUtf8("actionSolve"));
+        actionLeaderBoard = new QAction(MainWindow);
+        actionLeaderBoard->setObjectName(QString::fromUtf8("actionLeaderBoard"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -144,6 +148,11 @@ public:
 
         horizontalLayout->addWidget(newGameButton);
 
+        timerLabel = new QLabel(centralwidget);
+        timerLabel->setObjectName(QString::fromUtf8("timerLabel"));
+
+        horizontalLayout->addWidget(timerLabel);
+
         horizontalSpacer_2 = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
@@ -172,6 +181,7 @@ public:
         menuFile->addSeparator();
         menuFile->addAction(actionQuit);
         menuOptions->addAction(actionSolve);
+        menuOptions->addAction(actionLeaderBoard);
 
         retranslateUi(MainWindow);
 
@@ -187,6 +197,10 @@ public:
 #if QT_CONFIG(shortcut)
         actionSolve->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+R", nullptr));
 #endif // QT_CONFIG(shortcut)
+        actionLeaderBoard->setText(QCoreApplication::translate("MainWindow", "LeaderBoard", nullptr));
+#if QT_CONFIG(shortcut)
+        actionLeaderBoard->setShortcut(QCoreApplication::translate("MainWindow", "L", nullptr));
+#endif // QT_CONFIG(shortcut)
         levelLabel->setText(QCoreApplication::translate("MainWindow", "Level (Please Select) :", nullptr));
         LevelComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Easy", nullptr));
         LevelComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Medium", "Medium Level"));
@@ -196,6 +210,7 @@ public:
         gridSelectorComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Random", nullptr));
 
         newGameButton->setText(QCoreApplication::translate("MainWindow", "New Game", nullptr));
+        timerLabel->setText(QCoreApplication::translate("MainWindow", "00:00", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuOptions->setTitle(QCoreApplication::translate("MainWindow", "Options", nullptr));
     } // retranslateUi

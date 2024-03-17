@@ -5,6 +5,10 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
+#include <QDateTime>
+#include <QTimer>    
+#include "LeaderboardDialog.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -27,6 +31,8 @@ if (square && drawer) {
     QString level = ui->LevelComboBox->currentText().toLower();
     int gridIndex = ui->gridSelectorComboBox->currentIndex() - 1; // -1 parce que "Random" est la première option
     _presenter->onStartNewGame(level.toStdString(), gridIndex);
+    _startTime = QDateTime::currentDateTime();
+    _timer->start(1000);
 });
 
     connect(ui->LevelComboBox, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(onLevelChanged(const QString &)));
@@ -37,6 +43,15 @@ if (square && drawer) {
 
     connect(ui->actionSolve, &QAction::triggered, this, &MainWindow::solvePuzzleRequest);
 
+    _timer = new QTimer(this);
+    connect(_timer, &QTimer::timeout, this, &MainWindow::updateTimer);
+
+    connect(ui->actionLeaderBoard, &QAction::triggered, [this]() {
+    LeaderboardDialog *dialog = new LeaderboardDialog(this);
+    dialog->setWindowTitle("Leaderboard");
+    dialog->resize(400, 400);
+    dialog->exec(); // Ouvre le dialogue en modal
+});
 
 }
 
@@ -90,10 +105,7 @@ void MainWindow::onLevelChanged(const QString &level) {
             // Ajoutez une option pour chaque grille disponible, en commençant à 1
             for (int i = 1; i <= numberOfBoards; i++) {
                 QString itemText = "Grid" + QString::number(i);
-            if (completedLevels.contains(level.toLower() + QString::number(i))) {
-                itemText += " - Completed";
-            }
-            ui->gridSelectorComboBox->addItem(itemText);
+                ui->gridSelectorComboBox->addItem(itemText);
             }
         }
         file.close(); // N'oubliez pas de fermer le fichier
@@ -102,19 +114,28 @@ void MainWindow::onLevelChanged(const QString &level) {
 }
 
 void MainWindow::updateCompletedLevels() {
+    if (_timer && _timer->isActive()) {
+        _timer->stop();
+    }
+
     QString level = ui->LevelComboBox->currentText().toLower();
-    int gridIndex = ui->gridSelectorComboBox->currentIndex(); // -1 parce que "Random" est la première option
+    int gridIndex = ui->gridSelectorComboBox->currentIndex(); // Assume "Random" is excluded from the count
+    QString time = getCurrentTimerTime();
 
-    // Générez le chemin du fichier de préférences ou une clé unique pour stocker cette information
-    QString preferencesFilePath = "completedLevels.txt"; // Modifiez selon votre logique de chemin de fichier
-
+    QString preferencesFilePath = "completedLevels.txt";
     QFile file(preferencesFilePath);
     if (file.open(QIODevice::Append | QIODevice::Text)) {
         QTextStream out(&file);
-        // Formattez la ligne comme vous le souhaitez, par exemple "level:index"
-        out << level << gridIndex << "\n";
+        out << qSetFieldWidth(10) << left << "Level: " << level 
+        << qSetFieldWidth(8) << "Grid: " << gridIndex 
+        << qSetFieldWidth(2) << "Time: " << time << "\n";
         file.close();
     }
+}
+QString MainWindow::getCurrentTimerTime() {
+    int elapsedSeconds = _startTime.secsTo(QDateTime::currentDateTime());
+    QTime time = QTime(0, 0).addSecs(elapsedSeconds);
+    return time.toString("hh:mm:ss");
 }
 
 void MainWindow::solvePuzzleRequest() {
@@ -122,4 +143,10 @@ void MainWindow::solvePuzzleRequest() {
     if (_presenter) {
         _presenter->onSolvePuzzle();
     }
+}
+
+void MainWindow::updateTimer() {
+    int elapsedSeconds = _startTime.secsTo(QDateTime::currentDateTime());
+    QTime time = QTime(0, 0).addSecs(elapsedSeconds);
+    ui->timerLabel->setText(time.toString("mm:ss"));
 }

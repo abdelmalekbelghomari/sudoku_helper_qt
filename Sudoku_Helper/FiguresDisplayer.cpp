@@ -224,8 +224,8 @@ void FiguresDisplayer::checkGameCompletion() {
 
     if (gameCompleted) {
         lockAllComboBoxes();
-        displayWinMessageInNewWindow();
         emit gameIsCompleted();
+        displayWinMessageInNewWindow();
     }
 }
 
