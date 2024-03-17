@@ -9,22 +9,34 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    AnimatedSplashScreen.cpp \
     FiguresDisplayer.cpp \
-    HomeWindow.cpp \
+    HomePageWindow.cpp \
+    LoadingGameScreen.cpp \
+    LoadingScreen.cpp \
     SudokuDrawer.cpp \
     SudokuSolver.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    AnimatedSplashScreen.h \
     FiguresDisplayer.h \
-    HomeWindow.h \
+    HomePageWindow.h \
+    LoadingGameScreen.h \
+    LoadingScreen.h \
     SudokuDrawer.h \
     SudokuSolver.h \
     mainwindow.h
 
 FORMS += \
+    homepagewindow.ui \
+    loadinggamescreen.ui \
+    loadingscreen.ui \
     mainwindow.ui
+
+RESOURCES += \
+    ressources.qrc
 
 TRANSLATIONS += \
     Sudoku_Helper_en_GB.ts
@@ -35,3 +47,5 @@ TRANSLATIONS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/binSudoku
 !isEmpty(target.path): INSTALLS += target
+
+

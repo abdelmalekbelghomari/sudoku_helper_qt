@@ -22,10 +22,12 @@ public:
 signals:
     void newGameRequested();
     void showHomePage();
+    void quitGame();
 
 private slots:
     void handleNewGame();
     void on_actionReturnToHomePage();
+    void on_actionQuitGame();
 
 private:
     Ui::MainWindow *ui;

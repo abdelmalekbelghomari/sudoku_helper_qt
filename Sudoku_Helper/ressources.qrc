@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>homescreen_background.jpg</file>
+        <file>sudoku_helper_title.gif</file>
+        <file>haybdel_studios.gif</file>
+        <file>haydel_studios.gif</file>
+        <file>haydel_studios_written.gif</file>
+    </qresource>
+    <qresource prefix="/grids">
+        <file>Medium.txt</file>
+        <file>Insane.txt</file>
+        <file>Hard.txt</file>
+        <file>Easy.txt</file>
+    </qresource>
+    <qresource prefix="/musics"/>
+    <qresource prefix="/stylesheets">
+        <file>style.qss</file>
+    </qresource>
+</RCC>

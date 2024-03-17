@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "SudokuSolver.h"
-#include "HomeWindow.h"
+#include "HomePageWindow.h"
+#include "LoadingGameScreen.h"
+#include "AnimatedSplashScreen.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -21,19 +23,32 @@ int main(int argc, char *argv[])
     }
 
     //SudokuSolver solver(3,2);
+
     MainWindow w;
-    HomeWindow h;
-    QObject::connect(&h, &HomeWindow::startNewGame, [&]() {
+    HomePageWindow h;
+    LoadingGameScreen l;
+    AnimatedSplashScreen splashScreen;
+    l.show();
+    // splashScreen.show();
+
+    QTimer::singleShot(5000, &a, [&]() {
+        l.close();
+        h.show();
+    });
+
+    QObject::connect(&w, &MainWindow::quitGame, &a, [&](){
+        w.close();
+    });
+
+    QObject::connect(&h, &HomePageWindow::startNewGame, &a ,[&]() {
         h.hide();
         w.show();
     });
 
-    QObject::connect(&w, &MainWindow::showHomePage, [&]() {
+    QObject::connect(&w, &MainWindow::showHomePage, &a ,[&]() {
         w.hide();
         h.show();
     });
 
-
-    h.show();
     return a.exec();
 }
