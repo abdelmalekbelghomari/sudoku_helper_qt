@@ -5,6 +5,7 @@
 #include "SudokuDrawer.h"
 #include <QMessageBox>
 #include <QDebug>
+#include <QPainter>
 
 FiguresDisplayer::FiguresDisplayer(QWidget *parent) : QWidget(parent), layout(new QGridLayout(this)) {
     layout->setContentsMargins(0, 0, 0, 0);
@@ -27,6 +28,7 @@ void FiguresDisplayer::setSudokuDrawer(SudokuDrawer* drawer) {
 void FiguresDisplayer::setNumbers(const QString& numbers) {
     // Vérification préalable
     _sourceOfRemovedValues.clear();
+    _removedValuesFromCombos.clear();
     if (numbers.length() != 81) return; // Assurez-vous qu'il y a exactement 9 chiffres
     if (_drawer) {
         _drawer->drawGrid(numbers); // Dessinez la grille actuelle
@@ -40,6 +42,7 @@ void FiguresDisplayer::setNumbers(const QString& numbers) {
             createFixedNumber(number, i);
         }
     }
+    // update();
 }
 
 void FiguresDisplayer::createFixedNumber(int number, int position) {
@@ -138,7 +141,7 @@ void FiguresDisplayer::applyRestrictions(QComboBox* sender, const QString& value
             int findIndex = comboBox->findText(value);
             if (findIndex != -1) {
                 comboBox->removeItem(findIndex);
-                removedValuesFromCombos[comboBox].append(value); // Ajouter à la liste des valeurs retirées
+                _removedValuesFromCombos[comboBox].append(value); // Ajouter à la liste des valeurs retirées
                 _sourceOfRemovedValues[value].append(comboBox); // Enregistrer la source de la valeur retirée
             }
         }
@@ -240,9 +243,27 @@ void FiguresDisplayer::displayWinMessageInNewWindow() {
 }
 
 void FiguresDisplayer::paintEvent(QPaintEvent *event) {
-    
-}
+    // QWidget::paintEvent(event); // Appeler la méthode de base si nécessaire
 
+    // QPainter painter(this);
+    // int gridSize = qMin(width(), height()); // La grille doit s'adapter à la partie la plus petite du widget
+    // int cellSize = gridSize / 9;
+    // int lineThickness =3; // L'épaisseur de la ligne peut être ajustée en fonction de la taille de la grille
+    // painter.setPen(QPen(Qt::black, lineThickness)); // Définir la couleur et l'épaisseur des lignes
+
+    // // Dessiner les lignes séparatrices plus épaisses pour les carrés 3x3
+    // for (int i = 0; i <= 9; ++i) {
+    //     if (i % 3 == 0) { // Toutes les 3 cellules, on a une ligne séparatrice plus épaisse
+    //         // Dessiner une ligne verticale
+    //         painter.drawLine(i * cellSize, 0, i * cellSize, gridSize-10);
+    //         // Dessiner une ligne horizontale
+    //         painter.drawLine(0, i * cellSize, gridSize-10, i * cellSize);
+    //     }
+    // }
+
+    // Vous pouvez également dessiner des lignes plus fines si vous le souhaitez,
+    // en ajustant l'épaisseur et en les dessinant à chaque cellSize.
+}
 void FiguresDisplayer::setSolution(const QString &solution) {
     // Assurez-vous que la solution a exactement 81 caractères (9x9 Sudoku)
     if (solution.length() != 81) return;
