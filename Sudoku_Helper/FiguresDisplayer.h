@@ -42,7 +42,7 @@ private:
     QComboBox *numberComboBox;
     QGridLayout *layout;
     QMap<QComboBox*, QStringList> removedValuesFromCombos;
-    QMap<QString, QList<QComboBox*>> sourceOfRemovedValues;
+    QMap<QString, QList<QComboBox*>> _sourceOfRemovedValues;
     SudokuDrawer* _drawer = nullptr;
     
 

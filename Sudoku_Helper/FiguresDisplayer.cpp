@@ -4,6 +4,7 @@
 #include <QSet>
 #include "SudokuDrawer.h"
 #include <QMessageBox>
+#include <QDebug>
 
 FiguresDisplayer::FiguresDisplayer(QWidget *parent) : QWidget(parent), layout(new QGridLayout(this)) {
     layout->setContentsMargins(0, 0, 0, 0);
@@ -25,6 +26,7 @@ void FiguresDisplayer::setSudokuDrawer(SudokuDrawer* drawer) {
 
 void FiguresDisplayer::setNumbers(const QString& numbers) {
     // Vérification préalable
+    _sourceOfRemovedValues.clear();
     if (numbers.length() != 81) return; // Assurez-vous qu'il y a exactement 9 chiffres
     if (_drawer) {
         _drawer->drawGrid(numbers); // Dessinez la grille actuelle
@@ -137,7 +139,7 @@ void FiguresDisplayer::applyRestrictions(QComboBox* sender, const QString& value
             if (findIndex != -1) {
                 comboBox->removeItem(findIndex);
                 removedValuesFromCombos[comboBox].append(value); // Ajouter à la liste des valeurs retirées
-                sourceOfRemovedValues[value].append(comboBox); // Enregistrer la source de la valeur retirée
+                _sourceOfRemovedValues[value].append(comboBox); // Enregistrer la source de la valeur retirée
             }
         }
     }
@@ -195,14 +197,14 @@ void FiguresDisplayer::filterNumbers() {
 }
 
 void FiguresDisplayer::restoreValuesForSelection(const QString& value) {
-    auto combos = sourceOfRemovedValues[value];
+    auto combos = _sourceOfRemovedValues[value];
     for (QComboBox* combo : combos) {
         if (combo->findText(value) == -1) {
             combo->addItem(value);
         }
     }
     // Assurez-vous de nettoyer après la restauration
-    sourceOfRemovedValues[value].clear();
+    _sourceOfRemovedValues[value].clear();
 }
 
 void FiguresDisplayer::checkGameCompletion() {
@@ -250,15 +252,19 @@ void FiguresDisplayer::setSolution(const QString &solution) {
             // Calculer l'index linéaire basé sur la position de la grille
             int index = row * 9 + col;
             // Obtenir la valeur de la solution pour la cellule actuelle
-            int value = solution.at(index).digitValue();
+            QChar valueChar = solution.at(index);
+            int value = valueChar.digitValue();
 
             // Trouver le widget dans la grille à la position actuelle
             QWidget* widget = widgetAt(row, col);
             QComboBox* comboBox = qobject_cast<QComboBox*>(widget);
             if (comboBox) {
-                // Si la cellule est un QComboBox, mettez à jour sa valeur
-                // Notez que les indices des QComboBox commencent par 0 pour l'item vide, donc +1 pour la valeur réelle
-                comboBox->setCurrentIndex(value); // value est déjà dans la plage 1-9, conforme aux indices de QComboBox
+                // Trouver l'index de l'option qui correspond à la valeur de la solution
+                int optionIndex = comboBox->findText(valueChar);
+                if (optionIndex != -1) { // Si l'option est trouvée dans le QComboBox
+                    comboBox->setCurrentIndex(optionIndex);
+                    // qDebug() << "Setting value " << value << " at index " << optionIndex << " for " << row << " " << col;
+                }
             }
         }
     }
