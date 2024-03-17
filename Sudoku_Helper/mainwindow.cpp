@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    connect(ui->newGameButton, &QPushButton::clicked, [this]() {
+    connect(ui->newGameButton, &QPushButton::clicked,this , [&]() {
         QString level = ui->LevelComboBox->currentText().toLower();
         int gridIndex = ui->gridSelectorComboBox->currentIndex() - 1; // -1 parce que "Random" est la première option
         _presenter->onStartNewGame(level.toStdString(), gridIndex);
@@ -57,13 +57,13 @@ void MainWindow::onLevelChanged(const QString &level) {
     QString gridPath;
     // Déterminez le chemin du fichier en fonction du niveau sélectionné
     if (level == "Easy") {
-        gridPath = "grids/Easy.txt";
+        gridPath = ":/grids/Easy.txt";
     } else if (level == "Medium") {
-        gridPath = "grids/Medium.txt";
+        gridPath = ":/grids/Medium.txt";
     } else if (level == "Hard") {
-        gridPath = "grids/Hard.txt";
+        gridPath = ":/grids/Hard.txt";
     } else { // Par défaut, supposez "insane"
-        gridPath = "grids/Insane.txt";
+        gridPath = ":/grids/Insane.txt";
     }
 
     ui->gridSelectorComboBox->clear(); // Nettoyez la ComboBox avant d'ajouter de nouveaux items
@@ -108,7 +108,7 @@ void MainWindow::updateCompletedLevels() {
     int gridIndex = ui->gridSelectorComboBox->currentIndex(); // -1 parce que "Random" est la première option
 
     // Générez le chemin du fichier de préférences ou une clé unique pour stocker cette information
-    QString preferencesFilePath = "completedLevels.txt"; // Modifiez selon votre logique de chemin de fichier
+    QString preferencesFilePath = ":/leaderboard/completedLevels.txt"; // Utilisez le chemin spécial préfixé par ":/"
 
     QFile file(preferencesFilePath);
     if (file.open(QIODevice::Append | QIODevice::Text)) {
@@ -116,8 +116,11 @@ void MainWindow::updateCompletedLevels() {
         // Formattez la ligne comme vous le souhaitez, par exemple "level:index"
         out << level << gridIndex << "\n";
         file.close();
+    } else {
+        qDebug() << "Fichier des niveaux terminés non disponible";
     }
 }
+
 
 void MainWindow::on_actionQuitGame()
 {

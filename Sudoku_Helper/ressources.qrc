@@ -17,4 +17,7 @@
         <file>Hard.txt</file>
         <file>Easy.txt</file>
     </qresource>
+    <qresource prefix="/leaderboard">
+        <file>completedLevels.txt</file>
+    </qresource>
 </RCC>
