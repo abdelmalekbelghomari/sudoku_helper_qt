@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     MainWindow w;
     HomePageWindow h;
     LoadingGameScreen l;
-    AnimatedSplashScreen splashScreen;
+    // AnimatedSplashScreen splashScreen;
     l.show();
     // splashScreen.show();
 

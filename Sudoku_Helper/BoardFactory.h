@@ -1,10 +1,15 @@
-#include <string>
-#include <vector>
+#ifndef BOARDFACTORY_H
+#define BOARDFACTORY_H
 
+#include <string>
 
 class BoardFactory {
 public:
-    static std::string createBoard(const std::string& filePath);
+    std::string createBoard(const std::string& filePath, int index = -1);
+    int getRandomIndex();
 private:
-    static std::vector<std::string> loadBoards(const std::string& filePath);
+    int _randomIndex = -1;
 };
+
+
+#endif // BOARDFACTORY_H

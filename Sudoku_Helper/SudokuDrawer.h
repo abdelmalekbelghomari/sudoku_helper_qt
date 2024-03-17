@@ -7,24 +7,28 @@
 #include <QString>
 #include <memory>
 #include "SudokuSolver.h"
-#include "mainwindow.h"
 
+class FiguresDisplayer;
+class MainWindow;
 class SudokuDrawer : public QWidget {
     Q_OBJECT
 
 public:
     explicit SudokuDrawer(QWidget *parent = nullptr);
     void setMainWindow(MainWindow* mainWindow);
-    // ~SudokuDrawer();
-public slots:
-    void handleNewGame();
+    void updateSudoku(const QVector<QVector<int>>& sudoku, const QVector<QVector<int>>& initialSudoku);
+    void setFiguresDisplayer(FiguresDisplayer* figuresDisplayer);
+    void drawGrid(const QString& gridData);
+    ~SudokuDrawer();
+
 protected:
     void paintEvent(QPaintEvent *event) override;
 private:
     SudokuSolver * _sudokuSolved;
-    std::vector<std::vector<int>> _sudoku, _initialSudoku;
+    FiguresDisplayer* _figuresDisplayer;
     void updateCell(int row, int col, int newValue);
     MainWindow* m_mainWindow = nullptr;
 };
+
 
 #endif // SUDOKUDRAWER_H

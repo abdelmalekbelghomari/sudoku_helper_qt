@@ -1,47 +1,24 @@
 #include "SudokuDrawer.h"
 #include <QDebug>
 #include <QRandomGenerator>
+#include "mainwindow.h"
+#include "FiguresDisplayer.h"
 using namespace std;
 
 SudokuDrawer::SudokuDrawer(QWidget *parent) : QWidget(parent) {
     setFixedSize(500, 500); // Example size, adjust as needed
-    auto *mainWindow = qobject_cast<MainWindow*>(parent);
-    if (mainWindow) {
-        connect(mainWindow, &MainWindow::newGameRequested, this, &SudokuDrawer::handleNewGame);
-    } else {
-        cout << "le bouton newGame est pas connecté\n";
-    }
-}
-
-void SudokuDrawer::setMainWindow(MainWindow* mainWindow) {
-    m_mainWindow = mainWindow;
-    if (m_mainWindow) {
-        connect(m_mainWindow, &MainWindow::newGameRequested, this, &SudokuDrawer::handleNewGame);
-    } else {
-        qDebug() << "MainWindow est nulle dans setMainWindow.";
-    }
-}
-
-void SudokuDrawer::handleNewGame() {
-    int difficulty = QRandomGenerator::global()->bounded(0, 4); // Génère un nombre entre 0 et 3 inclus
-    int gridNumber = QRandomGenerator::global()->bounded(0, 200); // Génère un nombre entre 0 et 199 inclus
-
-    qDebug() << "handleNewGame appelé avec difficulté" << difficulty << "et grille numéro" << gridNumber;
-    _sudokuSolved = new SudokuSolver(difficulty, gridNumber);
-    _sudoku = _sudokuSolved->getPuzzle();
-    _initialSudoku = _sudoku;
-    update(); // Demande de redessiner le widget
 }
 
 
-
-void SudokuDrawer::updateCell(int row, int col, int newValue) {
-    if (row >= 0 && row < 9 && col >= 0 && col < 9) {
-        _sudoku[row][col] = newValue;
-        update();
-    }
+void SudokuDrawer::setFiguresDisplayer(FiguresDisplayer* figuresDisplayer) {
+    _figuresDisplayer = figuresDisplayer;
 }
 
+void SudokuDrawer::drawGrid(const QString& gridData) {
+    // Stocker gridData et marquer le widget pour redessin
+    // this->_gridData = gridData; // Assurez-vous d'avoir un membre _gridData pour stocker ces données
+    this->update(); // Provoque le redessin
+}
 
 void SudokuDrawer::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
@@ -55,28 +32,39 @@ void SudokuDrawer::paintEvent(QPaintEvent *event) {
     font.setPixelSize(cellSize / 2);
     painter.setFont(font);
 
+    // Dessinez la grille
     for (int i = 0; i <= 9; ++i) {
         int lineThickness = (i % 3 == 0) ? thickLine : fineLine;
         painter.setPen(QPen(Qt::black, lineThickness));
-
         painter.drawLine(i * cellSize, 0, i * cellSize, height() - 5);
         painter.drawLine(0, i * cellSize, width() - 5, i * cellSize);
+    }
 
-        for (int j = 0; j < 9; ++j) {
-            if (_sudoku.size() > i && _sudoku.at(i).size() > j && _sudoku.at(i)[j] != 0) {
-                painter.eraseRect(i * cellSize + thickLine, j * cellSize + thickLine, cellSize - 2*thickLine, cellSize - 2*thickLine);
-                int number = _sudoku[i][j];
-                if(number != _initialSudoku[i][j]){
-                    painter.setPen(QPen(Qt::blue, lineThickness));
-                } else {
-                    painter.setPen(QPen(Qt::black, lineThickness));
+    if (!_figuresDisplayer) return;
+
+    // Parcourir les widgets de _figuresDisplayer pour dessiner les chiffres
+    for (int row = 0; row < 9; ++row) {
+        for (int col = 0; col < 9; ++col) {
+            QWidget* widget = _figuresDisplayer->widgetAt(row, col);
+            QString text;
+            // Déterminez si c'est un label (état initial) ou un comboBox (choix de l'utilisateur)
+            if (auto* label = qobject_cast<QLabel*>(widget)) {
+                text = label->text();
+                painter.setPen(QPen(Qt::black)); // Utilisez le noir pour l'état initial
+            } else if (auto* comboBox = qobject_cast<QComboBox*>(widget)) {
+                text = comboBox->currentText();
+                if (comboBox->currentIndex() != 0) { // Assurez-vous que ce n'est pas l'item vide
+                    painter.setPen(QPen(Qt::blue)); // Utilisez le bleu pour les choix de l'utilisateur
                 }
-                painter.drawText(i * cellSize + cellSize / 3, j * cellSize + cellSize / 3 + cellSize/2, QString::number(number));
+            }
+
+            if (!text.isEmpty() && text != "0") {
+                painter.drawText(col * cellSize + cellSize / 3, row * cellSize + 2*cellSize / 3, text);
             }
         }
     }
 }
 
-// SudokuDrawer::~SudokuDrawer() {
-//     delete _sudokuSolved;
-// }
+SudokuDrawer::~SudokuDrawer() {
+    delete _sudokuSolved;
+}

@@ -2,7 +2,7 @@
 #include "ui_loadinggamescreen.h"
 
 LoadingGameScreen::LoadingGameScreen(QWidget *parent)
-    : QMainWindow(parent),  ui(new Ui::LoadingGameScreen), _gifAnimation(":/images/haydel_studios_written.gif")
+    : QMainWindow(parent),  ui(new Ui::LoadingGameScreen), _gifAnimation(":/images/haydel_studio_transparent.gif")
 {
     ui->setupUi(this);
     this->setFixedSize(1000, 621);
@@ -11,14 +11,7 @@ LoadingGameScreen::LoadingGameScreen(QWidget *parent)
     QMovie *titleAnimation = new QMovie(_gifAnimation);
     ui->studioLabel->setMovie(titleAnimation);
     titleAnimation->start();
-
-    // QTimer::singleShot(5000, this, &LoadingGameScreen::redirectedHomePage);
-
 }
-
-// void LoadingGameScreen::redirectedHomePage() {
-//     emit showHomePage();
-// }
 
 LoadingGameScreen::~LoadingGameScreen()
 {

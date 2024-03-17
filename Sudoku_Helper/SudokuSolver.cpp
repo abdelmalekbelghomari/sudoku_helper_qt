@@ -1,5 +1,6 @@
 #include "SudokuSolver.h"
-
+#include <QString>
+#include <QDebug>
 using namespace std;
 
 
@@ -85,33 +86,73 @@ bool SudokuSolver::findEmptyPosition(int& row, int& col, const vector<vector<int
     return false;
 }
 
-bool SudokuSolver::solveSudoku(vector<vector<int>>& puzzle) {
-    int row, col;
+QString SudokuSolver::solveSudoku(const QString& sudoku) {
+    int grid[9][9];
+    // Convertir la chaîne d'entrée en grille 2D
+    for (int i = 0; i < 81; ++i) {
+        grid[i / 9][i % 9] = sudoku[i].digitValue();
+    }
 
-    if (!findEmptyPosition(row, col, puzzle)) return true;
+    if (solve(grid, 0, 0)) {
+        QString solvedSudoku;
+        for (int row = 0; row < 9; ++row) {
+            for (int col = 0; col < 9; ++col) {
+                solvedSudoku.append(QString::number(grid[row][col]));
+            }
+        }
+        return solvedSudoku;
+    } else {
+        return "No solution";
+    }
+}
 
-    for (int num = 1; num <= 9; num++) {
-        if (isValid(row, col, num, puzzle)) {
-            puzzle[row][col] = num;
+bool SudokuSolver::solve(int grid[9][9], int row, int col) {
+    if (row == 9) return true; // Si on a atteint la fin de la grille, le sudoku est résolu
+    if (col == 9) return solve(grid, row + 1, 0); // Passer à la ligne suivante
 
-            if (solveSudoku(puzzle)) return true;
+    if (grid[row][col] != 0) return solve(grid, row, col + 1); // Si la cellule n'est pas vide, passer à la suivante
 
-            puzzle[row][col] = 0;
+    for (int num = 1; num <= 9; ++num) {
+        if (isSafe(grid, row, col, num)) {
+            grid[row][col] = num;
+
+            if (solve(grid, row, col + 1)) return true;
+
+            grid[row][col] = 0; // Backtrack
         }
     }
 
-    return false;
+    return false; // Trigger backtrack
 }
 
-void SudokuSolver::solveAllSudokus() {
-    for (auto& puzzle : _puzzles) {
-        if (solveSudoku(puzzle)) {
-            cout << "Sudoku résolu !" << endl;
-        } else {
-            cout << "Pas de solution trouvée pour un sudoku." << endl;
-        }
-    }
+bool SudokuSolver::isSafe(int grid[9][9], int row, int col, int num) {
+    // Vérifie la ligne
+    for (int x = 0; x < 9; ++x)
+        if (grid[row][x] == num) return false;
+
+    // Vérifie la colonne
+    for (int x = 0; x < 9; ++x)
+        if (grid[x][col] == num) return false;
+
+    // Vérifie le carré
+    int startRow = row - row % 3, startCol = col - col % 3;
+    for (int i = 0; i < 3; ++i)
+        for (int j = 0; j < 3; ++j)
+            if (grid[i + startRow][j + startCol] == num) return false;
+
+    return true;
 }
+
+
+// void SudokuSolver::solveAllSudokus() {
+//     for (auto& puzzle : _puzzles) {
+//         if (solveSudoku(puzzle)) {
+//             cout << "Sudoku résolu !" << endl;
+//         } else {
+//             cout << "Pas de solution trouvée pour un sudoku." << endl;
+//         }
+//     }
+// }
 
 vector<int> SudokuSolver::getPossibleValues(int row, int col) const {
     vector<int> possibleValues;

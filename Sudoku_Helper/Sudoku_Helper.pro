@@ -10,10 +10,12 @@ CONFIG += c++17
 
 SOURCES += \
     AnimatedSplashScreen.cpp \
+    BoardFactory.cpp \
     FiguresDisplayer.cpp \
     HomePageWindow.cpp \
     LoadingGameScreen.cpp \
     LoadingScreen.cpp \
+    Presenter.cpp \
     SudokuDrawer.cpp \
     SudokuSolver.cpp \
     main.cpp \
@@ -21,10 +23,12 @@ SOURCES += \
 
 HEADERS += \
     AnimatedSplashScreen.h \
+    BoardFactory.h \
     FiguresDisplayer.h \
     HomePageWindow.h \
     LoadingGameScreen.h \
     LoadingScreen.h \
+    Presenter.h \
     SudokuDrawer.h \
     SudokuSolver.h \
     mainwindow.h
@@ -32,7 +36,6 @@ HEADERS += \
 FORMS += \
     homepagewindow.ui \
     loadinggamescreen.ui \
-    loadingscreen.ui \
     mainwindow.ui
 
 RESOURCES += \
@@ -47,5 +50,8 @@ TRANSLATIONS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/binSudoku
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    completedLevels.txt
 
 

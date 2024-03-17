@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[8];
-    char stringdata0[109];
+    QByteArrayData data[13];
+    char stringdata0[183];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,14 +37,21 @@ QT_MOC_LITERAL(1, 11, 16), // "newGameRequested"
 QT_MOC_LITERAL(2, 28, 0), // ""
 QT_MOC_LITERAL(3, 29, 12), // "showHomePage"
 QT_MOC_LITERAL(4, 42, 8), // "quitGame"
-QT_MOC_LITERAL(5, 51, 13), // "handleNewGame"
-QT_MOC_LITERAL(6, 65, 25), // "on_actionReturnToHomePage"
-QT_MOC_LITERAL(7, 91, 17) // "on_actionQuitGame"
+QT_MOC_LITERAL(5, 51, 25), // "on_actionReturnToHomePage"
+QT_MOC_LITERAL(6, 77, 17), // "on_actionQuitGame"
+QT_MOC_LITERAL(7, 95, 14), // "onLevelChanged"
+QT_MOC_LITERAL(8, 110, 5), // "level"
+QT_MOC_LITERAL(9, 116, 21), // "updateCompletedLevels"
+QT_MOC_LITERAL(10, 138, 19), // "handleGridSelection"
+QT_MOC_LITERAL(11, 158, 5), // "index"
+QT_MOC_LITERAL(12, 164, 18) // "solvePuzzleRequest"
 
     },
     "MainWindow\0newGameRequested\0\0showHomePage\0"
-    "quitGame\0handleNewGame\0on_actionReturnToHomePage\0"
-    "on_actionQuitGame"
+    "quitGame\0on_actionReturnToHomePage\0"
+    "on_actionQuitGame\0onLevelChanged\0level\0"
+    "updateCompletedLevels\0handleGridSelection\0"
+    "index\0solvePuzzleRequest"
 };
 #undef QT_MOC_LITERAL
 
@@ -54,7 +61,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,14 +69,17 @@ static const uint qt_meta_data_MainWindow[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   44,    2, 0x06 /* Public */,
-       3,    0,   45,    2, 0x06 /* Public */,
-       4,    0,   46,    2, 0x06 /* Public */,
+       1,    0,   59,    2, 0x06 /* Public */,
+       3,    0,   60,    2, 0x06 /* Public */,
+       4,    0,   61,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   47,    2, 0x08 /* Private */,
-       6,    0,   48,    2, 0x08 /* Private */,
-       7,    0,   49,    2, 0x08 /* Private */,
+       5,    0,   62,    2, 0x08 /* Private */,
+       6,    0,   63,    2, 0x08 /* Private */,
+       7,    1,   64,    2, 0x08 /* Private */,
+       9,    0,   67,    2, 0x08 /* Private */,
+      10,    1,   68,    2, 0x08 /* Private */,
+      12,    0,   71,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -79,6 +89,9 @@ static const uint qt_meta_data_MainWindow[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    8,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   11,
     QMetaType::Void,
 
        0        // eod
@@ -93,9 +106,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->newGameRequested(); break;
         case 1: _t->showHomePage(); break;
         case 2: _t->quitGame(); break;
-        case 3: _t->handleNewGame(); break;
-        case 4: _t->on_actionReturnToHomePage(); break;
-        case 5: _t->on_actionQuitGame(); break;
+        case 3: _t->on_actionReturnToHomePage(); break;
+        case 4: _t->on_actionQuitGame(); break;
+        case 5: _t->onLevelChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 6: _t->updateCompletedLevels(); break;
+        case 7: _t->handleGridSelection((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 8: _t->solvePuzzleRequest(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -122,7 +138,6 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             }
         }
     }
-    (void)_a;
 }
 
 QT_INIT_METAOBJECT const QMetaObject MainWindow::staticMetaObject = { {
@@ -154,13 +169,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 9;
     }
     return _id;
 }

@@ -33,6 +33,7 @@ class Ui_MainWindow
 public:
     QAction *actionNew_Game;
     QAction *actionQuit;
+    QAction *actionSolve;
     QAction *actionHome;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
@@ -43,6 +44,7 @@ public:
     QSpacerItem *horizontalSpacer;
     QLabel *levelLabel;
     QComboBox *LevelComboBox;
+    QComboBox *gridSelectorComboBox;
     QPushButton *newGameButton;
     QSpacerItem *horizontalSpacer_2;
     QMenuBar *menubar;
@@ -58,12 +60,14 @@ public:
         MainWindow->setMinimumSize(QSize(1000, 600));
         actionNew_Game = new QAction(MainWindow);
         actionNew_Game->setObjectName(QString::fromUtf8("actionNew_Game"));
-        QIcon icon(QIcon::fromTheme(QString::fromUtf8("list-add")));
+        QIcon icon(QIcon::fromTheme(QString::fromUtf8("document-new")));
         actionNew_Game->setIcon(icon);
         actionQuit = new QAction(MainWindow);
         actionQuit->setObjectName(QString::fromUtf8("actionQuit"));
-        QIcon icon1(QIcon::fromTheme(QString::fromUtf8("application-exit")));
+        QIcon icon1(QIcon::fromTheme(QString::fromUtf8("system-shutdown")));
         actionQuit->setIcon(icon1);
+        actionSolve = new QAction(MainWindow);
+        actionSolve->setObjectName(QString::fromUtf8("actionSolve"));
         actionHome = new QAction(MainWindow);
         actionHome->setObjectName(QString::fromUtf8("actionHome"));
         QIcon icon2(QIcon::fromTheme(QString::fromUtf8("go-home")));
@@ -114,6 +118,12 @@ public:
 
         horizontalLayout->addWidget(LevelComboBox);
 
+        gridSelectorComboBox = new QComboBox(centralwidget);
+        gridSelectorComboBox->addItem(QString());
+        gridSelectorComboBox->setObjectName(QString::fromUtf8("gridSelectorComboBox"));
+
+        horizontalLayout->addWidget(gridSelectorComboBox);
+
         newGameButton = new QPushButton(centralwidget);
         newGameButton->setObjectName(QString::fromUtf8("newGameButton"));
 
@@ -139,13 +149,15 @@ public:
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
         QWidget::setTabOrder(newGameButton, LevelComboBox);
+        QWidget::setTabOrder(LevelComboBox, gridSelectorComboBox);
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuOptions->menuAction());
         menuFile->addAction(actionNew_Game);
         menuFile->addSeparator();
-        menuFile->addAction(actionHome);
         menuFile->addAction(actionQuit);
+        menuFile->addAction(actionHome);
+        menuOptions->addAction(actionSolve);
 
         retranslateUi(MainWindow);
 
@@ -163,7 +175,11 @@ public:
 #if QT_CONFIG(shortcut)
         actionQuit->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Q", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionHome->setText(QCoreApplication::translate("MainWindow", "Return to homepage", nullptr));
+        actionSolve->setText(QCoreApplication::translate("MainWindow", "Solve ", nullptr));
+#if QT_CONFIG(shortcut)
+        actionSolve->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+R", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionHome->setText(QCoreApplication::translate("MainWindow", "Home Screen", nullptr));
 #if QT_CONFIG(shortcut)
         actionHome->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+H", nullptr));
 #endif // QT_CONFIG(shortcut)
@@ -172,6 +188,8 @@ public:
         LevelComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Medium", "Medium Level"));
         LevelComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Hard", nullptr));
         LevelComboBox->setItemText(3, QCoreApplication::translate("MainWindow", "Insane", nullptr));
+
+        gridSelectorComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Random", nullptr));
 
         newGameButton->setText(QCoreApplication::translate("MainWindow", "New Game", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));

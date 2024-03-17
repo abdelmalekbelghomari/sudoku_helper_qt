@@ -5,15 +5,16 @@
         <file>haybdel_studios.gif</file>
         <file>haydel_studios.gif</file>
         <file>haydel_studios_written.gif</file>
+        <file>haydel_studio_transparent.gif</file>
+    </qresource>
+    <qresource prefix="/musics"/>
+    <qresource prefix="/stylesheets">
+        <file>style.qss</file>
     </qresource>
     <qresource prefix="/grids">
         <file>Medium.txt</file>
         <file>Insane.txt</file>
         <file>Hard.txt</file>
         <file>Easy.txt</file>
-    </qresource>
-    <qresource prefix="/musics"/>
-    <qresource prefix="/stylesheets">
-        <file>style.qss</file>
     </qresource>
 </RCC>
