@@ -7,7 +7,12 @@
         <file>haydel_studios_written.gif</file>
         <file>haydel_studio_transparent.gif</file>
     </qresource>
-    <qresource prefix="/musics"/>
+    <qresource prefix="/musics">
+        <file>Driftveil_City.mp3</file>
+        <file>Light Stone_Dark Stone.mp3</file>
+        <file>Gate.mp3</file>
+        <file>Nuvema_Town.mp3</file>
+    </qresource>
     <qresource prefix="/stylesheets">
         <file>style.qss</file>
     </qresource>

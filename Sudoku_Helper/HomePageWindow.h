@@ -7,6 +7,8 @@
 #include <QDebug>
 #include <QMovie>
 #include <QTimer>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 namespace Ui {
 class HomePageWindow;
@@ -18,6 +20,8 @@ class HomePageWindow : public QMainWindow
 
 public:
     explicit HomePageWindow(QWidget *parent = nullptr);
+    void pausePlayer();
+    void playPlayer();
     ~HomePageWindow();
 
 signals:
@@ -28,6 +32,8 @@ private slots:
 
 private:
     Ui::HomePageWindow *ui;
+    QMediaPlayer * _musicPlayer;
+    QMediaPlaylist * _playlist;
 };
 
 #endif // HOMEPAGEWINDOW_H

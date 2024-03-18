@@ -122,6 +122,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="timerLabel">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer_2">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -144,7 +151,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -161,6 +168,7 @@
      <string>Options</string>
     </property>
     <addaction name="actionSolve"/>
+    <addaction name="actionLeaderBoard"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuOptions"/>
@@ -205,6 +213,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="actionLeaderBoard">
+   <property name="text">
+    <string>LeaderBoard</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
    </property>
   </action>
  </widget>

@@ -36,6 +36,26 @@ HomePageWindow::HomePageWindow(QWidget *parent)
     timerAnimation->start(6000);
 
     connect(ui->newGameButton, &QPushButton::clicked, this, &HomePageWindow::onNewGameClicked);
+
+    _musicPlayer = new QMediaPlayer(this);
+    _playlist = new QMediaPlaylist();
+    _playlist->addMedia(QUrl("./Pokemon_Center_(Night).mp3"));
+    _playlist->addMedia(QUrl("qrc:/musics/Nuvema_Town.mp3"));
+    _playlist->addMedia(QUrl("qrc:/musics/Gate.mp3"));
+    _playlist->addMedia(QUrl("qrc:/musics/Driftveil_City.mp3"));
+    _playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    _musicPlayer->setPlaylist(_playlist);
+    _musicPlayer->setVolume(50);
+    this->playPlayer();
+
+}
+
+void HomePageWindow::pausePlayer(){
+    _musicPlayer->pause();
+}
+
+void HomePageWindow::playPlayer(){
+    _musicPlayer->play();
 }
 
 void HomePageWindow::onNewGameClicked() {
@@ -45,4 +65,5 @@ void HomePageWindow::onNewGameClicked() {
 HomePageWindow::~HomePageWindow()
 {
     delete ui;
+    delete _musicPlayer;
 }

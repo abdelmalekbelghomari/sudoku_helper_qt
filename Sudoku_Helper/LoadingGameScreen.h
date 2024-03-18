@@ -7,6 +7,9 @@
 #include <QMovie>
 #include <QTimer>
 #include <QLabel>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#include <QDebug>
 
 namespace Ui {
 class LoadingGameScreen;
@@ -27,6 +30,7 @@ public:
 private:
     Ui::LoadingGameScreen *ui;
     QString _gifAnimation;
+    QMediaPlayer * _player;
 };
 
 #endif // LOADINGGAMESCREEN_H

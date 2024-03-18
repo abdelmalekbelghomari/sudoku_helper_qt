@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "SudokuSolver.h"
 #include "HomePageWindow.h"
 #include "LoadingGameScreen.h"
 #include "AnimatedSplashScreen.h"
@@ -27,7 +26,7 @@ int main(int argc, char *argv[])
     MainWindow w;
     HomePageWindow h;
     LoadingGameScreen l;
-    // AnimatedSplashScreen splashScreen;
+    AnimatedSplashScreen splashScreen;
     l.show();
     // splashScreen.show();
 
@@ -41,6 +40,7 @@ int main(int argc, char *argv[])
     });
 
     QObject::connect(&h, &HomePageWindow::startNewGame, &a ,[&]() {
+        h.pausePlayer();
         h.hide();
         w.show();
     });
@@ -48,6 +48,7 @@ int main(int argc, char *argv[])
     QObject::connect(&w, &MainWindow::showHomePage, &a ,[&]() {
         w.hide();
         h.show();
+        h.playPlayer();
     });
 
     return a.exec();

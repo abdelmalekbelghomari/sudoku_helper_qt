@@ -1,52 +1,22 @@
-easy2
-easy160
-easy50
-easy97
-easy-1
-easy1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy126
-easy126
-easy3
-easy-1
-medium134
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy-1
-easy161
-easy161
-easy161
-easy161
-easy161
-easy161
-easy161
-easy161
-easy161
-easy161
-easy161
-easy161
-easy112
-easy112
-easy43
+
+
+Level:    easy      Grid:   173     Time: 00:00:05
+ Level:    easy      Grid:   96      Time: 00:00:04
+ Level:    easy      Grid:   96      Time: 00:00:01
+ Level:    easy      Grid:   96      Time: 00:00:01
+ Level:    medium    Grid:   96      Time: 00:00:01
+ Level:    medium    Grid:   96      Time: 00:00:00
+ Level:    medium    Grid:   96      Time: 00:00:01
+ Level:    easy      Grid:   27      Time: 00:00:01
+ Level:    easy      Grid:   21      Time: 00:00:01
+ Level:    medium    Grid:   31      Time: 00:00:00
+ Level:    medium    Grid:   24      Time: 00:00:00
+ Level:    hard      Grid:   28      Time: 00:00:00
+ Level:    medium    Grid:   22      Time: 00:00:00
+ Level:    insane    Grid:   26      Time: 00:00:00
+ Level:    medium    Grid:   22      Time: 00:00:00
+ Level:    hard      Grid:   30      Time: 00:00:00
+ Level:    medium    Grid:   32      Time: 00:00:00
+ Level:    easy      Grid:   31      Time: 00:00:00
+ Level:    medium    Grid:   29      Time: 00:00:00
+ 

@@ -13,6 +13,7 @@ SOURCES += \
     BoardFactory.cpp \
     FiguresDisplayer.cpp \
     HomePageWindow.cpp \
+    LeaderboardDialog.cpp \
     LoadingGameScreen.cpp \
     LoadingScreen.cpp \
     Presenter.cpp \
@@ -26,6 +27,7 @@ HEADERS += \
     BoardFactory.h \
     FiguresDisplayer.h \
     HomePageWindow.h \
+    LeaderboardDialog.h \
     LoadingGameScreen.h \
     LoadingScreen.h \
     Presenter.h \
@@ -40,6 +42,9 @@ FORMS += \
 
 RESOURCES += \
     ressources.qrc
+
+QT += multimedia
+
 
 TRANSLATIONS += \
     Sudoku_Helper_en_GB.ts
