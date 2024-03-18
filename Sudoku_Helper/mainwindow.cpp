@@ -26,13 +26,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     connect(ui->newGameButton, &QPushButton::clicked,this , [&]() {
-        QString level = ui->LevelComboBox->currentText().toLower();
-        int gridIndex = ui->gridSelectorComboBox->currentIndex() - 1; // -1 parce que "Random" est la première option
-        _presenter->onStartNewGame(level.toStdString(), gridIndex);
-        _startTime = QDateTime::currentDateTime();
-        _timer->start(1000);
+        startNewGame();
 
     });
+
+    connect(ui->actionNew_Game, &QAction::triggered, this, &MainWindow::startNewGame);
 
     connect(ui->LevelComboBox, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(onLevelChanged(const QString &)));
 
@@ -45,23 +43,114 @@ MainWindow::MainWindow(QWidget *parent)
     _timer = new QTimer(this);
     connect(_timer, &QTimer::timeout, this, &MainWindow::updateTimer);
 
-    connect(ui->actionLeaderBoard, &QAction::triggered, [this]() {
+    connect(ui->actionLeaderBoard, &QAction::triggered, this,[&]() {
     LeaderboardDialog *dialog = new LeaderboardDialog(this);
     dialog->setWindowTitle("Leaderboard");
     dialog->resize(400, 400);
     dialog->exec();});
 
+    _musicPlayer = new QMediaPlayer(this);
+    _playlist = new QMediaPlaylist();
+    _playlist->addMedia(QUrl("qrc:/musics/Driftveil_City.mp3"));
+    _playlist->addMedia(QUrl("./Pokemon_Center_(Night).mp3"));
+    _playlist->addMedia(QUrl("qrc:/musics/Nuvema_Town.mp3"));
+    _playlist->addMedia(QUrl("qrc:/musics/Gate.mp3"));
+
+    _playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    _musicPlayer->setPlaylist(_playlist);
+    _musicPlayer->setVolume(50);
+    this->playPlayer();
+
+    connect(ui->actionPlay, &QAction::triggered, this, &MainWindow::playPlayer);
+    connect(ui->actionPause, &QAction::triggered, this, &MainWindow::pausePlayer);
+
+
+
+    QAction *actionVolume0 = new QAction("0%", this);
+    QAction *actionVolume20 = new QAction("20%", this);
+    QAction *actionVolume40 = new QAction("40%", this);
+    QAction *actionVolume50 = new QAction("50%", this);
+    QAction *actionVolume60 = new QAction("60%", this);
+    QAction *actionVolume80 = new QAction("80%", this);
+    QAction *actionVolume100 = new QAction("100%", this);
+
+    actionVolume0->setCheckable(true);
+    actionVolume20->setCheckable(true);
+    actionVolume40->setCheckable(true);
+    actionVolume50->setCheckable(true);
+    actionVolume60->setCheckable(true);
+    actionVolume80->setCheckable(true);
+    actionVolume100->setCheckable(true);
+
+    QActionGroup *volumeActionGroup = new QActionGroup(this);
+    volumeActionGroup->setExclusive(true);
+
+    volumeActionGroup->addAction(actionVolume0);
+    volumeActionGroup->addAction(actionVolume20);
+    volumeActionGroup->addAction(actionVolume40);
+    volumeActionGroup->addAction(actionVolume50);
+    volumeActionGroup->addAction(actionVolume60);
+    volumeActionGroup->addAction(actionVolume80);
+    volumeActionGroup->addAction(actionVolume100);
+
+    ui->menuVolume->addAction(actionVolume0);
+    ui->menuVolume->addAction(actionVolume20);
+    ui->menuVolume->addAction(actionVolume40);
+    ui->menuVolume->addAction(actionVolume50);
+    ui->menuVolume->addAction(actionVolume60);
+    ui->menuVolume->addAction(actionVolume80);
+    ui->menuVolume->addAction(actionVolume100);
+
+    ui->menuVolume->setDefaultAction(actionVolume50);
+
+    connect(actionVolume0, &QAction::triggered, this, &MainWindow::setVolume0);
+    connect(actionVolume20, &QAction::triggered, this, &MainWindow::setVolume20);
+    connect(actionVolume40, &QAction::triggered, this, &MainWindow::setVolume40);
+    connect(actionVolume50, &QAction::triggered, this, &MainWindow::setVolume50);
+    connect(actionVolume60, &QAction::triggered, this, &MainWindow::setVolume60);
+    connect(actionVolume80, &QAction::triggered, this, &MainWindow::setVolume80);
+    connect(actionVolume100, &QAction::triggered, this, &MainWindow::setVolume100);
+
+
+    connect(ui->actionNext, &QAction::triggered, this, &MainWindow::playNext);
+    connect(ui->actionPrevious, &QAction::triggered, this, &MainWindow::playPrevious);
 
 
 
 }
+
+void MainWindow::pausePlayer(){
+    _musicPlayer->pause();
+}
+
+void MainWindow::playPlayer(){
+    _musicPlayer->play();
+}
+
+void MainWindow::startNewGame(){
+    QString level = ui->LevelComboBox->currentText().toLower();
+    int _gridIndex = ui->gridSelectorComboBox->currentIndex() - 1; // -1 parce que "Random" est la première option
+    _presenter->onStartNewGame(level.toStdString(), _gridIndex);
+    _gridIndex++;
+    _startTime = QDateTime::currentDateTime();
+    _timer->start(1000);
+};
 
 MainWindow::~MainWindow()
 {
     delete _presenter; // Assurez-vous de supprimer le présentateur
     delete ui;
+    delete _timer;
 }
 
+void MainWindow::playNext(){
+    _playlist->next();
+}
+
+void MainWindow::playPrevious(){
+    _playlist->previous();
+    _playlist->previous();
+}
 
 void MainWindow::handleGridSelection(int index) {
     ui->gridSelectorComboBox->setCurrentIndex(index + 1);
@@ -166,3 +255,32 @@ void MainWindow::solvePuzzleRequest() {
         _presenter->onSolvePuzzle();
     }
 }
+
+void MainWindow::setVolume0() {
+    _musicPlayer->setVolume(0);
+}
+
+void MainWindow::setVolume20() {
+    _musicPlayer->setVolume(20);
+}
+
+void MainWindow::setVolume40() {
+    _musicPlayer->setVolume(40);
+}
+
+void MainWindow::setVolume50() {
+    _musicPlayer->setVolume(50);
+}
+
+void MainWindow::setVolume60() {
+    _musicPlayer->setVolume(60);
+}
+
+void MainWindow::setVolume80() {
+    _musicPlayer->setVolume(80);
+}
+
+void MainWindow::setVolume100() {
+    _musicPlayer->setVolume(100);
+}
+

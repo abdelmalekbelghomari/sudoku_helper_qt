@@ -39,10 +39,7 @@ HomePageWindow::HomePageWindow(QWidget *parent)
 
     _musicPlayer = new QMediaPlayer(this);
     _playlist = new QMediaPlaylist();
-    _playlist->addMedia(QUrl("./Pokemon_Center_(Night).mp3"));
-    _playlist->addMedia(QUrl("qrc:/musics/Nuvema_Town.mp3"));
-    _playlist->addMedia(QUrl("qrc:/musics/Gate.mp3"));
-    _playlist->addMedia(QUrl("qrc:/musics/Driftveil_City.mp3"));
+    // _playlist->addMedia(QUrl("./Bicycle.mp3"));
     _playlist->setPlaybackMode(QMediaPlaylist::Loop);
     _musicPlayer->setPlaylist(_playlist);
     _musicPlayer->setVolume(50);

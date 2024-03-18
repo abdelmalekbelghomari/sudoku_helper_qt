@@ -167,8 +167,30 @@
     <property name="title">
      <string>Options</string>
     </property>
+    <widget class="QMenu" name="menuSettings">
+     <property name="title">
+      <string>Settings</string>
+     </property>
+     <widget class="QMenu" name="menuMusic">
+      <property name="title">
+       <string>Music</string>
+      </property>
+      <widget class="QMenu" name="menuVolume">
+       <property name="title">
+        <string>Volume</string>
+       </property>
+      </widget>
+      <addaction name="actionPlay"/>
+      <addaction name="actionPause"/>
+      <addaction name="menuVolume"/>
+      <addaction name="actionNext"/>
+      <addaction name="actionPrevious"/>
+     </widget>
+     <addaction name="menuMusic"/>
+    </widget>
     <addaction name="actionSolve"/>
     <addaction name="actionLeaderBoard"/>
+    <addaction name="menuSettings"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuOptions"/>
@@ -221,6 +243,29 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionPlay">
+   <property name="text">
+    <string>Play</string>
+   </property>
+  </action>
+  <action name="actionPause">
+   <property name="text">
+    <string>Pause</string>
+   </property>
+  </action>
+  <action name="actionNext">
+   <property name="icon">
+    <iconset theme="next"/>
+   </property>
+   <property name="text">
+    <string>Next</string>
+   </property>
+  </action>
+  <action name="actionPrevious">
+   <property name="text">
+    <string>Previous</string>
    </property>
   </action>
  </widget>
