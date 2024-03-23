@@ -35,6 +35,11 @@ public:
     QAction *actionQuit;
     QAction *actionSolve;
     QAction *actionHome;
+    QAction *actionLeaderBoard;
+    QAction *actionPlay;
+    QAction *actionPause;
+    QAction *actionNext;
+    QAction *actionPrevious;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
@@ -46,10 +51,14 @@ public:
     QComboBox *LevelComboBox;
     QComboBox *gridSelectorComboBox;
     QPushButton *newGameButton;
+    QLabel *timerLabel;
     QSpacerItem *horizontalSpacer_2;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuOptions;
+    QMenu *menuSettings;
+    QMenu *menuMusic;
+    QMenu *menuVolume;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -72,6 +81,24 @@ public:
         actionHome->setObjectName(QString::fromUtf8("actionHome"));
         QIcon icon2(QIcon::fromTheme(QString::fromUtf8("go-home")));
         actionHome->setIcon(icon2);
+        actionLeaderBoard = new QAction(MainWindow);
+        actionLeaderBoard->setObjectName(QString::fromUtf8("actionLeaderBoard"));
+        actionPlay = new QAction(MainWindow);
+        actionPlay->setObjectName(QString::fromUtf8("actionPlay"));
+        QIcon icon3(QIcon::fromTheme(QString::fromUtf8("media-playback-start")));
+        actionPlay->setIcon(icon3);
+        actionPause = new QAction(MainWindow);
+        actionPause->setObjectName(QString::fromUtf8("actionPause"));
+        QIcon icon4(QIcon::fromTheme(QString::fromUtf8("media-playback-pause")));
+        actionPause->setIcon(icon4);
+        actionNext = new QAction(MainWindow);
+        actionNext->setObjectName(QString::fromUtf8("actionNext"));
+        QIcon icon5(QIcon::fromTheme(QString::fromUtf8("media-skip-forward")));
+        actionNext->setIcon(icon5);
+        actionPrevious = new QAction(MainWindow);
+        actionPrevious->setObjectName(QString::fromUtf8("actionPrevious"));
+        QIcon icon6(QIcon::fromTheme(QString::fromUtf8("media-skip-backward")));
+        actionPrevious->setIcon(icon6);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -105,14 +132,14 @@ public:
         horizontalLayout->addWidget(levelLabel);
 
         LevelComboBox = new QComboBox(centralwidget);
-        QIcon icon3(QIcon::fromTheme(QString::fromUtf8("face-smile")));
-        LevelComboBox->addItem(icon3, QString());
-        QIcon icon4(QIcon::fromTheme(QString::fromUtf8("face-cool")));
-        LevelComboBox->addItem(icon4, QString());
-        QIcon icon5(QIcon::fromTheme(QString::fromUtf8("face-devilish")));
-        LevelComboBox->addItem(icon5, QString());
-        QIcon icon6(QIcon::fromTheme(QString::fromUtf8("face-sick")));
-        LevelComboBox->addItem(icon6, QString());
+        QIcon icon7(QIcon::fromTheme(QString::fromUtf8("face-smile")));
+        LevelComboBox->addItem(icon7, QString());
+        QIcon icon8(QIcon::fromTheme(QString::fromUtf8("face-cool")));
+        LevelComboBox->addItem(icon8, QString());
+        QIcon icon9(QIcon::fromTheme(QString::fromUtf8("face-devilish")));
+        LevelComboBox->addItem(icon9, QString());
+        QIcon icon10(QIcon::fromTheme(QString::fromUtf8("face-sick")));
+        LevelComboBox->addItem(icon10, QString());
         LevelComboBox->setObjectName(QString::fromUtf8("LevelComboBox"));
         LevelComboBox->setMinimumSize(QSize(130, 0));
 
@@ -129,6 +156,11 @@ public:
 
         horizontalLayout->addWidget(newGameButton);
 
+        timerLabel = new QLabel(centralwidget);
+        timerLabel->setObjectName(QString::fromUtf8("timerLabel"));
+
+        horizontalLayout->addWidget(timerLabel);
+
         horizontalSpacer_2 = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
@@ -144,6 +176,12 @@ public:
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuOptions = new QMenu(menubar);
         menuOptions->setObjectName(QString::fromUtf8("menuOptions"));
+        menuSettings = new QMenu(menuOptions);
+        menuSettings->setObjectName(QString::fromUtf8("menuSettings"));
+        menuMusic = new QMenu(menuSettings);
+        menuMusic->setObjectName(QString::fromUtf8("menuMusic"));
+        menuVolume = new QMenu(menuMusic);
+        menuVolume->setObjectName(QString::fromUtf8("menuVolume"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -158,6 +196,14 @@ public:
         menuFile->addAction(actionQuit);
         menuFile->addAction(actionHome);
         menuOptions->addAction(actionSolve);
+        menuOptions->addAction(actionLeaderBoard);
+        menuOptions->addAction(menuSettings->menuAction());
+        menuSettings->addAction(menuMusic->menuAction());
+        menuMusic->addAction(actionPlay);
+        menuMusic->addAction(actionPause);
+        menuMusic->addAction(menuVolume->menuAction());
+        menuMusic->addAction(actionNext);
+        menuMusic->addAction(actionPrevious);
 
         retranslateUi(MainWindow);
 
@@ -183,6 +229,14 @@ public:
 #if QT_CONFIG(shortcut)
         actionHome->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+H", nullptr));
 #endif // QT_CONFIG(shortcut)
+        actionLeaderBoard->setText(QCoreApplication::translate("MainWindow", "LeaderBoard", nullptr));
+#if QT_CONFIG(shortcut)
+        actionLeaderBoard->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+L", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionPlay->setText(QCoreApplication::translate("MainWindow", "Play", nullptr));
+        actionPause->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
+        actionNext->setText(QCoreApplication::translate("MainWindow", "Next", nullptr));
+        actionPrevious->setText(QCoreApplication::translate("MainWindow", "Previous", nullptr));
         levelLabel->setText(QCoreApplication::translate("MainWindow", "Level (Please Select) :", nullptr));
         LevelComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Easy", nullptr));
         LevelComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Medium", "Medium Level"));
@@ -192,8 +246,12 @@ public:
         gridSelectorComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Random", nullptr));
 
         newGameButton->setText(QCoreApplication::translate("MainWindow", "New Game", nullptr));
+        timerLabel->setText(QString());
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuOptions->setTitle(QCoreApplication::translate("MainWindow", "Options", nullptr));
+        menuSettings->setTitle(QCoreApplication::translate("MainWindow", "Settings", nullptr));
+        menuMusic->setTitle(QCoreApplication::translate("MainWindow", "Music", nullptr));
+        menuVolume->setTitle(QCoreApplication::translate("MainWindow", "Volume", nullptr));
     } // retranslateUi
 
 };

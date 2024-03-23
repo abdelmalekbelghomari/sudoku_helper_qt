@@ -151,7 +151,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -246,24 +246,33 @@
    </property>
   </action>
   <action name="actionPlay">
+   <property name="icon">
+    <iconset theme="media-playback-start"/>
+   </property>
    <property name="text">
     <string>Play</string>
    </property>
   </action>
   <action name="actionPause">
+   <property name="icon">
+    <iconset theme="media-playback-pause"/>
+   </property>
    <property name="text">
     <string>Pause</string>
    </property>
   </action>
   <action name="actionNext">
    <property name="icon">
-    <iconset theme="next"/>
+    <iconset theme="media-skip-forward"/>
    </property>
    <property name="text">
     <string>Next</string>
    </property>
   </action>
   <action name="actionPrevious">
+   <property name="icon">
+    <iconset theme="media-skip-backward"/>
+   </property>
    <property name="text">
     <string>Previous</string>
    </property>

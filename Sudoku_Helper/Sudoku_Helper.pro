@@ -12,12 +12,14 @@ CONFIG += c++17
 SOURCES += \
     AnimatedSplashScreen.cpp \
     BoardFactory.cpp \
+    ConfigurationManager.cpp \
     FiguresDisplayer.cpp \
     HomePageWindow.cpp \
     LeaderboardDialog.cpp \
     LoadingGameScreen.cpp \
     LoadingScreen.cpp \
     Presenter.cpp \
+    SettingsDialog.cpp \
     SudokuDrawer.cpp \
     SudokuSolver.cpp \
     main.cpp \
@@ -26,12 +28,15 @@ SOURCES += \
 HEADERS += \
     AnimatedSplashScreen.h \
     BoardFactory.h \
+    ConfigurationManager.h \
     FiguresDisplayer.h \
     HomePageWindow.h \
+    IWindowInterface.h \
     LeaderboardDialog.h \
     LoadingGameScreen.h \
     LoadingScreen.h \
     Presenter.h \
+    SettingsDialog.h \
     SudokuDrawer.h \
     SudokuSolver.h \
     mainwindow.h
@@ -39,7 +44,8 @@ HEADERS += \
 FORMS += \
     homepagewindow.ui \
     loadinggamescreen.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    settingsdialog.ui
 
 RESOURCES += \
     ressources.qrc

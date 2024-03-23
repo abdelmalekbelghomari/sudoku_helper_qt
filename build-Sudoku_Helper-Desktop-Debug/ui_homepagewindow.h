@@ -10,10 +10,12 @@
 #define UI_HOMEPAGEWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QToolButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,6 +27,7 @@ public:
     QLabel *backgroundImageLabel;
     QPushButton *newGameButton;
     QLabel *titleLabel;
+    QToolButton *settingsToolButton;
 
     void setupUi(QMainWindow *HomePageWindow)
     {
@@ -40,12 +43,18 @@ public:
         backgroundImageLabel->setPixmap(QPixmap(QString::fromUtf8(":/images/homescreen_background.jpg")));
         newGameButton = new QPushButton(centralwidget);
         newGameButton->setObjectName(QString::fromUtf8("newGameButton"));
-        newGameButton->setGeometry(QRect(440, 340, 88, 25));
+        newGameButton->setGeometry(QRect(430, 334, 111, 31));
         titleLabel = new QLabel(centralwidget);
         titleLabel->setObjectName(QString::fromUtf8("titleLabel"));
         titleLabel->setGeometry(QRect(170, -120, 661, 391));
         titleLabel->setScaledContents(true);
         titleLabel->setAlignment(Qt::AlignCenter);
+        settingsToolButton = new QToolButton(centralwidget);
+        settingsToolButton->setObjectName(QString::fromUtf8("settingsToolButton"));
+        settingsToolButton->setGeometry(QRect(890, 530, 91, 81));
+        QIcon icon(QIcon::fromTheme(QString::fromUtf8("application-x-executable")));
+        settingsToolButton->setIcon(icon);
+        settingsToolButton->setIconSize(QSize(120, 120));
         HomePageWindow->setCentralWidget(centralwidget);
 
         retranslateUi(HomePageWindow);
@@ -59,6 +68,7 @@ public:
         backgroundImageLabel->setText(QString());
         newGameButton->setText(QCoreApplication::translate("HomePageWindow", "New Game", nullptr));
         titleLabel->setText(QString());
+        settingsToolButton->setText(QCoreApplication::translate("HomePageWindow", "Settings", nullptr));
     } // retranslateUi
 
 };

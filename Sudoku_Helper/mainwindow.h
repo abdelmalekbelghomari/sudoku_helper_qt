@@ -9,6 +9,7 @@
 #include <QMediaPlaylist>
 #include <QAction>
 #include <QActionGroup>
+#include "IWindowInterface.h"
 #include "Presenter.h"
 #include "LeaderboardDialog.h"
 
@@ -51,6 +52,11 @@ private slots:
     void setVolume60();
     void setVolume80();
     void setVolume100();
+    void applySettings(bool musicEnabled, int soundLevel, QString language);
+    void handleMusicEnabledChanged(bool enabled);
+    void handleTranslation(const QString & language);
+    void handleSoundLevelChanged(int level);
+
 
 public slots:
 
@@ -59,6 +65,7 @@ public slots:
     void playPlayer();
     void playNext();
     void playPrevious();
+
 
 
 private:

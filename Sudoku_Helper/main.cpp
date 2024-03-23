@@ -25,16 +25,17 @@ int main(int argc, char *argv[])
     HomePageWindow h;
     LoadingGameScreen l;
     AnimatedSplashScreen splashScreen;
-    // l.show();
-    splashScreen.show();
-    h.pausePlayer();
+    l.show();
+    // splashScreen.show();
+    // h.pausePlayer();
     w.pausePlayer();
 
     QTimer::singleShot(8000, &a, [&]() {
-        // l.show();
-        splashScreen.close();
+        l.close();
+        // splashScreen.close();
+        w.playPlayer();
         h.show();
-        h.playPlayer();
+        // h.playPlayer();
     });
 
     QObject::connect(&w, &MainWindow::quitGame, &a, [&](){
@@ -49,7 +50,7 @@ int main(int argc, char *argv[])
     });
 
     QObject::connect(&w, &MainWindow::showHomePage, &a ,[&]() {
-        w.pausePlayer();
+        // w.pausePlayer();
         w.hide();
         h.show();
         // h.playPlayer();

@@ -37,6 +37,11 @@ HomePageWindow::HomePageWindow(QWidget *parent)
 
     connect(ui->newGameButton, &QPushButton::clicked, this, &HomePageWindow::onNewGameClicked);
 
+    _settingsDialog = new SettingsDialog(this);
+    connect(ui->settingsToolButton, &QPushButton::clicked, this, &HomePageWindow::showSettings);
+    connect(_settingsDialog, &SettingsDialog::settingsChanged,this, &HomePageWindow::relaySettingsChanges);
+    // _settingsDialog->exec();
+
     _musicPlayer = new QMediaPlayer(this);
     _playlist = new QMediaPlaylist();
     // _playlist->addMedia(QUrl("./Bicycle.mp3"));
@@ -57,6 +62,15 @@ void HomePageWindow::playPlayer(){
 
 void HomePageWindow::onNewGameClicked() {
     emit startNewGame();
+}
+
+void HomePageWindow::showSettings(){
+    // this->hide();
+    _settingsDialog->show();
+}
+
+void HomePageWindow::relaySettingsChanges(bool musicEnabled, int soundLevel, QString & language){
+    emit settingsChanged(musicEnabled, soundLevel, language);
 }
 
 HomePageWindow::~HomePageWindow()

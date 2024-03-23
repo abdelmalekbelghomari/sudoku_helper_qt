@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
+#include <QMovie>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,8 +23,6 @@ MainWindow::MainWindow(QWidget *parent)
         square->setSudokuDrawer(drawer);
         drawer->setFiguresDisplayer(square);
     }
-
-
 
     connect(ui->newGameButton, &QPushButton::clicked,this , [&]() {
         startNewGame();
@@ -63,8 +62,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionPlay, &QAction::triggered, this, &MainWindow::playPlayer);
     connect(ui->actionPause, &QAction::triggered, this, &MainWindow::pausePlayer);
-
-
 
     QAction *actionVolume0 = new QAction("0%", this);
     QAction *actionVolume20 = new QAction("20%", this);
@@ -111,11 +108,33 @@ MainWindow::MainWindow(QWidget *parent)
     connect(actionVolume80, &QAction::triggered, this, &MainWindow::setVolume80);
     connect(actionVolume100, &QAction::triggered, this, &MainWindow::setVolume100);
 
-
     connect(ui->actionNext, &QAction::triggered, this, &MainWindow::playNext);
     connect(ui->actionPrevious, &QAction::triggered, this, &MainWindow::playPrevious);
 
+    // QTimer * timerAnimation = new QTimer(this);
+    // QMovie * titleAnimation = new QMovie(":/images/theme.gif");
+    // ui->themeLabel->setMovie(titleAnimation);
+    // ui->themeLabel->setScaledContents(true);
+    // ui->themeLabel->raise();
+    // titleAnimation->start();
+    // connect(timerAnimation, &QTimer::timeout, this, [titleAnimation, timerAnimation](){
+    //     bool firstTime = true;
+    //     if(firstTime){
+    //         firstTime = false;
+    //         titleAnimation->start();
+    //         timerAnimation->setInterval(6000);
+    //     } else {
+    //         if(titleAnimation->state() == QMovie::Running){
+    //             titleAnimation->stop();
+    //         }
+    //         titleAnimation->start();
+    //     }
+    // });
+    // timerAnimation->start(6000);
 
+    connect(&ConfigurationManager::instance(), &ConfigurationManager::musicEnabledChanged,this, &MainWindow::handleMusicEnabledChanged);
+    connect(&ConfigurationManager::instance(), &ConfigurationManager::languageChanged, this, &MainWindow::handleTranslation);
+    connect(&ConfigurationManager::instance(), &ConfigurationManager::soundLevelChanged, this, &MainWindow::handleSoundLevelChanged);
 
 }
 
@@ -127,6 +146,11 @@ void MainWindow::playPlayer(){
     _musicPlayer->play();
 }
 
+void MainWindow::applySettings(bool musicEnabled, int soundLevel, QString language) {
+
+}
+
+
 void MainWindow::startNewGame(){
     QString level = ui->LevelComboBox->currentText().toLower();
     int _gridIndex = ui->gridSelectorComboBox->currentIndex() - 1; // -1 parce que "Random" est la première option
@@ -134,7 +158,7 @@ void MainWindow::startNewGame(){
     _gridIndex++;
     _startTime = QDateTime::currentDateTime();
     _timer->start(1000);
-};
+}
 
 MainWindow::~MainWindow()
 {
@@ -282,5 +306,18 @@ void MainWindow::setVolume80() {
 
 void MainWindow::setVolume100() {
     _musicPlayer->setVolume(100);
+}
+
+void MainWindow::handleMusicEnabledChanged(bool enabled) {
+    if(!enabled) this->pausePlayer();
+    else this->playPlayer();
+}
+
+void MainWindow::handleTranslation(const QString & language) {
+    /*TODO*/
+}
+
+void MainWindow::handleSoundLevelChanged(int level) {
+    _musicPlayer->setVolume(level);
 }
 

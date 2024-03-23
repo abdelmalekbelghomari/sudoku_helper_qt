@@ -6,6 +6,7 @@
         <file>haydel_studios.gif</file>
         <file>haydel_studios_written.gif</file>
         <file>haydel_studio_transparent.gif</file>
+        <file>theme.gif</file>
     </qresource>
     <qresource prefix="/musics">
         <file>Driftveil_City.mp3</file>
@@ -24,5 +25,12 @@
     </qresource>
     <qresource prefix="/leaderboard">
         <file>completedLevels.txt</file>
+    </qresource>
+    <qresource prefix="/flags">
+        <file>germany.png</file>
+        <file>spain.png</file>
+        <file>france.png</file>
+        <file>japan.png</file>
+        <file>united-kingdom.png</file>
     </qresource>
 </RCC>

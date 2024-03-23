@@ -10,6 +10,9 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 
+#include "IWindowInterface.h"
+#include "SettingsDialog.h"
+
 namespace Ui {
 class HomePageWindow;
 }
@@ -26,14 +29,19 @@ public:
 
 signals:
     void startNewGame();
+    void settingsChanged(bool musicEnabled, int soundLevel, QString & language);
+
 
 private slots:
     void onNewGameClicked();
+    void showSettings();
+    void relaySettingsChanges(bool musicEnabled, int soundLevel, QString & language);
 
 private:
     Ui::HomePageWindow *ui;
     QMediaPlayer * _musicPlayer;
     QMediaPlaylist * _playlist;
+    SettingsDialog * _settingsDialog;
 };
 
 #endif // HOMEPAGEWINDOW_H

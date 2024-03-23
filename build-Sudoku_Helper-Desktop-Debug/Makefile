@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++1z -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../Sudoku_Helper -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+INCPATH       = -I../Sudoku_Helper -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = Sudoku_Helper1.0.0
 DISTDIR = /home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku\ helper/build-Sudoku_Helper-Desktop-Debug/.tmp/Sudoku_Helper1.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5Multimedia.so /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Network.so /usr/lib/x86_64-linux-gnu/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -54,41 +54,55 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../Sudoku_Helper/AnimatedSplashScreen.cpp \
 		../Sudoku_Helper/BoardFactory.cpp \
+		../Sudoku_Helper/ConfigurationManager.cpp \
 		../Sudoku_Helper/FiguresDisplayer.cpp \
 		../Sudoku_Helper/HomePageWindow.cpp \
+		../Sudoku_Helper/LeaderboardDialog.cpp \
 		../Sudoku_Helper/LoadingGameScreen.cpp \
 		../Sudoku_Helper/LoadingScreen.cpp \
 		../Sudoku_Helper/Presenter.cpp \
+		../Sudoku_Helper/SettingsDialog.cpp \
 		../Sudoku_Helper/SudokuDrawer.cpp \
 		../Sudoku_Helper/SudokuSolver.cpp \
 		../Sudoku_Helper/main.cpp \
 		../Sudoku_Helper/mainwindow.cpp qrc_ressources.cpp \
 		moc_AnimatedSplashScreen.cpp \
+		moc_ConfigurationManager.cpp \
 		moc_FiguresDisplayer.cpp \
 		moc_HomePageWindow.cpp \
+		moc_IWindowInterface.cpp \
+		moc_LeaderboardDialog.cpp \
 		moc_LoadingGameScreen.cpp \
 		moc_LoadingScreen.cpp \
 		moc_Presenter.cpp \
+		moc_SettingsDialog.cpp \
 		moc_SudokuDrawer.cpp \
 		moc_mainwindow.cpp
 OBJECTS       = AnimatedSplashScreen.o \
 		BoardFactory.o \
+		ConfigurationManager.o \
 		FiguresDisplayer.o \
 		HomePageWindow.o \
+		LeaderboardDialog.o \
 		LoadingGameScreen.o \
 		LoadingScreen.o \
 		Presenter.o \
+		SettingsDialog.o \
 		SudokuDrawer.o \
 		SudokuSolver.o \
 		main.o \
 		mainwindow.o \
 		qrc_ressources.o \
 		moc_AnimatedSplashScreen.o \
+		moc_ConfigurationManager.o \
 		moc_FiguresDisplayer.o \
 		moc_HomePageWindow.o \
+		moc_IWindowInterface.o \
+		moc_LeaderboardDialog.o \
 		moc_LoadingGameScreen.o \
 		moc_LoadingScreen.o \
 		moc_Presenter.o \
+		moc_SettingsDialog.o \
 		moc_SudokuDrawer.o \
 		moc_mainwindow.o
 DIST          = ../Sudoku_Helper/completedLevels.txt \
@@ -174,20 +188,27 @@ DIST          = ../Sudoku_Helper/completedLevels.txt \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../Sudoku_Helper/Sudoku_Helper.pro ../Sudoku_Helper/AnimatedSplashScreen.h \
 		../Sudoku_Helper/BoardFactory.h \
+		../Sudoku_Helper/ConfigurationManager.h \
 		../Sudoku_Helper/FiguresDisplayer.h \
 		../Sudoku_Helper/HomePageWindow.h \
+		../Sudoku_Helper/IWindowInterface.h \
+		../Sudoku_Helper/LeaderboardDialog.h \
 		../Sudoku_Helper/LoadingGameScreen.h \
 		../Sudoku_Helper/LoadingScreen.h \
 		../Sudoku_Helper/Presenter.h \
+		../Sudoku_Helper/SettingsDialog.h \
 		../Sudoku_Helper/SudokuDrawer.h \
 		../Sudoku_Helper/SudokuSolver.h \
 		../Sudoku_Helper/mainwindow.h ../Sudoku_Helper/AnimatedSplashScreen.cpp \
 		../Sudoku_Helper/BoardFactory.cpp \
+		../Sudoku_Helper/ConfigurationManager.cpp \
 		../Sudoku_Helper/FiguresDisplayer.cpp \
 		../Sudoku_Helper/HomePageWindow.cpp \
+		../Sudoku_Helper/LeaderboardDialog.cpp \
 		../Sudoku_Helper/LoadingGameScreen.cpp \
 		../Sudoku_Helper/LoadingScreen.cpp \
 		../Sudoku_Helper/Presenter.cpp \
+		../Sudoku_Helper/SettingsDialog.cpp \
 		../Sudoku_Helper/SudokuDrawer.cpp \
 		../Sudoku_Helper/SudokuSolver.cpp \
 		../Sudoku_Helper/main.cpp \
@@ -200,7 +221,7 @@ TARGET        = Sudoku_Helper
 first: all
 ####### Build rules
 
-Sudoku_Helper: ui_homepagewindow.h ui_loadinggamescreen.h ui_mainwindow.h $(OBJECTS)  
+Sudoku_Helper: ui_homepagewindow.h ui_loadinggamescreen.h ui_mainwindow.h ui_settingsdialog.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../Sudoku_Helper/Sudoku_Helper.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -384,9 +405,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Sudoku_Helper/ressources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Sudoku_Helper/AnimatedSplashScreen.h ../Sudoku_Helper/BoardFactory.h ../Sudoku_Helper/FiguresDisplayer.h ../Sudoku_Helper/HomePageWindow.h ../Sudoku_Helper/LoadingGameScreen.h ../Sudoku_Helper/LoadingScreen.h ../Sudoku_Helper/Presenter.h ../Sudoku_Helper/SudokuDrawer.h ../Sudoku_Helper/SudokuSolver.h ../Sudoku_Helper/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Sudoku_Helper/AnimatedSplashScreen.cpp ../Sudoku_Helper/BoardFactory.cpp ../Sudoku_Helper/FiguresDisplayer.cpp ../Sudoku_Helper/HomePageWindow.cpp ../Sudoku_Helper/LoadingGameScreen.cpp ../Sudoku_Helper/LoadingScreen.cpp ../Sudoku_Helper/Presenter.cpp ../Sudoku_Helper/SudokuDrawer.cpp ../Sudoku_Helper/SudokuSolver.cpp ../Sudoku_Helper/main.cpp ../Sudoku_Helper/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Sudoku_Helper/homepagewindow.ui ../Sudoku_Helper/loadinggamescreen.ui ../Sudoku_Helper/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Sudoku_Helper/AnimatedSplashScreen.h ../Sudoku_Helper/BoardFactory.h ../Sudoku_Helper/ConfigurationManager.h ../Sudoku_Helper/FiguresDisplayer.h ../Sudoku_Helper/HomePageWindow.h ../Sudoku_Helper/IWindowInterface.h ../Sudoku_Helper/LeaderboardDialog.h ../Sudoku_Helper/LoadingGameScreen.h ../Sudoku_Helper/LoadingScreen.h ../Sudoku_Helper/Presenter.h ../Sudoku_Helper/SettingsDialog.h ../Sudoku_Helper/SudokuDrawer.h ../Sudoku_Helper/SudokuSolver.h ../Sudoku_Helper/mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Sudoku_Helper/AnimatedSplashScreen.cpp ../Sudoku_Helper/BoardFactory.cpp ../Sudoku_Helper/ConfigurationManager.cpp ../Sudoku_Helper/FiguresDisplayer.cpp ../Sudoku_Helper/HomePageWindow.cpp ../Sudoku_Helper/LeaderboardDialog.cpp ../Sudoku_Helper/LoadingGameScreen.cpp ../Sudoku_Helper/LoadingScreen.cpp ../Sudoku_Helper/Presenter.cpp ../Sudoku_Helper/SettingsDialog.cpp ../Sudoku_Helper/SudokuDrawer.cpp ../Sudoku_Helper/SudokuSolver.cpp ../Sudoku_Helper/main.cpp ../Sudoku_Helper/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Sudoku_Helper/homepagewindow.ui ../Sudoku_Helper/loadinggamescreen.ui ../Sudoku_Helper/mainwindow.ui ../Sudoku_Helper/settingsdialog.ui $(DISTDIR)/
 	$(COPY_FILE) --parents Sudoku_Helper_en_GB.ts $(DISTDIR)/
 
 
@@ -420,13 +441,24 @@ qrc_ressources.cpp: ../Sudoku_Helper/ressources.qrc \
 		../Sudoku_Helper/haydel_studios.gif \
 		../Sudoku_Helper/haydel_studio_transparent.gif \
 		../Sudoku_Helper/haydel_studios_written.gif \
+		../Sudoku_Helper/theme.gif \
 		../Sudoku_Helper/haybdel_studios.gif \
 		../Sudoku_Helper/sudoku_helper_title.gif \
+		../Sudoku_Helper/Driftveil_City.mp3 \
+		../Sudoku_Helper/Light\ Stone_Dark\ Stone.mp3 \
+		../Sudoku_Helper/Gate.mp3 \
+		../Sudoku_Helper/Nuvema_Town.mp3 \
+		../Sudoku_Helper/germany.png \
+		../Sudoku_Helper/japan.png \
+		../Sudoku_Helper/france.png \
+		../Sudoku_Helper/spain.png \
+		../Sudoku_Helper/united-kingdom.png \
 		../Sudoku_Helper/Easy.txt \
 		../Sudoku_Helper/Hard.txt \
 		../Sudoku_Helper/Insane.txt \
 		../Sudoku_Helper/Medium.txt \
-		../Sudoku_Helper/style.qss
+		../Sudoku_Helper/style.qss \
+		../Sudoku_Helper/completedLevels.txt
 	/usr/lib/qt5/bin/rcc -name ressources ../Sudoku_Helper/ressources.qrc -o qrc_ressources.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -435,62 +467,85 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++1z -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_AnimatedSplashScreen.cpp moc_FiguresDisplayer.cpp moc_HomePageWindow.cpp moc_LoadingGameScreen.cpp moc_LoadingScreen.cpp moc_Presenter.cpp moc_SudokuDrawer.cpp moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_AnimatedSplashScreen.cpp moc_ConfigurationManager.cpp moc_FiguresDisplayer.cpp moc_HomePageWindow.cpp moc_IWindowInterface.cpp moc_LeaderboardDialog.cpp moc_LoadingGameScreen.cpp moc_LoadingScreen.cpp moc_Presenter.cpp moc_SettingsDialog.cpp moc_SudokuDrawer.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_AnimatedSplashScreen.cpp moc_FiguresDisplayer.cpp moc_HomePageWindow.cpp moc_LoadingGameScreen.cpp moc_LoadingScreen.cpp moc_Presenter.cpp moc_SudokuDrawer.cpp moc_mainwindow.cpp
+	-$(DEL_FILE) moc_AnimatedSplashScreen.cpp moc_ConfigurationManager.cpp moc_FiguresDisplayer.cpp moc_HomePageWindow.cpp moc_IWindowInterface.cpp moc_LeaderboardDialog.cpp moc_LoadingGameScreen.cpp moc_LoadingScreen.cpp moc_Presenter.cpp moc_SettingsDialog.cpp moc_SudokuDrawer.cpp moc_mainwindow.cpp
 moc_AnimatedSplashScreen.cpp: ../Sudoku_Helper/AnimatedSplashScreen.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/AnimatedSplashScreen.h -o moc_AnimatedSplashScreen.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/AnimatedSplashScreen.h -o moc_AnimatedSplashScreen.cpp
+
+moc_ConfigurationManager.cpp: ../Sudoku_Helper/ConfigurationManager.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/ConfigurationManager.h -o moc_ConfigurationManager.cpp
 
 moc_FiguresDisplayer.cpp: ../Sudoku_Helper/FiguresDisplayer.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/FiguresDisplayer.h -o moc_FiguresDisplayer.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/FiguresDisplayer.h -o moc_FiguresDisplayer.cpp
 
 moc_HomePageWindow.cpp: ../Sudoku_Helper/HomePageWindow.h \
+		../Sudoku_Helper/SettingsDialog.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/HomePageWindow.h -o moc_HomePageWindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/HomePageWindow.h -o moc_HomePageWindow.cpp
+
+moc_IWindowInterface.cpp: ../Sudoku_Helper/IWindowInterface.h \
+		../Sudoku_Helper/ConfigurationManager.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/IWindowInterface.h -o moc_IWindowInterface.cpp
+
+moc_LeaderboardDialog.cpp: ../Sudoku_Helper/LeaderboardDialog.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/LeaderboardDialog.h -o moc_LeaderboardDialog.cpp
 
 moc_LoadingGameScreen.cpp: ../Sudoku_Helper/LoadingGameScreen.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/LoadingGameScreen.h -o moc_LoadingGameScreen.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/LoadingGameScreen.h -o moc_LoadingGameScreen.cpp
 
 moc_LoadingScreen.cpp: ../Sudoku_Helper/LoadingScreen.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/LoadingScreen.h -o moc_LoadingScreen.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/LoadingScreen.h -o moc_LoadingScreen.cpp
 
 moc_Presenter.cpp: ../Sudoku_Helper/Presenter.h \
 		../Sudoku_Helper/BoardFactory.h \
 		../Sudoku_Helper/FiguresDisplayer.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/Presenter.h -o moc_Presenter.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/Presenter.h -o moc_Presenter.cpp
+
+moc_SettingsDialog.cpp: ../Sudoku_Helper/SettingsDialog.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/SettingsDialog.h -o moc_SettingsDialog.cpp
 
 moc_SudokuDrawer.cpp: ../Sudoku_Helper/SudokuDrawer.h \
 		../Sudoku_Helper/SudokuSolver.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/SudokuDrawer.h -o moc_SudokuDrawer.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/SudokuDrawer.h -o moc_SudokuDrawer.cpp
 
 moc_mainwindow.cpp: ../Sudoku_Helper/mainwindow.h \
 		../Sudoku_Helper/Presenter.h \
 		../Sudoku_Helper/BoardFactory.h \
 		../Sudoku_Helper/FiguresDisplayer.h \
+		../Sudoku_Helper/LeaderboardDialog.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_homepagewindow.h ui_loadinggamescreen.h ui_mainwindow.h
+compiler_uic_make_all: ui_homepagewindow.h ui_loadinggamescreen.h ui_mainwindow.h ui_settingsdialog.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_homepagewindow.h ui_loadinggamescreen.h ui_mainwindow.h
+	-$(DEL_FILE) ui_homepagewindow.h ui_loadinggamescreen.h ui_mainwindow.h ui_settingsdialog.h
 ui_homepagewindow.h: ../Sudoku_Helper/homepagewindow.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../Sudoku_Helper/homepagewindow.ui -o ui_homepagewindow.h
@@ -505,6 +560,10 @@ ui_mainwindow.h: ../Sudoku_Helper/mainwindow.ui \
 		../Sudoku_Helper/SudokuDrawer.h \
 		../Sudoku_Helper/SudokuSolver.h
 	/usr/lib/qt5/bin/uic ../Sudoku_Helper/mainwindow.ui -o ui_mainwindow.h
+
+ui_settingsdialog.h: ../Sudoku_Helper/settingsdialog.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic ../Sudoku_Helper/settingsdialog.ui -o ui_settingsdialog.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -522,14 +581,21 @@ AnimatedSplashScreen.o: ../Sudoku_Helper/AnimatedSplashScreen.cpp ../Sudoku_Help
 BoardFactory.o: ../Sudoku_Helper/BoardFactory.cpp ../Sudoku_Helper/BoardFactory.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BoardFactory.o ../Sudoku_Helper/BoardFactory.cpp
 
+ConfigurationManager.o: ../Sudoku_Helper/ConfigurationManager.cpp ../Sudoku_Helper/ConfigurationManager.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ConfigurationManager.o ../Sudoku_Helper/ConfigurationManager.cpp
+
 FiguresDisplayer.o: ../Sudoku_Helper/FiguresDisplayer.cpp ../Sudoku_Helper/FiguresDisplayer.h \
 		../Sudoku_Helper/SudokuDrawer.h \
 		../Sudoku_Helper/SudokuSolver.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o FiguresDisplayer.o ../Sudoku_Helper/FiguresDisplayer.cpp
 
 HomePageWindow.o: ../Sudoku_Helper/HomePageWindow.cpp ../Sudoku_Helper/HomePageWindow.h \
+		../Sudoku_Helper/SettingsDialog.h \
 		ui_homepagewindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HomePageWindow.o ../Sudoku_Helper/HomePageWindow.cpp
+
+LeaderboardDialog.o: ../Sudoku_Helper/LeaderboardDialog.cpp ../Sudoku_Helper/LeaderboardDialog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o LeaderboardDialog.o ../Sudoku_Helper/LeaderboardDialog.cpp
 
 LoadingGameScreen.o: ../Sudoku_Helper/LoadingGameScreen.cpp ../Sudoku_Helper/LoadingGameScreen.h \
 		ui_loadinggamescreen.h
@@ -545,12 +611,17 @@ Presenter.o: ../Sudoku_Helper/Presenter.cpp ../Sudoku_Helper/Presenter.h \
 		../Sudoku_Helper/SudokuSolver.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Presenter.o ../Sudoku_Helper/Presenter.cpp
 
+SettingsDialog.o: ../Sudoku_Helper/SettingsDialog.cpp ../Sudoku_Helper/SettingsDialog.h \
+		ui_settingsdialog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SettingsDialog.o ../Sudoku_Helper/SettingsDialog.cpp
+
 SudokuDrawer.o: ../Sudoku_Helper/SudokuDrawer.cpp ../Sudoku_Helper/SudokuDrawer.h \
 		../Sudoku_Helper/SudokuSolver.h \
 		../Sudoku_Helper/mainwindow.h \
 		../Sudoku_Helper/Presenter.h \
 		../Sudoku_Helper/BoardFactory.h \
-		../Sudoku_Helper/FiguresDisplayer.h
+		../Sudoku_Helper/FiguresDisplayer.h \
+		../Sudoku_Helper/LeaderboardDialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SudokuDrawer.o ../Sudoku_Helper/SudokuDrawer.cpp
 
 SudokuSolver.o: ../Sudoku_Helper/SudokuSolver.cpp ../Sudoku_Helper/SudokuSolver.h
@@ -560,8 +631,9 @@ main.o: ../Sudoku_Helper/main.cpp ../Sudoku_Helper/mainwindow.h \
 		../Sudoku_Helper/Presenter.h \
 		../Sudoku_Helper/BoardFactory.h \
 		../Sudoku_Helper/FiguresDisplayer.h \
-		../Sudoku_Helper/SudokuSolver.h \
+		../Sudoku_Helper/LeaderboardDialog.h \
 		../Sudoku_Helper/HomePageWindow.h \
+		../Sudoku_Helper/SettingsDialog.h \
 		../Sudoku_Helper/LoadingGameScreen.h \
 		../Sudoku_Helper/AnimatedSplashScreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Sudoku_Helper/main.cpp
@@ -570,7 +642,10 @@ mainwindow.o: ../Sudoku_Helper/mainwindow.cpp ../Sudoku_Helper/mainwindow.h \
 		../Sudoku_Helper/Presenter.h \
 		../Sudoku_Helper/BoardFactory.h \
 		../Sudoku_Helper/FiguresDisplayer.h \
-		ui_mainwindow.h
+		../Sudoku_Helper/LeaderboardDialog.h \
+		ui_mainwindow.h \
+		../Sudoku_Helper/SudokuDrawer.h \
+		../Sudoku_Helper/SudokuSolver.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Sudoku_Helper/mainwindow.cpp
 
 qrc_ressources.o: qrc_ressources.cpp 
@@ -579,11 +654,20 @@ qrc_ressources.o: qrc_ressources.cpp
 moc_AnimatedSplashScreen.o: moc_AnimatedSplashScreen.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_AnimatedSplashScreen.o moc_AnimatedSplashScreen.cpp
 
+moc_ConfigurationManager.o: moc_ConfigurationManager.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ConfigurationManager.o moc_ConfigurationManager.cpp
+
 moc_FiguresDisplayer.o: moc_FiguresDisplayer.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_FiguresDisplayer.o moc_FiguresDisplayer.cpp
 
 moc_HomePageWindow.o: moc_HomePageWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_HomePageWindow.o moc_HomePageWindow.cpp
+
+moc_IWindowInterface.o: moc_IWindowInterface.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_IWindowInterface.o moc_IWindowInterface.cpp
+
+moc_LeaderboardDialog.o: moc_LeaderboardDialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_LeaderboardDialog.o moc_LeaderboardDialog.cpp
 
 moc_LoadingGameScreen.o: moc_LoadingGameScreen.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_LoadingGameScreen.o moc_LoadingGameScreen.cpp
@@ -593,6 +677,9 @@ moc_LoadingScreen.o: moc_LoadingScreen.cpp
 
 moc_Presenter.o: moc_Presenter.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_Presenter.o moc_Presenter.cpp
+
+moc_SettingsDialog.o: moc_SettingsDialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SettingsDialog.o moc_SettingsDialog.cpp
 
 moc_SudokuDrawer.o: moc_SudokuDrawer.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SudokuDrawer.o moc_SudokuDrawer.cpp
