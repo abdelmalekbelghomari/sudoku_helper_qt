@@ -33,4 +33,7 @@
         <file>japan.png</file>
         <file>united-kingdom.png</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file>settings_icon.png</file>
+    </qresource>
 </RCC>

@@ -458,6 +458,7 @@ qrc_ressources.cpp: ../Sudoku_Helper/ressources.qrc \
 		../Sudoku_Helper/Insane.txt \
 		../Sudoku_Helper/Medium.txt \
 		../Sudoku_Helper/style.qss \
+		../Sudoku_Helper/settings_icon.png \
 		../Sudoku_Helper/completedLevels.txt
 	/usr/lib/qt5/bin/rcc -name ressources ../Sudoku_Helper/ressources.qrc -o qrc_ressources.cpp
 
@@ -486,6 +487,8 @@ moc_FiguresDisplayer.cpp: ../Sudoku_Helper/FiguresDisplayer.h \
 	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/FiguresDisplayer.h -o moc_FiguresDisplayer.cpp
 
 moc_HomePageWindow.cpp: ../Sudoku_Helper/HomePageWindow.h \
+		../Sudoku_Helper/IWindowInterface.h \
+		../Sudoku_Helper/ConfigurationManager.h \
 		../Sudoku_Helper/SettingsDialog.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -520,6 +523,8 @@ moc_Presenter.cpp: ../Sudoku_Helper/Presenter.h \
 	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/Presenter.h -o moc_Presenter.cpp
 
 moc_SettingsDialog.cpp: ../Sudoku_Helper/SettingsDialog.h \
+		../Sudoku_Helper/IWindowInterface.h \
+		../Sudoku_Helper/ConfigurationManager.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/SettingsDialog.h -o moc_SettingsDialog.cpp
@@ -531,6 +536,8 @@ moc_SudokuDrawer.cpp: ../Sudoku_Helper/SudokuDrawer.h \
 	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/build-Sudoku_Helper-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vbdel/Desktop/ENSI/2024/Interfaces_Graph/sudoku helper/Sudoku_Helper' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Sudoku_Helper/SudokuDrawer.h -o moc_SudokuDrawer.cpp
 
 moc_mainwindow.cpp: ../Sudoku_Helper/mainwindow.h \
+		../Sudoku_Helper/IWindowInterface.h \
+		../Sudoku_Helper/ConfigurationManager.h \
 		../Sudoku_Helper/Presenter.h \
 		../Sudoku_Helper/BoardFactory.h \
 		../Sudoku_Helper/FiguresDisplayer.h \
@@ -590,6 +597,8 @@ FiguresDisplayer.o: ../Sudoku_Helper/FiguresDisplayer.cpp ../Sudoku_Helper/Figur
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o FiguresDisplayer.o ../Sudoku_Helper/FiguresDisplayer.cpp
 
 HomePageWindow.o: ../Sudoku_Helper/HomePageWindow.cpp ../Sudoku_Helper/HomePageWindow.h \
+		../Sudoku_Helper/IWindowInterface.h \
+		../Sudoku_Helper/ConfigurationManager.h \
 		../Sudoku_Helper/SettingsDialog.h \
 		ui_homepagewindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HomePageWindow.o ../Sudoku_Helper/HomePageWindow.cpp
@@ -612,12 +621,16 @@ Presenter.o: ../Sudoku_Helper/Presenter.cpp ../Sudoku_Helper/Presenter.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Presenter.o ../Sudoku_Helper/Presenter.cpp
 
 SettingsDialog.o: ../Sudoku_Helper/SettingsDialog.cpp ../Sudoku_Helper/SettingsDialog.h \
+		../Sudoku_Helper/IWindowInterface.h \
+		../Sudoku_Helper/ConfigurationManager.h \
 		ui_settingsdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SettingsDialog.o ../Sudoku_Helper/SettingsDialog.cpp
 
 SudokuDrawer.o: ../Sudoku_Helper/SudokuDrawer.cpp ../Sudoku_Helper/SudokuDrawer.h \
 		../Sudoku_Helper/SudokuSolver.h \
 		../Sudoku_Helper/mainwindow.h \
+		../Sudoku_Helper/IWindowInterface.h \
+		../Sudoku_Helper/ConfigurationManager.h \
 		../Sudoku_Helper/Presenter.h \
 		../Sudoku_Helper/BoardFactory.h \
 		../Sudoku_Helper/FiguresDisplayer.h \
@@ -628,6 +641,8 @@ SudokuSolver.o: ../Sudoku_Helper/SudokuSolver.cpp ../Sudoku_Helper/SudokuSolver.
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SudokuSolver.o ../Sudoku_Helper/SudokuSolver.cpp
 
 main.o: ../Sudoku_Helper/main.cpp ../Sudoku_Helper/mainwindow.h \
+		../Sudoku_Helper/IWindowInterface.h \
+		../Sudoku_Helper/ConfigurationManager.h \
 		../Sudoku_Helper/Presenter.h \
 		../Sudoku_Helper/BoardFactory.h \
 		../Sudoku_Helper/FiguresDisplayer.h \
@@ -639,6 +654,8 @@ main.o: ../Sudoku_Helper/main.cpp ../Sudoku_Helper/mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Sudoku_Helper/main.cpp
 
 mainwindow.o: ../Sudoku_Helper/mainwindow.cpp ../Sudoku_Helper/mainwindow.h \
+		../Sudoku_Helper/IWindowInterface.h \
+		../Sudoku_Helper/ConfigurationManager.h \
 		../Sudoku_Helper/Presenter.h \
 		../Sudoku_Helper/BoardFactory.h \
 		../Sudoku_Helper/FiguresDisplayer.h \

@@ -71,23 +71,36 @@
    <widget class="QToolButton" name="settingsToolButton">
     <property name="geometry">
      <rect>
-      <x>890</x>
-      <y>530</y>
-      <width>91</width>
-      <height>81</height>
+      <x>870</x>
+      <y>510</y>
+      <width>111</width>
+      <height>101</height>
      </rect>
     </property>
     <property name="text">
      <string>Settings</string>
     </property>
     <property name="icon">
-     <iconset theme="application-x-executable"/>
+     <iconset resource="ressources.qrc">
+      <normaloff>:/icons/settings_icon.png</normaloff>:/icons/settings_icon.png</iconset>
     </property>
     <property name="iconSize">
      <size>
       <width>120</width>
       <height>120</height>
      </size>
+    </property>
+    <property name="popupMode">
+     <enum>QToolButton::DelayedPopup</enum>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonIconOnly</enum>
+    </property>
+    <property name="autoRaise">
+     <bool>true</bool>
+    </property>
+    <property name="arrowType">
+     <enum>Qt::NoArrow</enum>
     </property>
    </widget>
   </widget>

@@ -51,10 +51,15 @@ public:
         titleLabel->setAlignment(Qt::AlignCenter);
         settingsToolButton = new QToolButton(centralwidget);
         settingsToolButton->setObjectName(QString::fromUtf8("settingsToolButton"));
-        settingsToolButton->setGeometry(QRect(890, 530, 91, 81));
-        QIcon icon(QIcon::fromTheme(QString::fromUtf8("application-x-executable")));
+        settingsToolButton->setGeometry(QRect(870, 510, 111, 101));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icons/settings_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         settingsToolButton->setIcon(icon);
         settingsToolButton->setIconSize(QSize(120, 120));
+        settingsToolButton->setPopupMode(QToolButton::DelayedPopup);
+        settingsToolButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        settingsToolButton->setAutoRaise(true);
+        settingsToolButton->setArrowType(Qt::NoArrow);
         HomePageWindow->setCentralWidget(centralwidget);
 
         retranslateUi(HomePageWindow);
