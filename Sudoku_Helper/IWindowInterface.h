@@ -1,24 +1,23 @@
 #ifndef IWINDOWINTERFACE_H
 #define IWINDOWINTERFACE_H
 
-#include <QObject>
+#include <QMainWindow>
 #include "ConfigurationManager.h"
 
-class IWindowInterface : public QObject
+class IWindowInterface : public QMainWindow
 {
-    Q_OBJECT
+    Q_OBJECT // Ajout du support Qt Meta-Object pour les signaux et slots
 
 public:
-    explicit IWindowInterface(QObject *parent = nullptr) : QObject(parent) {}
+    explicit IWindowInterface(QWidget *parent = nullptr) : QMainWindow(parent) {}
     virtual ~IWindowInterface() {}
 
-    // Définissez ici les méthodes virtuelles pures que toutes vos fenêtres doivent implémenter
-    virtual void setupUi() = 0; // Pour configurer l'interface utilisateur
-    virtual void connectSignalsSlots() = 0; // Pour connecter tous les signaux et slots
-    virtual void applySettings() = 0; // Pour appliquer les paramètres spécifiques à la fenêtre
+    // Utilisation de pointeurs pour manipuler les fenêtres
+
 private:
     ConfigurationManager & _configurationManager = ConfigurationManager::instance();
-
 };
+
+void hideAndDisplay(QMainWindow *screenToHide, QMainWindow *screenToDisplay);
 
 #endif // IWINDOWINTERFACE_H

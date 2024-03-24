@@ -15,6 +15,7 @@ SOURCES += \
     ConfigurationManager.cpp \
     FiguresDisplayer.cpp \
     HomePageWindow.cpp \
+    IWindowInterface.cpp \
     LeaderboardDialog.cpp \
     LoadingGameScreen.cpp \
     LoadingScreen.cpp \

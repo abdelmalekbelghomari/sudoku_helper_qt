@@ -2,6 +2,8 @@
 #define CONFIGURATIONMANAGER_H
 
 #include <QObject>
+#include <QTranslator>
+#include <QApplication>
 
 class ConfigurationManager : public QObject
 {

@@ -57,6 +57,7 @@ SOURCES       = ../Sudoku_Helper/AnimatedSplashScreen.cpp \
 		../Sudoku_Helper/ConfigurationManager.cpp \
 		../Sudoku_Helper/FiguresDisplayer.cpp \
 		../Sudoku_Helper/HomePageWindow.cpp \
+		../Sudoku_Helper/IWindowInterface.cpp \
 		../Sudoku_Helper/LeaderboardDialog.cpp \
 		../Sudoku_Helper/LoadingGameScreen.cpp \
 		../Sudoku_Helper/LoadingScreen.cpp \
@@ -83,6 +84,7 @@ OBJECTS       = AnimatedSplashScreen.o \
 		ConfigurationManager.o \
 		FiguresDisplayer.o \
 		HomePageWindow.o \
+		IWindowInterface.o \
 		LeaderboardDialog.o \
 		LoadingGameScreen.o \
 		LoadingScreen.o \
@@ -204,6 +206,7 @@ DIST          = ../Sudoku_Helper/completedLevels.txt \
 		../Sudoku_Helper/ConfigurationManager.cpp \
 		../Sudoku_Helper/FiguresDisplayer.cpp \
 		../Sudoku_Helper/HomePageWindow.cpp \
+		../Sudoku_Helper/IWindowInterface.cpp \
 		../Sudoku_Helper/LeaderboardDialog.cpp \
 		../Sudoku_Helper/LoadingGameScreen.cpp \
 		../Sudoku_Helper/LoadingScreen.cpp \
@@ -406,7 +409,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../Sudoku_Helper/ressources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Sudoku_Helper/AnimatedSplashScreen.h ../Sudoku_Helper/BoardFactory.h ../Sudoku_Helper/ConfigurationManager.h ../Sudoku_Helper/FiguresDisplayer.h ../Sudoku_Helper/HomePageWindow.h ../Sudoku_Helper/IWindowInterface.h ../Sudoku_Helper/LeaderboardDialog.h ../Sudoku_Helper/LoadingGameScreen.h ../Sudoku_Helper/LoadingScreen.h ../Sudoku_Helper/Presenter.h ../Sudoku_Helper/SettingsDialog.h ../Sudoku_Helper/SudokuDrawer.h ../Sudoku_Helper/SudokuSolver.h ../Sudoku_Helper/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Sudoku_Helper/AnimatedSplashScreen.cpp ../Sudoku_Helper/BoardFactory.cpp ../Sudoku_Helper/ConfigurationManager.cpp ../Sudoku_Helper/FiguresDisplayer.cpp ../Sudoku_Helper/HomePageWindow.cpp ../Sudoku_Helper/LeaderboardDialog.cpp ../Sudoku_Helper/LoadingGameScreen.cpp ../Sudoku_Helper/LoadingScreen.cpp ../Sudoku_Helper/Presenter.cpp ../Sudoku_Helper/SettingsDialog.cpp ../Sudoku_Helper/SudokuDrawer.cpp ../Sudoku_Helper/SudokuSolver.cpp ../Sudoku_Helper/main.cpp ../Sudoku_Helper/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Sudoku_Helper/AnimatedSplashScreen.cpp ../Sudoku_Helper/BoardFactory.cpp ../Sudoku_Helper/ConfigurationManager.cpp ../Sudoku_Helper/FiguresDisplayer.cpp ../Sudoku_Helper/HomePageWindow.cpp ../Sudoku_Helper/IWindowInterface.cpp ../Sudoku_Helper/LeaderboardDialog.cpp ../Sudoku_Helper/LoadingGameScreen.cpp ../Sudoku_Helper/LoadingScreen.cpp ../Sudoku_Helper/Presenter.cpp ../Sudoku_Helper/SettingsDialog.cpp ../Sudoku_Helper/SudokuDrawer.cpp ../Sudoku_Helper/SudokuSolver.cpp ../Sudoku_Helper/main.cpp ../Sudoku_Helper/mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Sudoku_Helper/homepagewindow.ui ../Sudoku_Helper/loadinggamescreen.ui ../Sudoku_Helper/mainwindow.ui ../Sudoku_Helper/settingsdialog.ui $(DISTDIR)/
 	$(COPY_FILE) --parents Sudoku_Helper_en_GB.ts $(DISTDIR)/
 
@@ -445,6 +448,7 @@ qrc_ressources.cpp: ../Sudoku_Helper/ressources.qrc \
 		../Sudoku_Helper/haybdel_studios.gif \
 		../Sudoku_Helper/sudoku_helper_title.gif \
 		../Sudoku_Helper/Driftveil_City.mp3 \
+		../Sudoku_Helper/Pokemon_Center_(Night).mp3 \
 		../Sudoku_Helper/Light\ Stone_Dark\ Stone.mp3 \
 		../Sudoku_Helper/Gate.mp3 \
 		../Sudoku_Helper/Nuvema_Town.mp3 \
@@ -458,7 +462,11 @@ qrc_ressources.cpp: ../Sudoku_Helper/ressources.qrc \
 		../Sudoku_Helper/Insane.txt \
 		../Sudoku_Helper/Medium.txt \
 		../Sudoku_Helper/style.qss \
-		../Sudoku_Helper/Sudoku_Helper_en_GB.ts \
+		../Sudoku_Helper/Sudoku_Helper_ja_JP.qm \
+		../Sudoku_Helper/Sudoku_Helper_es_ES.qm \
+		../Sudoku_Helper/Sudoku_Helper_en_GB.qm \
+		../Sudoku_Helper/Sudoku_Helper_de_DE.qm \
+		../Sudoku_Helper/Sudoku_Helper_fr_FR.qm \
 		../Sudoku_Helper/settings_icon.png \
 		../Sudoku_Helper/completedLevels.txt
 	/usr/lib/qt5/bin/rcc -name ressources ../Sudoku_Helper/ressources.qrc -o qrc_ressources.cpp
@@ -603,6 +611,10 @@ HomePageWindow.o: ../Sudoku_Helper/HomePageWindow.cpp ../Sudoku_Helper/HomePageW
 		../Sudoku_Helper/SettingsDialog.h \
 		ui_homepagewindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HomePageWindow.o ../Sudoku_Helper/HomePageWindow.cpp
+
+IWindowInterface.o: ../Sudoku_Helper/IWindowInterface.cpp ../Sudoku_Helper/IWindowInterface.h \
+		../Sudoku_Helper/ConfigurationManager.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o IWindowInterface.o ../Sudoku_Helper/IWindowInterface.cpp
 
 LeaderboardDialog.o: ../Sudoku_Helper/LeaderboardDialog.cpp ../Sudoku_Helper/LeaderboardDialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o LeaderboardDialog.o ../Sudoku_Helper/LeaderboardDialog.cpp

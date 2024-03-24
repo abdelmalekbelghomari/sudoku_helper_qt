@@ -1,2 +1,3 @@
 Level:    easy      Grid:   -1      Time: 00:00:01
+ Level:    easy      Grid:   0       Time: 00:00:13
  

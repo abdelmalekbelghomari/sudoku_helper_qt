@@ -13,6 +13,7 @@
         <file>Light Stone_Dark Stone.mp3</file>
         <file>Gate.mp3</file>
         <file>Nuvema_Town.mp3</file>
+        <file>Pokemon_Center_(Night).mp3</file>
     </qresource>
     <qresource prefix="/stylesheets">
         <file>style.qss</file>
@@ -37,6 +38,10 @@
         <file>settings_icon.png</file>
     </qresource>
     <qresource prefix="/translations">
-        <file>Sudoku_Helper_en_GB.ts</file>
+        <file>Sudoku_Helper_ja_JP.qm</file>
+        <file>Sudoku_Helper_fr_FR.qm</file>
+        <file>Sudoku_Helper_es_ES.qm</file>
+        <file>Sudoku_Helper_en_GB.qm</file>
+        <file>Sudoku_Helper_de_DE.qm</file>
     </qresource>
 </RCC>

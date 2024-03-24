@@ -1,7 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include <QMessageBox>
 #include <QDateTime>
 #include <QTimer>
@@ -21,9 +20,7 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-class Presenter;
-class QTimer;
-class MainWindow : public QMainWindow
+class MainWindow : public IWindowInterface
 {
     Q_OBJECT
 
@@ -33,7 +30,6 @@ public:
     void showError(const QString &message);
     QString getCurrentTimerTime();
     void updateTimer();
-
 
 signals:
     void newGameRequested();
@@ -54,21 +50,16 @@ private slots:
     void setVolume60();
     void setVolume80();
     void setVolume100();
-    void applySettings(bool musicEnabled, int soundLevel, QString language);
     void handleMusicEnabledChanged(bool enabled);
     void handleTranslation(const QString & language);
     void handleSoundLevelChanged(int level);
 
-
 public slots:
-
     void solvePuzzleRequest();
     void pausePlayer();
     void playPlayer();
     void playNext();
     void playPrevious();
-
-
 
 private:
     Ui::MainWindow *ui;
@@ -78,7 +69,7 @@ private:
     int _gridIndex;
     QMediaPlayer * _musicPlayer;
     QMediaPlaylist * _playlist;
-
+    bool _timerPaused;
 
 };
 #endif // MAINWINDOW_H

@@ -7,7 +7,10 @@ HomePageWindow::HomePageWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setFixedSize(1000, 621);
-    this->setWindowTitle("Sudoku - Accueil");
+
+    connect(&ConfigurationManager::instance(), &ConfigurationManager::languageChanged, this, &HomePageWindow::handleTranslation);
+
+
     QFile file(":/stylesheets/style.qss");
     if(file.open(QFile::ReadOnly)) {
         QString styleSheet = QLatin1String(file.readAll());
@@ -39,8 +42,6 @@ HomePageWindow::HomePageWindow(QWidget *parent)
 
     _settingsDialog = new SettingsDialog(this);
     connect(ui->settingsToolButton, &QPushButton::clicked, this, &HomePageWindow::showSettings);
-    connect(_settingsDialog, &SettingsDialog::settingsChanged,this, &HomePageWindow::relaySettingsChanges);
-    // _settingsDialog->exec();
 
     _musicPlayer = new QMediaPlayer(this);
     _playlist = new QMediaPlaylist();
@@ -69,8 +70,8 @@ void HomePageWindow::showSettings(){
     _settingsDialog->show();
 }
 
-void HomePageWindow::relaySettingsChanges(bool musicEnabled, int soundLevel, QString & language){
-    emit settingsChanged(musicEnabled, soundLevel, language);
+void HomePageWindow::handleTranslation(const QString &language){
+    ui->retranslateUi(this);
 }
 
 HomePageWindow::~HomePageWindow()

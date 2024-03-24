@@ -6,6 +6,7 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <iostream>
 
 int main(int argc, char *argv[])
 {
@@ -15,45 +16,39 @@ int main(int argc, char *argv[])
     const QStringList uiLanguages = QLocale::system().uiLanguages();
     for (const QString &locale : uiLanguages) {
         const QString baseName = "Sudoku_Helper_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName)) {
+        if (translator.load(":/translations/" + baseName)) {
             a.installTranslator(&translator);
             break;
+        } else {
+            std::cout<< "le fichier de trad n'est pas lu\n";
         }
     }
 
-    MainWindow w;
-    HomePageWindow h;
-    LoadingGameScreen l;
+    MainWindow window;
+    HomePageWindow homescreen;
+    LoadingGameScreen loadingScreen;
     AnimatedSplashScreen splashScreen;
-    l.show();
+    loadingScreen.show();
     // splashScreen.show();
-    // h.pausePlayer();
-    w.pausePlayer();
+    window.pausePlayer();
 
-    QTimer::singleShot(8000, &a, [&]() {
-        l.close();
-        // splashScreen.close();
-        w.playPlayer();
-        h.show();
-        // h.playPlayer();
+    QTimer::singleShot(6000, &a, [&]() {
+        loadingScreen.close();
+        window.playPlayer();
+        homescreen.show();
     });
 
-    QObject::connect(&w, &MainWindow::quitGame, &a, [&](){
-        w.close();
+    QObject::connect(&window, &MainWindow::quitGame, &a, [&](){
+        window.close();
     });
 
-    QObject::connect(&h, &HomePageWindow::startNewGame, &a ,[&]() {
-        // h.pausePlayer();
-        h.hide();
-        w.show();
-        w.playPlayer();
+    QObject::connect(&homescreen, &HomePageWindow::startNewGame, &a ,[&]() {
+        hideAndDisplay(&homescreen,&window);
+        window.playPlayer();
     });
 
-    QObject::connect(&w, &MainWindow::showHomePage, &a ,[&]() {
-        // w.pausePlayer();
-        w.hide();
-        h.show();
-        // h.playPlayer();
+    QObject::connect(&window, &MainWindow::showHomePage, &a ,[&]() {
+        hideAndDisplay(&window,&homescreen);
     });
 
     return a.exec();

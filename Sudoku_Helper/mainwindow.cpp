@@ -8,7 +8,7 @@
 #include <QMovie>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+    : IWindowInterface(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -51,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
     _musicPlayer = new QMediaPlayer(this);
     _playlist = new QMediaPlaylist();
     _playlist->addMedia(QUrl("qrc:/musics/Driftveil_City.mp3"));
-    _playlist->addMedia(QUrl("./Pokemon_Center_(Night).mp3"));
+    _playlist->addMedia(QUrl("qrc:/musics/Pokemon_Center_(Night).mp3"));
     _playlist->addMedia(QUrl("qrc:/musics/Nuvema_Town.mp3"));
     _playlist->addMedia(QUrl("qrc:/musics/Gate.mp3"));
 
@@ -111,27 +111,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionNext, &QAction::triggered, this, &MainWindow::playNext);
     connect(ui->actionPrevious, &QAction::triggered, this, &MainWindow::playPrevious);
 
-    // QTimer * timerAnimation = new QTimer(this);
-    // QMovie * titleAnimation = new QMovie(":/images/theme.gif");
-    // ui->themeLabel->setMovie(titleAnimation);
-    // ui->themeLabel->setScaledContents(true);
-    // ui->themeLabel->raise();
-    // titleAnimation->start();
-    // connect(timerAnimation, &QTimer::timeout, this, [titleAnimation, timerAnimation](){
-    //     bool firstTime = true;
-    //     if(firstTime){
-    //         firstTime = false;
-    //         titleAnimation->start();
-    //         timerAnimation->setInterval(6000);
-    //     } else {
-    //         if(titleAnimation->state() == QMovie::Running){
-    //             titleAnimation->stop();
-    //         }
-    //         titleAnimation->start();
-    //     }
-    // });
-    // timerAnimation->start(6000);
-
     connect(&ConfigurationManager::instance(), &ConfigurationManager::musicEnabledChanged,this, &MainWindow::handleMusicEnabledChanged);
     connect(&ConfigurationManager::instance(), &ConfigurationManager::languageChanged, this, &MainWindow::handleTranslation);
     connect(&ConfigurationManager::instance(), &ConfigurationManager::soundLevelChanged, this, &MainWindow::handleSoundLevelChanged);
@@ -145,11 +124,6 @@ void MainWindow::pausePlayer(){
 void MainWindow::playPlayer(){
     _musicPlayer->play();
 }
-
-void MainWindow::applySettings(bool musicEnabled, int soundLevel, QString language) {
-
-}
-
 
 void MainWindow::startNewGame(){
     QString level = ui->LevelComboBox->currentText().toLower();
@@ -182,7 +156,6 @@ void MainWindow::handleGridSelection(int index) {
 
 void MainWindow::onLevelChanged(const QString &level) {
     QString gridPath;
-    // Déterminez le chemin du fichier en fonction du niveau sélectionné
     if (level == "Easy") {
         gridPath = ":/grids/Easy.txt";
     } else if (level == "Medium") {
@@ -193,8 +166,8 @@ void MainWindow::onLevelChanged(const QString &level) {
         gridPath = ":/grids/Insane.txt";
     }
 
-    ui->gridSelectorComboBox->clear(); // Nettoyez la ComboBox avant d'ajouter de nouveaux items
-    ui->gridSelectorComboBox->addItem("Random"); // Ajoutez une option "Random"
+    ui->gridSelectorComboBox->clear();
+    ui->gridSelectorComboBox->addItem("Random");
 
     QSet<QString> completedLevels;
     QFile prefFile("completedLevels.txt");
@@ -314,16 +287,6 @@ void MainWindow::handleMusicEnabledChanged(bool enabled) {
 }
 
 void MainWindow::handleTranslation(const QString & language) {
-    static QTranslator translator;
-    qApp->removeTranslator(&translator); // Retire la traduction précédente
-
-    QString translationFilePath = ":/translations/Sudoku_Helper_" + language + ".ts";
-    if(translator.load(translationFilePath)) {
-        qApp->installTranslator(&translator);
-    } else {
-        qDebug() << "Failed to load translation file:" << translationFilePath;
-    }
-
     ui->retranslateUi(this);
 }
 

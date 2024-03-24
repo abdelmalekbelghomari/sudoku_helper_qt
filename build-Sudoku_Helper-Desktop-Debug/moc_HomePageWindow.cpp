@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HomePageWindow_t {
     QByteArrayData data[11];
-    char stringdata0[138];
+    char stringdata0[135];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -42,13 +42,13 @@ QT_MOC_LITERAL(6, 69, 8), // "QString&"
 QT_MOC_LITERAL(7, 78, 8), // "language"
 QT_MOC_LITERAL(8, 87, 16), // "onNewGameClicked"
 QT_MOC_LITERAL(9, 104, 12), // "showSettings"
-QT_MOC_LITERAL(10, 117, 20) // "relaySettingsChanges"
+QT_MOC_LITERAL(10, 117, 17) // "handleTranslation"
 
     },
     "HomePageWindow\0startNewGame\0\0"
     "settingsChanged\0musicEnabled\0soundLevel\0"
     "QString&\0language\0onNewGameClicked\0"
-    "showSettings\0relaySettingsChanges"
+    "showSettings\0handleTranslation"
 };
 #undef QT_MOC_LITERAL
 
@@ -72,7 +72,7 @@ static const uint qt_meta_data_HomePageWindow[] = {
  // slots: name, argc, parameters, tag, flags
        8,    0,   47,    2, 0x08 /* Private */,
        9,    0,   48,    2, 0x08 /* Private */,
-      10,    3,   49,    2, 0x08 /* Private */,
+      10,    1,   49,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -81,7 +81,7 @@ static const uint qt_meta_data_HomePageWindow[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool, QMetaType::Int, 0x80000000 | 6,    4,    5,    7,
+    QMetaType::Void, QMetaType::QString,    7,
 
        0        // eod
 };
@@ -96,7 +96,7 @@ void HomePageWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 1: _t->settingsChanged((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3]))); break;
         case 2: _t->onNewGameClicked(); break;
         case 3: _t->showSettings(); break;
-        case 4: _t->relaySettingsChanges((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3]))); break;
+        case 4: _t->handleTranslation((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

@@ -22,6 +22,7 @@ signals:
     void settingsChanged(bool musicActivated, int soundLevel, QString & language);
 private slots:
     void applySettings();
+    void handleTranslation(const QString & language);
 
 private:
     Ui::SettingsDialog *ui;

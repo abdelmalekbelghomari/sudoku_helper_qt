@@ -35,7 +35,7 @@ signals:
 private slots:
     void onNewGameClicked();
     void showSettings();
-    void relaySettingsChanges(bool musicEnabled, int soundLevel, QString & language);
+    void handleTranslation(const QString & language);
 
 private:
     Ui::HomePageWindow *ui;

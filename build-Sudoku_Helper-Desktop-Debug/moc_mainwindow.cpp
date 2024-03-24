@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[33];
-    char stringdata0[448];
+    QByteArrayData data[30];
+    char stringdata0[410];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -52,19 +52,16 @@ QT_MOC_LITERAL(16, 212, 11), // "setVolume50"
 QT_MOC_LITERAL(17, 224, 11), // "setVolume60"
 QT_MOC_LITERAL(18, 236, 11), // "setVolume80"
 QT_MOC_LITERAL(19, 248, 12), // "setVolume100"
-QT_MOC_LITERAL(20, 261, 13), // "applySettings"
-QT_MOC_LITERAL(21, 275, 12), // "musicEnabled"
-QT_MOC_LITERAL(22, 288, 10), // "soundLevel"
-QT_MOC_LITERAL(23, 299, 8), // "language"
-QT_MOC_LITERAL(24, 308, 25), // "handleMusicEnabledChanged"
-QT_MOC_LITERAL(25, 334, 7), // "enabled"
-QT_MOC_LITERAL(26, 342, 17), // "handleTranslation"
-QT_MOC_LITERAL(27, 360, 23), // "handleSoundLevelChanged"
-QT_MOC_LITERAL(28, 384, 18), // "solvePuzzleRequest"
-QT_MOC_LITERAL(29, 403, 11), // "pausePlayer"
-QT_MOC_LITERAL(30, 415, 10), // "playPlayer"
-QT_MOC_LITERAL(31, 426, 8), // "playNext"
-QT_MOC_LITERAL(32, 435, 12) // "playPrevious"
+QT_MOC_LITERAL(20, 261, 25), // "handleMusicEnabledChanged"
+QT_MOC_LITERAL(21, 287, 7), // "enabled"
+QT_MOC_LITERAL(22, 295, 17), // "handleTranslation"
+QT_MOC_LITERAL(23, 313, 8), // "language"
+QT_MOC_LITERAL(24, 322, 23), // "handleSoundLevelChanged"
+QT_MOC_LITERAL(25, 346, 18), // "solvePuzzleRequest"
+QT_MOC_LITERAL(26, 365, 11), // "pausePlayer"
+QT_MOC_LITERAL(27, 377, 10), // "playPlayer"
+QT_MOC_LITERAL(28, 388, 8), // "playNext"
+QT_MOC_LITERAL(29, 397, 12) // "playPrevious"
 
     },
     "MainWindow\0newGameRequested\0\0showHomePage\0"
@@ -73,12 +70,12 @@ QT_MOC_LITERAL(32, 435, 12) // "playPrevious"
     "updateCompletedLevels\0handleGridSelection\0"
     "index\0startNewGame\0setVolume0\0setVolume20\0"
     "setVolume40\0setVolume50\0setVolume60\0"
-    "setVolume80\0setVolume100\0applySettings\0"
-    "musicEnabled\0soundLevel\0language\0"
+    "setVolume80\0setVolume100\0"
     "handleMusicEnabledChanged\0enabled\0"
-    "handleTranslation\0handleSoundLevelChanged\0"
-    "solvePuzzleRequest\0pausePlayer\0"
-    "playPlayer\0playNext\0playPrevious"
+    "handleTranslation\0language\0"
+    "handleSoundLevelChanged\0solvePuzzleRequest\0"
+    "pausePlayer\0playPlayer\0playNext\0"
+    "playPrevious"
 };
 #undef QT_MOC_LITERAL
 
@@ -88,7 +85,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      25,   14, // methods
+      24,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -96,33 +93,32 @@ static const uint qt_meta_data_MainWindow[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,  139,    2, 0x06 /* Public */,
-       3,    0,  140,    2, 0x06 /* Public */,
-       4,    0,  141,    2, 0x06 /* Public */,
+       1,    0,  134,    2, 0x06 /* Public */,
+       3,    0,  135,    2, 0x06 /* Public */,
+       4,    0,  136,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,  142,    2, 0x08 /* Private */,
-       6,    0,  143,    2, 0x08 /* Private */,
-       7,    1,  144,    2, 0x08 /* Private */,
-       9,    0,  147,    2, 0x08 /* Private */,
-      10,    1,  148,    2, 0x08 /* Private */,
-      12,    0,  151,    2, 0x08 /* Private */,
-      13,    0,  152,    2, 0x08 /* Private */,
-      14,    0,  153,    2, 0x08 /* Private */,
-      15,    0,  154,    2, 0x08 /* Private */,
-      16,    0,  155,    2, 0x08 /* Private */,
-      17,    0,  156,    2, 0x08 /* Private */,
-      18,    0,  157,    2, 0x08 /* Private */,
-      19,    0,  158,    2, 0x08 /* Private */,
-      20,    3,  159,    2, 0x08 /* Private */,
-      24,    1,  166,    2, 0x08 /* Private */,
-      26,    1,  169,    2, 0x08 /* Private */,
-      27,    1,  172,    2, 0x08 /* Private */,
-      28,    0,  175,    2, 0x0a /* Public */,
-      29,    0,  176,    2, 0x0a /* Public */,
-      30,    0,  177,    2, 0x0a /* Public */,
-      31,    0,  178,    2, 0x0a /* Public */,
-      32,    0,  179,    2, 0x0a /* Public */,
+       5,    0,  137,    2, 0x08 /* Private */,
+       6,    0,  138,    2, 0x08 /* Private */,
+       7,    1,  139,    2, 0x08 /* Private */,
+       9,    0,  142,    2, 0x08 /* Private */,
+      10,    1,  143,    2, 0x08 /* Private */,
+      12,    0,  146,    2, 0x08 /* Private */,
+      13,    0,  147,    2, 0x08 /* Private */,
+      14,    0,  148,    2, 0x08 /* Private */,
+      15,    0,  149,    2, 0x08 /* Private */,
+      16,    0,  150,    2, 0x08 /* Private */,
+      17,    0,  151,    2, 0x08 /* Private */,
+      18,    0,  152,    2, 0x08 /* Private */,
+      19,    0,  153,    2, 0x08 /* Private */,
+      20,    1,  154,    2, 0x08 /* Private */,
+      22,    1,  157,    2, 0x08 /* Private */,
+      24,    1,  160,    2, 0x08 /* Private */,
+      25,    0,  163,    2, 0x0a /* Public */,
+      26,    0,  164,    2, 0x0a /* Public */,
+      27,    0,  165,    2, 0x0a /* Public */,
+      28,    0,  166,    2, 0x0a /* Public */,
+      29,    0,  167,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -143,8 +139,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool, QMetaType::Int, QMetaType::QString,   21,   22,   23,
-    QMetaType::Void, QMetaType::Bool,   25,
+    QMetaType::Void, QMetaType::Bool,   21,
     QMetaType::Void, QMetaType::QString,   23,
     QMetaType::Void, QMetaType::Int,    8,
     QMetaType::Void,
@@ -178,15 +173,14 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 13: _t->setVolume60(); break;
         case 14: _t->setVolume80(); break;
         case 15: _t->setVolume100(); break;
-        case 16: _t->applySettings((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3]))); break;
-        case 17: _t->handleMusicEnabledChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 18: _t->handleTranslation((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 19: _t->handleSoundLevelChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 20: _t->solvePuzzleRequest(); break;
-        case 21: _t->pausePlayer(); break;
-        case 22: _t->playPlayer(); break;
-        case 23: _t->playNext(); break;
-        case 24: _t->playPrevious(); break;
+        case 16: _t->handleMusicEnabledChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 17: _t->handleTranslation((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 18: _t->handleSoundLevelChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 19: _t->solvePuzzleRequest(); break;
+        case 20: _t->pausePlayer(); break;
+        case 21: _t->playPlayer(); break;
+        case 22: _t->playNext(); break;
+        case 23: _t->playPrevious(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -216,7 +210,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
 }
 
 QT_INIT_METAOBJECT const QMetaObject MainWindow::staticMetaObject = { {
-    QMetaObject::SuperData::link<QMainWindow::staticMetaObject>(),
+    QMetaObject::SuperData::link<IWindowInterface::staticMetaObject>(),
     qt_meta_stringdata_MainWindow.data,
     qt_meta_data_MainWindow,
     qt_static_metacall,
@@ -235,22 +229,22 @@ void *MainWindow::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_MainWindow.stringdata0))
         return static_cast<void*>(this);
-    return QMainWindow::qt_metacast(_clname);
+    return IWindowInterface::qt_metacast(_clname);
 }
 
 int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QMainWindow::qt_metacall(_c, _id, _a);
+    _id = IWindowInterface::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 25)
+        if (_id < 24)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 25;
+        _id -= 24;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 25)
+        if (_id < 24)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 25;
+        _id -= 24;
     }
     return _id;
 }
