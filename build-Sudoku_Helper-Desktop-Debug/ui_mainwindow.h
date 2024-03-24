@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
@@ -40,6 +41,7 @@ public:
     QAction *actionPause;
     QAction *actionNext;
     QAction *actionPrevious;
+    QAction *actionColouredHelp;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
@@ -69,36 +71,51 @@ public:
         MainWindow->setMinimumSize(QSize(1000, 600));
         actionNew_Game = new QAction(MainWindow);
         actionNew_Game->setObjectName(QString::fromUtf8("actionNew_Game"));
-        QIcon icon(QIcon::fromTheme(QString::fromUtf8("document-new")));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icons/new.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionNew_Game->setIcon(icon);
         actionQuit = new QAction(MainWindow);
         actionQuit->setObjectName(QString::fromUtf8("actionQuit"));
-        QIcon icon1(QIcon::fromTheme(QString::fromUtf8("system-shutdown")));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/icons/sign-out.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionQuit->setIcon(icon1);
         actionSolve = new QAction(MainWindow);
         actionSolve->setObjectName(QString::fromUtf8("actionSolve"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/icons/solve.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSolve->setIcon(icon2);
         actionHome = new QAction(MainWindow);
         actionHome->setObjectName(QString::fromUtf8("actionHome"));
-        QIcon icon2(QIcon::fromTheme(QString::fromUtf8("go-home")));
-        actionHome->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/icons/home.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionHome->setIcon(icon3);
         actionLeaderBoard = new QAction(MainWindow);
         actionLeaderBoard->setObjectName(QString::fromUtf8("actionLeaderBoard"));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/icons/podium.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionLeaderBoard->setIcon(icon4);
         actionPlay = new QAction(MainWindow);
         actionPlay->setObjectName(QString::fromUtf8("actionPlay"));
-        QIcon icon3(QIcon::fromTheme(QString::fromUtf8("media-playback-start")));
-        actionPlay->setIcon(icon3);
+        QIcon icon5(QIcon::fromTheme(QString::fromUtf8("media-playback-start")));
+        actionPlay->setIcon(icon5);
         actionPause = new QAction(MainWindow);
         actionPause->setObjectName(QString::fromUtf8("actionPause"));
-        QIcon icon4(QIcon::fromTheme(QString::fromUtf8("media-playback-pause")));
-        actionPause->setIcon(icon4);
+        QIcon icon6(QIcon::fromTheme(QString::fromUtf8("media-playback-pause")));
+        actionPause->setIcon(icon6);
         actionNext = new QAction(MainWindow);
         actionNext->setObjectName(QString::fromUtf8("actionNext"));
-        QIcon icon5(QIcon::fromTheme(QString::fromUtf8("media-skip-forward")));
-        actionNext->setIcon(icon5);
+        QIcon icon7(QIcon::fromTheme(QString::fromUtf8("media-skip-forward")));
+        actionNext->setIcon(icon7);
         actionPrevious = new QAction(MainWindow);
         actionPrevious->setObjectName(QString::fromUtf8("actionPrevious"));
-        QIcon icon6(QIcon::fromTheme(QString::fromUtf8("media-skip-backward")));
-        actionPrevious->setIcon(icon6);
+        QIcon icon8(QIcon::fromTheme(QString::fromUtf8("media-skip-backward")));
+        actionPrevious->setIcon(icon8);
+        actionColouredHelp = new QAction(MainWindow);
+        actionColouredHelp->setObjectName(QString::fromUtf8("actionColouredHelp"));
+        actionColouredHelp->setCheckable(true);
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/icons/help.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionColouredHelp->setIcon(icon9);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -132,14 +149,14 @@ public:
         horizontalLayout->addWidget(levelLabel);
 
         LevelComboBox = new QComboBox(centralwidget);
-        QIcon icon7(QIcon::fromTheme(QString::fromUtf8("face-smile")));
-        LevelComboBox->addItem(icon7, QString());
-        QIcon icon8(QIcon::fromTheme(QString::fromUtf8("face-cool")));
-        LevelComboBox->addItem(icon8, QString());
-        QIcon icon9(QIcon::fromTheme(QString::fromUtf8("face-devilish")));
-        LevelComboBox->addItem(icon9, QString());
-        QIcon icon10(QIcon::fromTheme(QString::fromUtf8("face-sick")));
+        QIcon icon10(QIcon::fromTheme(QString::fromUtf8("face-smile")));
         LevelComboBox->addItem(icon10, QString());
+        QIcon icon11(QIcon::fromTheme(QString::fromUtf8("face-cool")));
+        LevelComboBox->addItem(icon11, QString());
+        QIcon icon12(QIcon::fromTheme(QString::fromUtf8("face-devilish")));
+        LevelComboBox->addItem(icon12, QString());
+        QIcon icon13(QIcon::fromTheme(QString::fromUtf8("face-sick")));
+        LevelComboBox->addItem(icon13, QString());
         LevelComboBox->setObjectName(QString::fromUtf8("LevelComboBox"));
         LevelComboBox->setMinimumSize(QSize(130, 0));
 
@@ -178,10 +195,19 @@ public:
         menuOptions->setObjectName(QString::fromUtf8("menuOptions"));
         menuSettings = new QMenu(menuOptions);
         menuSettings->setObjectName(QString::fromUtf8("menuSettings"));
+        QIcon icon14;
+        icon14.addFile(QString::fromUtf8(":/icons/settings_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        menuSettings->setIcon(icon14);
         menuMusic = new QMenu(menuSettings);
         menuMusic->setObjectName(QString::fromUtf8("menuMusic"));
+        QIcon icon15;
+        icon15.addFile(QString::fromUtf8(":/icons/headphone.png"), QSize(), QIcon::Normal, QIcon::Off);
+        menuMusic->setIcon(icon15);
         menuVolume = new QMenu(menuMusic);
         menuVolume->setObjectName(QString::fromUtf8("menuVolume"));
+        QIcon icon16;
+        icon16.addFile(QString::fromUtf8(":/icons/medium-volume.png"), QSize(), QIcon::Normal, QIcon::Off);
+        menuVolume->setIcon(icon16);
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -195,6 +221,7 @@ public:
         menuFile->addSeparator();
         menuFile->addAction(actionQuit);
         menuFile->addAction(actionHome);
+        menuOptions->addAction(actionColouredHelp);
         menuOptions->addAction(actionSolve);
         menuOptions->addAction(actionLeaderBoard);
         menuOptions->addAction(menuSettings->menuAction());
@@ -237,6 +264,10 @@ public:
         actionPause->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
         actionNext->setText(QCoreApplication::translate("MainWindow", "Next", nullptr));
         actionPrevious->setText(QCoreApplication::translate("MainWindow", "Previous", nullptr));
+        actionColouredHelp->setText(QCoreApplication::translate("MainWindow", "Coloured Help", nullptr));
+#if QT_CONFIG(shortcut)
+        actionColouredHelp->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Shift+H", nullptr));
+#endif // QT_CONFIG(shortcut)
         levelLabel->setText(QCoreApplication::translate("MainWindow", "Level (Please Select) :", nullptr));
         LevelComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Easy", nullptr));
         LevelComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Medium", "Medium Level"));

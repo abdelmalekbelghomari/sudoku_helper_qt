@@ -171,13 +171,25 @@
      <property name="title">
       <string>Settings</string>
      </property>
+     <property name="icon">
+      <iconset resource="ressources.qrc">
+       <normaloff>:/icons/settings_icon.png</normaloff>:/icons/settings_icon.png</iconset>
+     </property>
      <widget class="QMenu" name="menuMusic">
       <property name="title">
        <string>Music</string>
       </property>
+      <property name="icon">
+       <iconset resource="ressources.qrc">
+        <normaloff>:/icons/headphone.png</normaloff>:/icons/headphone.png</iconset>
+      </property>
       <widget class="QMenu" name="menuVolume">
        <property name="title">
         <string>Volume</string>
+       </property>
+       <property name="icon">
+        <iconset resource="ressources.qrc">
+         <normaloff>:/icons/medium-volume.png</normaloff>:/icons/medium-volume.png</iconset>
        </property>
       </widget>
       <addaction name="actionPlay"/>
@@ -188,6 +200,7 @@
      </widget>
      <addaction name="menuMusic"/>
     </widget>
+    <addaction name="actionColouredHelp"/>
     <addaction name="actionSolve"/>
     <addaction name="actionLeaderBoard"/>
     <addaction name="menuSettings"/>
@@ -198,7 +211,8 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNew_Game">
    <property name="icon">
-    <iconset theme="document-new"/>
+    <iconset resource="ressources.qrc">
+     <normaloff>:/icons/new.png</normaloff>:/icons/new.png</iconset>
    </property>
    <property name="text">
     <string>New Game</string>
@@ -209,7 +223,8 @@
   </action>
   <action name="actionQuit">
    <property name="icon">
-    <iconset theme="system-shutdown"/>
+    <iconset resource="ressources.qrc">
+     <normaloff>:/icons/sign-out.png</normaloff>:/icons/sign-out.png</iconset>
    </property>
    <property name="text">
     <string>Quit</string>
@@ -219,6 +234,10 @@
    </property>
   </action>
   <action name="actionSolve">
+   <property name="icon">
+    <iconset resource="ressources.qrc">
+     <normaloff>:/icons/solve.png</normaloff>:/icons/solve.png</iconset>
+   </property>
    <property name="text">
     <string>Solve </string>
    </property>
@@ -228,7 +247,8 @@
   </action>
   <action name="actionHome">
    <property name="icon">
-    <iconset theme="go-home"/>
+    <iconset resource="ressources.qrc">
+     <normaloff>:/icons/home.png</normaloff>:/icons/home.png</iconset>
    </property>
    <property name="text">
     <string>Home Screen</string>
@@ -238,6 +258,10 @@
    </property>
   </action>
   <action name="actionLeaderBoard">
+   <property name="icon">
+    <iconset resource="ressources.qrc">
+     <normaloff>:/icons/podium.png</normaloff>:/icons/podium.png</iconset>
+   </property>
    <property name="text">
     <string>LeaderBoard</string>
    </property>
@@ -277,6 +301,21 @@
     <string>Previous</string>
    </property>
   </action>
+  <action name="actionColouredHelp">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ressources.qrc">
+     <normaloff>:/icons/help.png</normaloff>:/icons/help.png</iconset>
+   </property>
+   <property name="text">
+    <string>Coloured Help</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+H</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -297,6 +336,8 @@
   <tabstop>LevelComboBox</tabstop>
   <tabstop>gridSelectorComboBox</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="ressources.qrc"/>
+ </resources>
  <connections/>
 </ui>

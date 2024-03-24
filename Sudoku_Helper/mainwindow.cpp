@@ -115,6 +115,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&ConfigurationManager::instance(), &ConfigurationManager::languageChanged, this, &MainWindow::handleTranslation);
     connect(&ConfigurationManager::instance(), &ConfigurationManager::soundLevelChanged, this, &MainWindow::handleSoundLevelChanged);
 
+    connect(ui->actionColouredHelp, &QAction::toggled, this, &MainWindow::onActionColouredHelpToggled);
+    connect(this, &MainWindow::colouredHelpChanged, ui->figureSelector, &FiguresDisplayer::setColouredHelpEnabled);
+
 }
 
 void MainWindow::pausePlayer(){
@@ -233,7 +236,9 @@ void MainWindow::updateTimer() {
     ui->timerLabel->setText(time.toString("mm:ss"));
 }
 
-
+void MainWindow::onActionColouredHelpToggled(bool checked){
+    emit colouredHelpChanged(checked);
+}
 
 void MainWindow::on_actionQuitGame()
 {

@@ -142,6 +142,7 @@ void FiguresDisplayer::applyRestrictions(QComboBox* sender, const QString& value
             int findIndex = comboBox->findText(value);
             if (findIndex != -1) {
                 comboBox->removeItem(findIndex);
+                adjustComboBoxColor(comboBox);
                 _removedValuesFromCombos[comboBox].append(value); // Ajouter à la liste des valeurs retirées
                 _sourceOfRemovedValues[value].append(comboBox); // Enregistrer la source de la valeur retirée
             }
@@ -195,7 +196,7 @@ void FiguresDisplayer::filterNumbers() {
             }
         }
 
-        // Restaure l'état précédent des signaux
+        adjustComboBoxColor(comboBox);
         comboBox->blockSignals(signalsBlocked);
     }
 }
@@ -205,6 +206,7 @@ void FiguresDisplayer::restoreValuesForSelection(const QString& value) {
     for (QComboBox* combo : combos) {
         if (combo->findText(value) == -1) {
             combo->addItem(value);
+            adjustComboBoxColor(combo);
         }
     }
     // Assurez-vous de nettoyer après la restauration
@@ -291,3 +293,33 @@ void FiguresDisplayer::setSolution(const QString &solution) {
         }
     }
 }
+
+void FiguresDisplayer::setColouredHelpEnabled(bool enabled) {
+    _colouredHelpEnabled = enabled;
+    for (int i = 0; i < layout->count(); ++i) {
+        QLayoutItem* item = layout->itemAt(i);
+        if (QComboBox* comboBox = qobject_cast<QComboBox*>(item->widget())) {
+            if(!_colouredHelpEnabled)
+            comboBox->setStyleSheet("");
+        } else {
+            adjustComboBoxColor(comboBox);
+        }
+    }
+}
+
+void FiguresDisplayer::adjustComboBoxColor(QComboBox* comboBox) {
+    if (!_colouredHelpEnabled) return;
+    if (!comboBox) return;
+    int optionsCount = comboBox->count();
+
+    if (optionsCount == 2) {
+        comboBox->setStyleSheet("QComboBox { background-color: blue; }");
+    } else if (optionsCount == 1) {
+        comboBox->setStyleSheet("QComboBox { background-color: red; }");
+    } else {
+        comboBox->setStyleSheet("");
+    }
+}
+
+
+

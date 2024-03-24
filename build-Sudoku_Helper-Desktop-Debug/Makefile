@@ -467,7 +467,15 @@ qrc_ressources.cpp: ../Sudoku_Helper/ressources.qrc \
 		../Sudoku_Helper/Sudoku_Helper_en_GB.qm \
 		../Sudoku_Helper/Sudoku_Helper_de_DE.qm \
 		../Sudoku_Helper/Sudoku_Helper_fr_FR.qm \
+		../Sudoku_Helper/help.png \
+		../Sudoku_Helper/sign-out.png \
+		../Sudoku_Helper/home.png \
+		../Sudoku_Helper/headphone.png \
+		../Sudoku_Helper/podium.png \
 		../Sudoku_Helper/settings_icon.png \
+		../Sudoku_Helper/solve.png \
+		../Sudoku_Helper/medium-volume.png \
+		../Sudoku_Helper/new.png \
 		../Sudoku_Helper/completedLevels.txt
 	/usr/lib/qt5/bin/rcc -name ressources ../Sudoku_Helper/ressources.qrc -o qrc_ressources.cpp
 

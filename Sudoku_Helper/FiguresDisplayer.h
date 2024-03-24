@@ -37,6 +37,8 @@ public:
 
 public slots:
     void onComboBoxChanged(int index);
+    void setColouredHelpEnabled(bool enabled);
+
 private:
     QLabel *numberLabel;
     QComboBox *numberComboBox;
@@ -44,10 +46,10 @@ private:
     QMap<QComboBox*, QStringList> _removedValuesFromCombos;
     QMap<QString, QList<QComboBox*>> _sourceOfRemovedValues;
     SudokuDrawer* _drawer = nullptr;
-    
-
-    void createFixedNumber(int number, int position);  // Assuming this is correctly declared and implemented
-    void createComboBox(int position);  // Assuming this is correctly declared and implemented
+    void adjustComboBoxColor(QComboBox* comboBox);
+    bool _colouredHelpEnabled ;
+    void createFixedNumber(int number, int position);
+    void createComboBox(int position);
 
 signals:
     void gameIsCompleted();

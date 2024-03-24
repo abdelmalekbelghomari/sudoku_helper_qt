@@ -35,6 +35,7 @@ signals:
     void newGameRequested();
     void showHomePage();
     void quitGame();
+    void colouredHelpChanged(bool enabled);
 
 private slots:
     void on_actionReturnToHomePage();
@@ -53,6 +54,7 @@ private slots:
     void handleMusicEnabledChanged(bool enabled);
     void handleTranslation(const QString & language);
     void handleSoundLevelChanged(int level);
+    void onActionColouredHelpToggled(bool checked);
 
 public slots:
     void solvePuzzleRequest();

@@ -36,6 +36,14 @@
     </qresource>
     <qresource prefix="/icons">
         <file>settings_icon.png</file>
+        <file>help.png</file>
+        <file>solve.png</file>
+        <file>podium.png</file>
+        <file>headphone.png</file>
+        <file>medium-volume.png</file>
+        <file>new.png</file>
+        <file>sign-out.png</file>
+        <file>home.png</file>
     </qresource>
     <qresource prefix="/translations">
         <file>Sudoku_Helper_ja_JP.qm</file>
