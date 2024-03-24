@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QGridLayout>
+#include <Qstack>
 
 class MainWindow;
 class SudokuDrawer;
@@ -34,6 +35,10 @@ public:
     void displayWinMessageInNewWindow();
     void lockAllComboBoxes();
     void setSolution(const QString &solution);
+    void adjustComboBoxColor(QComboBox* comboBox);
+    void undo();
+    void redo();
+    void saveCurrentState();
 
 public slots:
     void onComboBoxChanged(int index);
@@ -44,6 +49,9 @@ private:
     QMap<QComboBox*, QStringList> _removedValuesFromCombos;
     QMap<QString, QList<QComboBox*>> _sourceOfRemovedValues;
     SudokuDrawer* _drawer = nullptr;
+    QStack<QString> _undoStack;
+    QStack<QString> _redoStack;
+    void applyBoardState(const QString& state);
     
 
     void createFixedNumber(int number, int position);  // Assuming this is correctly declared and implemented

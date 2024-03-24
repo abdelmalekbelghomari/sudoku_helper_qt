@@ -6,12 +6,15 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QPainter>
+#include "ChangeValueCommand.h"
+#include "CommandManager.h"
 
 FiguresDisplayer::FiguresDisplayer(QWidget *parent) : QWidget(parent){
     layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     setLayout(layout);
 }
+
 
 void FiguresDisplayer::clearAll() {
     // Supprimer tous les widgets du layout
@@ -101,6 +104,10 @@ void FiguresDisplayer::onComboBoxChanged(int index) {
     if (_drawer) {
         _drawer->drawGrid(gridData);
     }
+
+    saveCurrentState();
+    senderComboBox->setProperty("previousValue", currentValue);
+
     checkGameCompletion();
 }
 
@@ -142,6 +149,7 @@ void FiguresDisplayer::applyRestrictions(QComboBox* sender, const QString& value
             int findIndex = comboBox->findText(value);
             if (findIndex != -1) {
                 comboBox->removeItem(findIndex);
+                adjustComboBoxColor(comboBox);
                 _removedValuesFromCombos[comboBox].append(value); // Ajouter à la liste des valeurs retirées
                 _sourceOfRemovedValues[value].append(comboBox); // Enregistrer la source de la valeur retirée
             }
@@ -151,7 +159,7 @@ void FiguresDisplayer::applyRestrictions(QComboBox* sender, const QString& value
 
 
 void FiguresDisplayer::filterNumbers() {
-    // Parcourt tous les éléments du layout pour trouver les QComboBox
+    // Parcour/*t tous les éléments du layout pour trouver les QComboBox
     for (int i = 0; i < layout->count(); ++i) {
         QLayoutItem* item = layout->itemAt(i);
         if (!item->widget()) continue; // Ignore les éléments sans widget
@@ -194,7 +202,7 @@ void FiguresDisplayer::filterNumbers() {
                 comboBox->removeItem(indexToRemove);
             }
         }
-
+        adjustComboBoxColor(comboBox);
         // Restaure l'état précédent des signaux
         comboBox->blockSignals(signalsBlocked);
     }
@@ -205,6 +213,7 @@ void FiguresDisplayer::restoreValuesForSelection(const QString& value) {
     for (QComboBox* combo : combos) {
         if (combo->findText(value) == -1) {
             combo->addItem(value);
+            adjustComboBoxColor(combo);
         }
     }
     // Assurez-vous de nettoyer après la restauration
@@ -287,6 +296,79 @@ void FiguresDisplayer::setSolution(const QString &solution) {
                     comboBox->setCurrentIndex(optionIndex);
                     // qDebug() << "Setting value " << value << " at index " << optionIndex << " for " << row << " " << col;
                 }
+            }
+        }
+    }
+}
+
+void FiguresDisplayer::adjustComboBoxColor(QComboBox* comboBox) {
+    if (!comboBox) return;
+
+    // Vérifier le nombre d'options disponibles dans le comboBox
+    int optionsCount = comboBox->count();
+
+    if (optionsCount == 2) { // Seulement l'option vide et un chiffre
+        comboBox->setStyleSheet("QComboBox { background-color: blue; }");
+    } else if (optionsCount == 1) { // Seulement l'option vide
+        comboBox->setStyleSheet("QComboBox { background-color: red; }");
+    } else {
+        comboBox->setStyleSheet(""); // Réinitialiser le style par défaut si nécessaire
+    }
+}
+
+void FiguresDisplayer::undo() {
+    if (!_undoStack.isEmpty()) {
+        QString prevState = _undoStack.pop();
+        if (!_undoStack.isEmpty()) {
+            // Le dernier état reste le sommet après pop, donc on le prend sans le retirer
+            prevState = _undoStack.top();
+        } else {
+            // Si la pile est vide après pop, remettez prevState
+            _undoStack.push(prevState);
+        }
+        _redoStack.push(buildGridRepresentation());
+        applyBoardState(prevState);
+    }
+}
+
+void FiguresDisplayer::redo() {
+    if (!_redoStack.isEmpty()) {
+        QString nextState = _redoStack.pop();
+        _undoStack.push(buildGridRepresentation());
+        applyBoardState(nextState);
+    }
+}
+
+void FiguresDisplayer::saveCurrentState() {
+    QString currentState = buildGridRepresentation();
+    _undoStack.push(currentState);
+}
+
+void FiguresDisplayer::applyBoardState(const QString& state) {
+    if (state.length() != 81) return;
+
+    for (int row = 0; row < 9; ++row) {
+        for (int col = 0; col < 9; ++col) {
+            int index = row * 9 + col;
+            QChar valueChar = state.at(index);
+            int value = valueChar.digitValue(); // '0' pour une cellule vide
+
+            QWidget* widget = widgetAt(row, col);
+            QComboBox* comboBox = qobject_cast<QComboBox*>(widget);
+            QLabel* label = qobject_cast<QLabel*>(widget);
+
+            // Pour une cellule modifiable (représentée par un QComboBox)
+            if (comboBox) {
+                if (value == 0) {
+                    comboBox->setCurrentIndex(0); // Sélectionnez l'item vide pour une cellule vide
+                } else {
+                    comboBox->setCurrentIndex(comboBox->findText(valueChar)); // Sélectionnez l'item correspondant à la valeur
+                }
+            }
+
+            // Pour une cellule non modifiable (représentée par un QLabel)
+            else if (label) {
+                label->setText(value == 0 ? "" : QString(valueChar));
             }
         }
     }

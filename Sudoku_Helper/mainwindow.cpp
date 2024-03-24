@@ -6,6 +6,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QMovie>
+#include <QKeyEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,11 +19,33 @@ MainWindow::MainWindow(QWidget *parent)
     FiguresDisplayer* square = findChild<FiguresDisplayer*>("figureSelector");
     SudokuDrawer* drawer = findChild<SudokuDrawer*>("sudokuWidget"); // Assurez-vous que l'objectName de SudokuDrawer est correctement défini dans Designer ou dans le code
 
+
     if (square && drawer) {
         _presenter = new Presenter(square, this);
         square->setSudokuDrawer(drawer);
         drawer->setFiguresDisplayer(square);
     }
+
+    auto undoAction = new QAction(this);
+    undoAction->setShortcut(QKeySequence("Ctrl+Z"));
+    connect(undoAction, &QAction::triggered, this, [this]() {
+        auto square = findChild<FiguresDisplayer*>("figureSelector");
+        if (square) {
+            square->undo();
+        }
+    });
+    this->addAction(undoAction);
+
+    auto redoAction = new QAction(this);
+    redoAction->setShortcut(QKeySequence("Ctrl+Y"));
+    connect(redoAction, &QAction::triggered, this, [this]() {
+        auto square = findChild<FiguresDisplayer*>("figureSelector");
+        if (square) {
+            square->redo();
+        }
+    });
+    this->addAction(redoAction);
+
 
     connect(ui->newGameButton, &QPushButton::clicked,this , [&]() {
         startNewGame();
@@ -280,6 +303,8 @@ void MainWindow::solvePuzzleRequest() {
     }
 }
 
+
+
 void MainWindow::setVolume0() {
     _musicPlayer->setVolume(0);
 }
@@ -320,4 +345,5 @@ void MainWindow::handleTranslation(const QString & language) {
 void MainWindow::handleSoundLevelChanged(int level) {
     _musicPlayer->setVolume(level);
 }
+
 

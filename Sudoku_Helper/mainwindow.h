@@ -77,6 +77,8 @@ private:
     QMediaPlayer * _musicPlayer;
     QMediaPlaylist * _playlist;
 
+protected:
+    void keyPressEvent(QKeyEvent* event) override;
 
 };
 #endif // MAINWINDOW_H

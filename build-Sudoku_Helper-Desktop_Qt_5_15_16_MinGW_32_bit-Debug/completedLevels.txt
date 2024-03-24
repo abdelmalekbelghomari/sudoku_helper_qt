@@ -1,0 +1,3 @@
+Level:    easy      Grid:   109     Time: 00:00:18
+ Level:    medium    Grid:   4       Time: 00:01:59
+ 
