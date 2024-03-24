@@ -40,6 +40,7 @@ public:
     QAction *actionPause;
     QAction *actionNext;
     QAction *actionPrevious;
+    QAction *actionHelp;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
@@ -99,6 +100,8 @@ public:
         actionPrevious->setObjectName(QString::fromUtf8("actionPrevious"));
         QIcon icon6(QIcon::fromTheme(QString::fromUtf8("media-skip-backward")));
         actionPrevious->setIcon(icon6);
+        actionHelp = new QAction(MainWindow);
+        actionHelp->setObjectName(QString::fromUtf8("actionHelp"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -171,7 +174,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1000, 22));
+        menubar->setGeometry(QRect(0, 0, 1000, 26));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuOptions = new QMenu(menubar);
@@ -198,6 +201,7 @@ public:
         menuOptions->addAction(actionSolve);
         menuOptions->addAction(actionLeaderBoard);
         menuOptions->addAction(menuSettings->menuAction());
+        menuOptions->addSeparator();
         menuSettings->addAction(menuMusic->menuAction());
         menuMusic->addAction(actionPlay);
         menuMusic->addAction(actionPause);
@@ -237,6 +241,7 @@ public:
         actionPause->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
         actionNext->setText(QCoreApplication::translate("MainWindow", "Next", nullptr));
         actionPrevious->setText(QCoreApplication::translate("MainWindow", "Previous", nullptr));
+        actionHelp->setText(QCoreApplication::translate("MainWindow", "Help", nullptr));
         levelLabel->setText(QCoreApplication::translate("MainWindow", "Level (Please Select) :", nullptr));
         LevelComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Easy", nullptr));
         LevelComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Medium", "Medium Level"));

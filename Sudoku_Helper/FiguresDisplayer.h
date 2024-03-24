@@ -5,7 +5,7 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QGridLayout>
-#include <Qstack>
+#include <QStack>
 
 class MainWindow;
 class SudokuDrawer;
