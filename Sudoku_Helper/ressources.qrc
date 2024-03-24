@@ -36,4 +36,7 @@
     <qresource prefix="/icons">
         <file>settings_icon.png</file>
     </qresource>
+    <qresource prefix="/translations">
+        <file>Sudoku_Helper_en_GB.ts</file>
+    </qresource>
 </RCC>

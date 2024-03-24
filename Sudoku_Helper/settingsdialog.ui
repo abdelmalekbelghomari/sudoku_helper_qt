@@ -120,16 +120,7 @@
        <widget class="QComboBox" name="languageComboBox">
         <item>
          <property name="text">
-          <string>Français</string>
-         </property>
-         <property name="icon">
-          <iconset resource="ressources.qrc">
-           <normaloff>:/flags/france.png</normaloff>:/flags/france.png</iconset>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>English</string>
+          <string notr="true">English</string>
          </property>
          <property name="icon">
           <iconset resource="ressources.qrc">
@@ -138,7 +129,16 @@
         </item>
         <item>
          <property name="text">
-          <string>日本語</string>
+          <string notr="true">Français</string>
+         </property>
+         <property name="icon">
+          <iconset resource="ressources.qrc">
+           <normaloff>:/flags/france.png</normaloff>:/flags/france.png</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">日本語</string>
          </property>
          <property name="icon">
           <iconset resource="ressources.qrc">
@@ -147,7 +147,7 @@
         </item>
         <item>
          <property name="text">
-          <string>Deutsch</string>
+          <string notr="true">Deutsch</string>
          </property>
          <property name="icon">
           <iconset resource="ressources.qrc">
@@ -156,7 +156,7 @@
         </item>
         <item>
          <property name="text">
-          <string>Español</string>
+          <string notr="true">Español</string>
          </property>
          <property name="icon">
           <iconset resource="ressources.qrc">

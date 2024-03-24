@@ -25,6 +25,7 @@ private slots:
 
 private:
     Ui::SettingsDialog *ui;
+    void matchLanguageWithCode();
 
 };
 

@@ -9,9 +9,11 @@
 #include <QMediaPlaylist>
 #include <QAction>
 #include <QActionGroup>
+#include <QTranslator>
 #include "IWindowInterface.h"
 #include "Presenter.h"
 #include "LeaderboardDialog.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

@@ -115,20 +115,20 @@ public:
 
         languageComboBox = new QComboBox(horizontalLayoutWidget);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/flags/france.png"), QSize(), QIcon::Normal, QIcon::Off);
-        languageComboBox->addItem(icon, QString());
+        icon.addFile(QString::fromUtf8(":/flags/united-kingdom.png"), QSize(), QIcon::Normal, QIcon::Off);
+        languageComboBox->addItem(icon, QString::fromUtf8("English"));
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/flags/united-kingdom.png"), QSize(), QIcon::Normal, QIcon::Off);
-        languageComboBox->addItem(icon1, QString());
+        icon1.addFile(QString::fromUtf8(":/flags/france.png"), QSize(), QIcon::Normal, QIcon::Off);
+        languageComboBox->addItem(icon1, QString::fromUtf8("Fran\303\247ais"));
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/flags/japan.png"), QSize(), QIcon::Normal, QIcon::Off);
-        languageComboBox->addItem(icon2, QString());
+        languageComboBox->addItem(icon2, QString::fromUtf8("\346\227\245\346\234\254\350\252\236"));
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/flags/germany.png"), QSize(), QIcon::Normal, QIcon::Off);
-        languageComboBox->addItem(icon3, QString());
+        languageComboBox->addItem(icon3, QString::fromUtf8("Deutsch"));
         QIcon icon4;
         icon4.addFile(QString::fromUtf8(":/flags/spain.png"), QSize(), QIcon::Normal, QIcon::Off);
-        languageComboBox->addItem(icon4, QString());
+        languageComboBox->addItem(icon4, QString::fromUtf8("Espa\303\261ol"));
         languageComboBox->setObjectName(QString::fromUtf8("languageComboBox"));
 
         verticalLayout->addWidget(languageComboBox);
@@ -155,11 +155,6 @@ public:
         label_2->setText(QCoreApplication::translate("SettingsDialog", "Sound Level :", nullptr));
         label_3->setText(QCoreApplication::translate("SettingsDialog", "Language", nullptr));
         musicCheckBox->setText(QCoreApplication::translate("SettingsDialog", "Enabled", nullptr));
-        languageComboBox->setItemText(0, QCoreApplication::translate("SettingsDialog", "Fran\303\247ais", nullptr));
-        languageComboBox->setItemText(1, QCoreApplication::translate("SettingsDialog", "English", nullptr));
-        languageComboBox->setItemText(2, QCoreApplication::translate("SettingsDialog", "\346\227\245\346\234\254\350\252\236", nullptr));
-        languageComboBox->setItemText(3, QCoreApplication::translate("SettingsDialog", "Deutsch", nullptr));
-        languageComboBox->setItemText(4, QCoreApplication::translate("SettingsDialog", "Espa\303\261ol", nullptr));
 
     } // retranslateUi
 

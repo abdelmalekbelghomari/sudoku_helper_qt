@@ -6,6 +6,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     , ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
+    matchLanguageWithCode();
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &SettingsDialog::applySettings);
 
@@ -14,13 +15,22 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 void SettingsDialog::applySettings() {
     bool musicEnabled = ui->musicCheckBox->isChecked();
     int soundLevel = ui->soundSlider->value();
-    QString language = ui->languageComboBox->currentText();
+    int index = ui->languageComboBox->currentIndex();
+    QString languageCode = ui->languageComboBox->itemData(index).toString();
 
     ConfigurationManager::instance().setMusicEnabled(musicEnabled);
     ConfigurationManager::instance().setSoundLevel(soundLevel);
-    ConfigurationManager::instance().setLanguage(language);
+    ConfigurationManager::instance().setLanguage(languageCode);
 
     accept();
+}
+
+void SettingsDialog::matchLanguageWithCode() {
+    ui->languageComboBox->setItemData(0, "en_GB");
+    ui->languageComboBox->setItemData(1, "fr_FR");
+    ui->languageComboBox->setItemData(2, "ja_JP");
+    ui->languageComboBox->setItemData(3, "de_DE");
+    ui->languageComboBox->setItemData(4, "es_ES");
 }
 
 

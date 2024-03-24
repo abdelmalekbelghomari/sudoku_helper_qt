@@ -314,7 +314,17 @@ void MainWindow::handleMusicEnabledChanged(bool enabled) {
 }
 
 void MainWindow::handleTranslation(const QString & language) {
-    /*TODO*/
+    static QTranslator translator;
+    qApp->removeTranslator(&translator); // Retire la traduction précédente
+
+    QString translationFilePath = ":/translations/Sudoku_Helper_" + language + ".ts";
+    if(translator.load(translationFilePath)) {
+        qApp->installTranslator(&translator);
+    } else {
+        qDebug() << "Failed to load translation file:" << translationFilePath;
+    }
+
+    ui->retranslateUi(this);
 }
 
 void MainWindow::handleSoundLevelChanged(int level) {

@@ -458,6 +458,7 @@ qrc_ressources.cpp: ../Sudoku_Helper/ressources.qrc \
 		../Sudoku_Helper/Insane.txt \
 		../Sudoku_Helper/Medium.txt \
 		../Sudoku_Helper/style.qss \
+		../Sudoku_Helper/Sudoku_Helper_en_GB.ts \
 		../Sudoku_Helper/settings_icon.png \
 		../Sudoku_Helper/completedLevels.txt
 	/usr/lib/qt5/bin/rcc -name ressources ../Sudoku_Helper/ressources.qrc -o qrc_ressources.cpp
